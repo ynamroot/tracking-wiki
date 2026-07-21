@@ -29,20 +29,23 @@ $requiredPaths = @(
     "SCHEMA.md",
     "OPERATIONS.md",
     "AGENT_PLAYBOOKS.md",
+    "site/quartz.config.yaml",
+    "site/quartz-version.txt",
+    "scripts/Build-WikiSite.ps1",
     "raw/inbox",
     "raw/sources",
     "raw/rejected",
     "raw/assets",
     "wiki/index.md",
+    "wiki/README.md",
     "wiki/log.md",
     "wiki/overview.md",
     "wiki/open-questions.md",
     "wiki/sources",
-    "wiki/market",
-    "wiki/customers",
-    "wiki/competitors",
-    "wiki/technologies",
-    "wiki/synthesis",
+    "wiki/knowledge/problem",
+    "wiki/knowledge/landscape",
+    "wiki/knowledge/technology",
+    "wiki/knowledge/synthesis",
     "wiki/audits",
     "product/drafts",
     "product/approved",
@@ -57,6 +60,20 @@ $requiredPaths = @(
 foreach ($relativePath in $requiredPaths) {
     if (-not (Test-Path -LiteralPath (Join-Path $root $relativePath))) {
         Add-ValidationError "Missing required path: $relativePath"
+    }
+}
+
+$legacyWikiPaths = @(
+    "wiki/market",
+    "wiki/customers",
+    "wiki/competitors",
+    "wiki/technologies",
+    "wiki/synthesis"
+)
+
+foreach ($relativePath in $legacyWikiPaths) {
+    if (Test-Path -LiteralPath (Join-Path $root $relativePath)) {
+        Add-ValidationError "Legacy Wiki path still exists: $relativePath"
     }
 }
 
@@ -107,7 +124,7 @@ foreach ($sourceSet in $sourceSets) {
 
 $wikiFields = @("title", "type", "status", "confidence", "created", "updated", "sources")
 $wikiSections = @("Current Synthesis", "Evidence", "Contradictions", "Open Questions", "See Also")
-$excludedWikiFiles = @("AGENTS.md", "index.md", "log.md", "open-questions.md")
+$excludedWikiFiles = @("AGENTS.md", "README.md", "index.md", "log.md", "open-questions.md")
 $knowledgePages = Get-ChildItem -LiteralPath (Join-Path $root "wiki") -Filter "*.md" -File -Recurse |
     Where-Object {
         $excludedWikiFiles -notcontains $_.Name -and
@@ -127,6 +144,25 @@ foreach ($page in $knowledgePages) {
     foreach ($field in $wikiFields) {
         if (-not (Test-FrontmatterField -Content $content -Field $field)) {
             Add-ValidationError "$relativePath is missing wiki frontmatter field: $field"
+        }
+    }
+
+    $typeMatch = [regex]::Match($content, '(?m)^type:\s*([a-z-]+)\s*$')
+    if ($typeMatch.Success) {
+        $pageType = $typeMatch.Groups[1].Value
+        $normalizedPath = $relativePath.Replace("\", "/")
+        $allowedTypes = switch -Wildcard ($normalizedPath) {
+            "wiki/sources/*" { @("source-summary"); break }
+            "wiki/knowledge/problem/*" { @("customer"); break }
+            "wiki/knowledge/landscape/*" { @("market", "competitor", "comparison"); break }
+            "wiki/knowledge/technology/*" { @("technology", "concept"); break }
+            "wiki/knowledge/synthesis/*" { @("synthesis"); break }
+            "wiki/overview.md" { @("overview"); break }
+            default { @() }
+        }
+
+        if ($allowedTypes.Count -eq 0 -or $allowedTypes -notcontains $pageType) {
+            Add-ValidationError "$relativePath has type '$pageType' that is invalid for its Wiki path"
         }
     }
 
@@ -159,8 +195,20 @@ foreach ($page in $knowledgePages) {
 
 $wikiMarkdownFiles = @(Get-ChildItem -LiteralPath (Join-Path $root "wiki") -Filter "*.md" -File -Recurse)
 $wikiTargets = New-Object System.Collections.Generic.HashSet[string] ([System.StringComparer]::OrdinalIgnoreCase)
+$wikiBasenames = @{}
 foreach ($wikiFile in $wikiMarkdownFiles) {
     [void]$wikiTargets.Add($wikiFile.BaseName)
+    $basenameKey = $wikiFile.BaseName.ToLowerInvariant()
+    if (-not $wikiBasenames.ContainsKey($basenameKey)) {
+        $wikiBasenames[$basenameKey] = @()
+    }
+    $wikiBasenames[$basenameKey] += Get-RelativePath $wikiFile.FullName
+}
+
+foreach ($basenameKey in $wikiBasenames.Keys) {
+    if ($wikiBasenames[$basenameKey].Count -gt 1) {
+        Add-ValidationError "Duplicate Wiki basename '$basenameKey': $($wikiBasenames[$basenameKey] -join ', ')"
+    }
 }
 
 foreach ($wikiFile in $wikiMarkdownFiles) {
@@ -173,6 +221,21 @@ foreach ($wikiFile in $wikiMarkdownFiles) {
         $targetName = [System.IO.Path]::GetFileNameWithoutExtension($target)
         if (-not $wikiTargets.Contains($targetName)) {
             Add-ValidationError "$relativePath contains a broken wikilink: $($wikiLink.Value)"
+        }
+    }
+
+    $markdownLinks = [regex]::Matches($content, '(?<!!)\[[^\]]+\]\(([^)]+)\)')
+    foreach ($markdownLink in $markdownLinks) {
+        $target = $markdownLink.Groups[1].Value.Trim()
+        if ($target -match '^(https?://|mailto:|#)') {
+            continue
+        }
+
+        $pathOnly = $target.Split('#')[0].Split('?')[0]
+        $decodedPath = [System.Uri]::UnescapeDataString($pathOnly).Replace("/", [System.IO.Path]::DirectorySeparatorChar)
+        $resolvedPath = Join-Path $wikiFile.Directory.FullName $decodedPath
+        if (-not (Test-Path -LiteralPath $resolvedPath)) {
+            Add-ValidationError "$relativePath contains a broken Markdown link: $($markdownLink.Value)"
         }
     }
 }

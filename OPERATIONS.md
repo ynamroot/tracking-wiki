@@ -2,7 +2,7 @@
 
 ## 1. Source Intake
 
-팀원은 GitHub에서 `Source 제출` Issue를 만든다. Intake Agent에게 다음과 같이 요청한다.
+팀원은 GitHub에서 `Source 제출` Issue를 만든다. 저장소와 Issue는 공개되므로 공개 URL 또는 재배포 가능한 파일만 제출하고, 개인정보·고객 비밀·유료·비공개 원문은 첨부하지 않는다. Intake Agent에게 다음과 같이 요청한다.
 
 ```text
 Intake Agent 역할로 source:new Issue를 처리하라.
@@ -10,7 +10,7 @@ Intake Agent 역할로 source:new Issue를 처리하라.
 Wiki나 승인 문서는 수정하지 마라.
 ```
 
-Intake 결과는 `raw/inbox/SRC-YYYYMMDD-slug.md`다. URL 자료도 retrieval date와 publisher를 기록하고, 파일 자료는 `raw/assets`의 보존 경로와 SHA-256을 기록한다.
+Intake 결과는 `raw/inbox/SRC-YYYYMMDD-slug.md`다. URL 자료는 retrieval date와 publisher 및 claim 단위 요약을 기록하되 저작권 원문 전체를 복제하지 않는다. 재배포 가능한 파일 자료만 `raw/assets`에 보존하고 경로와 SHA-256을 기록한다.
 
 ## 2. Automatic Triage
 
@@ -27,7 +27,7 @@ Agent는 provenance 재현성, 프로젝트 관련성, 원문 접근성, exact d
 정책을 통과하면 `accepted`로 자동 승격하고 Source record의 Triage에 판정 정책, 날짜, 사유를 기록한다.
 승격한 뒤에는 수정하지 않는다.
 
-PO escalation은 범위가 불명확하거나 인용 권한 문제가 있거나 제품 방향을 바꿀 충돌이 있을 때만 발생한다.
+PO escalation은 범위가 불명확하거나 공개 저장소에서 다룰 수 없는 자료가 필요하거나 제품 방향을 바꿀 충돌이 있을 때만 발생한다. 비공개 자료는 escalation 여부와 무관하게 이 저장소에 기록하지 않는다.
 
 ## 3. Ingest Workflow
 
@@ -45,7 +45,7 @@ index와 log까지 갱신하라.
 1. Source record와 보존된 원문 전체를 읽는다.
 2. `wiki/index.md`에서 관련 페이지를 찾고 내용을 읽는다.
 3. `wiki/sources`에 Source summary를 생성한다.
-4. 관련 시장, 고객, 경쟁사, 기술, 개념 페이지를 생성하거나 갱신한다.
+4. 관련 지식 페이지를 `wiki/knowledge/problem`, `landscape`, `technology`, `synthesis` 중 해당 경로에 생성하거나 갱신한다.
 5. 상충하는 주장을 `Contradictions`와 `open-questions.md`에 기록한다.
 6. 변경된 모든 페이지의 `updated`, `sources`, `confidence`를 갱신한다.
 7. `wiki/index.md`에 새 페이지와 한 줄 설명을 추가한다.
@@ -58,7 +58,7 @@ index와 log까지 갱신하라.
 Query Agent로 다음 질문에 답하라: <질문>
 wiki/index.md에서 시작하고 필요한 Wiki와 raw Source를 읽어라.
 확인된 사실, 종합한 해석, 제품 제안, 미결 질문을 구분하라.
-가치 있는 분석은 wiki/synthesis에 저장하고 index와 log를 갱신하라.
+가치 있는 분석은 wiki/knowledge/synthesis에 저장하고 index와 log를 갱신하라.
 ```
 
 Query 답변은 Source ID를 인용한다. Wiki만으로 답할 수 없으면 추측하지 않고 `open-questions.md`와 GitHub `question:open` Issue에 조사 공백을 남긴다.
@@ -133,3 +133,21 @@ git tag -a spec-baseline -m "Freeze approved product and technical specification
 ```
 
 이후 Wiki는 기준 시점의 조사 기록으로 동결한다. 새 조사나 제품 변경은 새 milestone 또는 새 baseline 버전에서 수행한다.
+
+## 10. Public Wiki
+
+Git 저장소의 `wiki`가 유일한 원본이다. Quartz는 공개 독서 화면만 생성하며 빌드 결과는 commit하지 않는다.
+
+로컬 빌드:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/Build-WikiSite.ps1
+```
+
+로컬 preview:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/Build-WikiSite.ps1 -Serve -Port 8080
+```
+
+`master` push에서는 구조 검증과 Quartz build가 모두 통과한 뒤 GitHub Pages를 배포한다. `wiki/AGENTS.md`, `wiki/README.md`, `wiki/log.md`, `wiki/audits`는 사이트 빌드에서 제외한다.

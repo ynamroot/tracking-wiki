@@ -70,3 +70,11 @@ Wiki는 외부 사실의 SSOT가 아니라 LLM이 종합한 지식 마트다.
 - 기술 검토 결과를 반영한 뒤 최종 스펙을 확정한다.
 - 조사 종료 시 `research-baseline` Git tag를 생성한다.
 - 최종 확정 시 `spec-baseline` Git tag를 생성한다.
+
+## 공개와 배포
+
+- GitHub 저장소와 Issue는 인터넷에 공개하며 모든 tracked 문서를 공개 정보로 취급한다.
+- Git 저장소의 Markdown이 SSOT이고 Quartz 사이트는 읽기 전용 파생 결과다.
+- 공개 사이트는 `wiki/index.md`, `overview.md`, `open-questions.md`, `knowledge`, `sources`를 게시한다.
+- Agent 규칙, Wiki log, audit report는 저장소에서는 공개되지만 읽기용 사이트에서는 제외한다.
+- 개인정보, 고객 비밀, 자격증명, 유료·비공개 원문은 Issue와 저장소에 기록하지 않는다.

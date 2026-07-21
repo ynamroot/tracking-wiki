@@ -2,12 +2,15 @@
 
 행동데이터 수집 도구의 시장, 고객, 경쟁사, 기술을 조사하고 제품 및 기술 스펙으로 전환하는 프로젝트성 LLM Wiki다.
 
+공개 Wiki는 [Tracking Wiki 웹사이트](https://ynamroot.github.io/tracking-wiki/)에서 읽고, 저장소에서는 [Wiki 시작 안내](wiki/README.md)에서 탐색한다.
+
 ## 운영 원칙
 
 - 사람은 Source를 큐레이션하고 질문, 판단, 승인을 담당한다.
 - Agent는 Source 정규화, Wiki 통합, 교차참조, 문서 초안을 담당한다.
 - `raw/sources`는 외부 사실의 근거이고 `wiki`는 Agent가 관리하는 현재 종합이다.
 - 승인된 요구사항은 `product/approved`, 승인된 구현 방식은 `technical/approved`가 우선한다.
+- 저장소와 Issue는 공개 정보로 취급하며 비공개 자료, 개인정보, 자격증명을 저장하지 않는다.
 
 ## 시작하기
 
@@ -21,13 +24,19 @@
 powershell -ExecutionPolicy Bypass -File scripts/Validate-Wiki.ps1
 ```
 
+공개 Wiki를 로컬에서 확인한다.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/Build-WikiSite.ps1 -Serve -Port 8080
+```
+
 GitHub 원격 연결 후 Issue label을 생성한다.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/Setup-GitHubLabels.ps1
 ```
 
-push와 pull request에서는 `.github/workflows/validate-wiki.yml`이 동일 검사를 자동 실행한다.
+push와 pull request에서는 `.github/workflows/validate-wiki.yml`이 문서와 공개 사이트를 검증한다. `master` push가 통과하면 GitHub Pages를 자동 배포한다.
 
 ## 주요 문서
 

@@ -30,6 +30,8 @@
 - Wiki 문서는 Obsidian `[[wikilink]]`를 사용한다.
 - 자동화는 `product/approved`와 `technical/approved`를 수정하지 않는다.
 - `raw/sources`에 승격된 자료는 수정하지 않는다. 정정은 새 Source로 추가한다.
+- 이 저장소와 GitHub Issue는 공개 정보로 취급한다. 자격증명, 개인정보, 고객 비밀, 유료·비공개 원문을 기록하거나 첨부하지 않는다.
+- 공개 URL의 저작권 원문은 복제하지 않고 URL, retrieval date, claim 단위 요약만 보존한다.
 
 ## Agent 역할
 
@@ -54,14 +56,14 @@
 - exact duplicate가 아니다.
 
 공식 문서, 원 논문, 원 데이터는 `primary`, 내부 조사나 분석 보고서는 `secondary`로 분류한다.
-원문 접근 실패, 인용 근거 부족, 권한 불명확은 `needs-verification`으로 격리한다.
+원문 접근 실패, 인용 근거 부족, 권한 불명확은 비공개 내용을 기록하지 않은 Source record만 `needs-verification`으로 격리한다.
 범위 밖 자료는 `deferred`, exact duplicate나 무관한 자료는 `rejected`로 보존한다.
 
 다음 예외만 PO에게 escalation한다.
 
 - Source 간 충돌이 제품 방향이나 승인 문서를 바꿀 수 있다.
 - 조사 범위 포함 여부가 불명확하다.
-- 유료 또는 비공개 자료의 보존과 인용 권한이 불명확하다.
+- 유료 또는 비공개 자료가 필요해 현재 공개 저장소 밖의 증거 저장소가 필요하다.
 - 자동 판정 신뢰도가 낮다.
 
 ## 승인 경계
