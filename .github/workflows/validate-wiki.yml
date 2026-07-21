@@ -1,0 +1,19 @@
+name: Validate Wiki
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Validate structure and references
+        shell: pwsh
+        run: ./scripts/Validate-Wiki.ps1

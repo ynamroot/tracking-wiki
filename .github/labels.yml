@@ -1,0 +1,31 @@
+labels:
+  - name: source:new
+    color: "D4C5F9"
+    description: Intake Agent가 아직 처리하지 않은 신규 Source
+  - name: source:needs-verification
+    color: "FBCA04"
+    description: 원문 또는 추가 근거 확인 필요
+  - name: source:accepted
+    color: "0E8A16"
+    description: PO가 채택한 Source
+  - name: source:deferred
+    color: "BFD4F2"
+    description: 현재 조사 범위 밖이라 보류
+  - name: source:rejected
+    color: "B60205"
+    description: 중복, 저품질 또는 관련 없음
+  - name: ingest:pending
+    color: "1D76DB"
+    description: raw/sources 승격 후 Wiki ingest 대기
+  - name: ingest:complete
+    color: "006B75"
+    description: Wiki 반영 및 로그 기록 완료
+  - name: question:open
+    color: "D93F0B"
+    description: 답변 또는 추가 조사가 필요한 질문
+  - name: question:answered
+    color: "5319E7"
+    description: Wiki에 답변과 근거가 반영된 질문
+  - name: decision:required
+    color: "E99695"
+    description: PO 결정 필요

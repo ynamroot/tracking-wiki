@@ -1,0 +1,33 @@
+name: 조사 질문
+description: Wiki로 답하거나 추가 조사가 필요한 질문을 등록합니다.
+title: "[Question] "
+labels:
+  - "question:open"
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 질문
+      description: 하나의 검증 가능한 질문으로 작성합니다.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: 연결된 제품 결정
+      description: 이 질문의 답으로 어떤 결정을 내려야 하는지 적습니다.
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: 우선순위
+      options:
+        - P0 - 현재 결정을 막음
+        - P1 - 이번 조사 단계에서 필요
+        - P2 - 후속 조사 가능
+    validations:
+      required: true
+  - type: textarea
+    id: known_sources
+    attributes:
+      label: 알고 있는 Source
+      description: 관련 URL, 파일 또는 Source ID가 있으면 적습니다.

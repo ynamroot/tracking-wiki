@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "51596ce2108e96c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "11a0c375ef8680a7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "37a4b89ebeb5462a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/competitors/tracking-governance-platforms.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "tracking-governance-platforms"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a5a24923758dcca5",
+    "type": "split",
+    "children": [
+      {
+        "id": "8910ebbda96913ec",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "437281b5203bc474",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "de0b85495d7d6c1b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "f8268439605268b7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 320.5
+  },
+  "right": {
+    "id": "0b6904b6ea61496f",
+    "type": "split",
+    "children": [
+      {
+        "id": "087881cb6d53bc6f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1b0981e88266a7df",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "wiki/competitors/tracking-governance-platforms.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "tracking-governance-platforms 의 백링크"
+            }
+          },
+          {
+            "id": "fc8d9d72ff7cd862",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "wiki/competitors/tracking-governance-platforms.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "tracking-governance-platforms 의 나가는 링크"
+            }
+          },
+          {
+            "id": "aa725aed9aa4304b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "021b950a9e612988",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "019af01bf3199781",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "wiki/competitors/tracking-governance-platforms.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "tracking-governance-platforms 의 개요"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "37a4b89ebeb5462a",
+  "lastOpenFiles": [
+    "wiki/audits/2026-07-21-initial-ingest-audit.md",
+    "wiki/synthesis/automation-opportunity.md",
+    "wiki/market/behavioral-data-quality-landscape.md",
+    "wiki/competitors/avo.md",
+    "wiki/customers/behavioral-data-practitioners.md",
+    "wiki/sources/source-tracking-governance-remaining-tools.md",
+    "wiki/sources/source-tracking-governance-four-tools.md",
+    "wiki/sources/source-tag-audit-qa-tools.md",
+    "wiki/sources/source-schema-data-contracts.md",
+    "wiki/sources/source-practitioner-pain-points.md",
+    "wiki/sources/source-avo.md",
+    "wiki/sources/source-autocapture-tag-managers.md",
+    "wiki/sources/source-amplitude-data-ampli.md",
+    "wiki/technologies/schema-and-data-contracts.md",
+    "wiki/competitors/tracking-governance-platforms.md",
+    "wiki/competitors/amplitude-data.md",
+    "wiki/sources/schema-data-contracts.md",
+    "wiki/sources/tracking-governance-remaining-tools.md",
+    "wiki/sources/tracking-governance-four-tools.md",
+    "wiki/sources/avo.md",
+    "wiki/sources/amplitude-data-ampli.md",
+    "wiki/sources/autocapture-tag-managers.md",
+    "wiki/sources/practitioner-pain-points.md",
+    "product/AGENTS.md",
+    "wiki/competitors/tag-audit-and-qa-tools.md",
+    "wiki/log.md",
+    "scripts/Validate-Wiki.ps1",
+    "scripts/Setup-GitHubLabels.ps1",
+    "scripts",
+    "templates",
+    "technical/change-requests",
+    "technical/adr",
+    "technical/approved",
+    "technical/drafts",
+    "product/decisions",
+    "product/approved"
+  ]
+}

@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Preserved source artifacts must remain byte-for-byte stable for SHA-256 checks.
+raw/assets/** -text
