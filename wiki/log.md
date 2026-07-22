@@ -54,3 +54,7 @@ accepted Source 15건을 새 ingest quality bar에 맞춰 다시 통합했다. S
 ## [2026-07-22] update | Wiki log 공개와 독자용 탐색 순서 정렬
 
 `wiki/log.md`를 Quartz 공개 사이트에 포함하고, `wiki/index.md`에 최근 변경 확인 섹션을 추가했다. 공개 탐색 트리는 index의 읽기 흐름에 맞춰 `overview`, `open-questions`, `log`, `knowledge`, `sources` 순서와 knowledge 하위의 문제·시장·기술·종합 순서를 우선하도록 설정했다.
+
+## [2026-07-22] update | 탐색 목록 Home 항목 추가
+
+Quartz가 `wiki/index.md`를 사이트 루트로 처리해 좌측 탐색 목록에는 별도 index 항목이 보이지 않았다. 독자가 현재 위치와 홈 복귀 경로를 바로 알 수 있도록 탐색 목록 최상단에 `Home` 링크를 추가했다.

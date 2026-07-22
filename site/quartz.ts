@@ -3,11 +3,14 @@ import * as ExternalPlugin from "./.quartz/plugins"
 
 type ExplorerNode = {
   slug?: string
+  slugSegment?: string
   displayName: string
   isFolder: boolean
   data?: {
     slug?: string
+    title?: string
   } | null
+  children?: ExplorerNode[]
 }
 
 ExternalPlugin.Explorer({
@@ -24,6 +27,22 @@ ExternalPlugin.Explorer({
     }
     const rawSlug = String(node.slug ?? node.data?.slug ?? "")
     const slug = rawSlug.endsWith("/index") ? rawSlug.slice(0, -"/index".length) : rawSlug
+    if (slug === "" && Array.isArray(node.children)) {
+      const hasHome = node.children.some((child) => child.slugSegment === "home")
+      if (!hasHome) {
+        node.children.unshift({
+          slug: "",
+          slugSegment: "home",
+          displayName: "Home",
+          isFolder: false,
+          data: {
+            slug: "",
+            title: "Home",
+          },
+          children: [],
+        })
+      }
+    }
     const displayName = displayNames[slug]
     if (displayName) {
       node.displayName = displayName
@@ -31,6 +50,7 @@ ExternalPlugin.Explorer({
   },
   sortFn: (a: ExplorerNode, b: ExplorerNode) => {
     const explicitOrder: Record<string, number> = {
+      "": 0,
       index: 0,
       overview: 10,
       "open-questions": 20,
