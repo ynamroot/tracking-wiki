@@ -1,5 +1,5 @@
 ---
-title: "행동데이터 운영 실무자"
+title: 행동데이터 운영 실무자
 type: customer
 status: current
 confidence: medium
@@ -7,40 +7,54 @@ created: 2026-07-21
 updated: 2026-07-22
 sources:
   - SRC-20260721-practitioner-pain-points
+  - SRC-20260721-avo-official-data-design
+  - SRC-20260721-amplitude-official-data-governance
 ---
 
 # 행동데이터 운영 실무자
 
 ## Current Synthesis
 
-문제의 영향을 받는 역할은 데이터 운영자, PM, 프론트엔드 개발자다. 데이터 운영자는 품질과 대응 책임을 지고, PM은 분석 지연을 경험하며, 개발자는 계측 구현과 반복 QA를 수행한다. 누가 예산을 소유하고 도입을 결정하는지는 아직 검증되지 않았다.
+행동데이터 운영은 데이터팀만의 일이 아니라 PM, analytics engineer, frontend/backend developer, QA, growth/marketing owner가 나눠 맡는 cross-functional workflow다. 현재 accepted Source는 이들이 반복해서 겪는 문제를 잘 보여주지만, 실제 구매자와 champion은 아직 확정하지 못한다. 내부 보고서는 pain을 설명하고, Avo/Amplitude 공식 문서는 product, engineering, analytics가 같은 schema 또는 tracking plan에서 협업한다는 vendor framing을 확인한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup>
 
 ## Evidence
 
-- 데이터 운영자는 명명 불일치, 변경 이력 부재, 파손 원인 추적, 반복 질문과 수동 QA를 담당한다. <sup>[🔗](#source-1)</sup>
-- PM은 출시 후 데이터가 없거나 의미가 불명확해 의사결정 시점을 놓친다. <sup>[🔗](#source-1)</sup>
-- 프론트엔드 개발자는 스프레드시트 기반 계측, 하드코딩 오류, 배포별 확인, 리팩터링 후 파손을 경험한다. <sup>[🔗](#source-1)</sup>
-- 역할 사이의 언어 차이와 불명확한 ownership이 문제 해결 시간을 늘린다. <sup>[🔗](#source-1)</sup>
+- PM과 analyst는 측정 의도와 funnel/KPI 질문을 소유하지만, SDK 호출 위치와 release 검증은 개발자와 QA에 의존한다. <sup>[🔗](#source-1)</sup>
+- Amplitude 공식 문서는 analyst, PM, engineer가 instrumentation 전에 같은 tracking plan schema에서 협업하는 흐름을 제시한다. <sup>[🔗](#source-3)</sup>
+- Avo 공식 문서는 tracking plan, Journeys, Codegen, Inspector를 workspace 구성 요소로 묶어 data design과 implementation handoff를 제품화한다. <sup>[🔗](#source-2)</sup>
+
+## Mechanics
+
+실무자의 workflow는 보통 분석 질문에서 시작해 tracking plan, 개발 티켓, SDK implementation, QA, 배포, dashboard 검증으로 이어진다. 문제는 각 단계의 증거가 다르다는 점이다. PM은 요구사항과 dashboard를 보고, 개발자는 codegen wrapper나 SDK 호출을 보고, QA는 화면과 tag/debugger를 보고, 데이터 담당자는 warehouse나 analytics UI의 결과를 본다. 이 증거들이 서로 연결되지 않으면 파손 원인을 찾는 데 handoff가 반복된다.
+
+## Evaluation Criteria
+
+- champion: 문제를 매주 겪고 대안을 찾아볼 사람인가.
+- buyer: budget을 승인하거나 기존 CDP/analytics/data quality 비용을 재배분할 수 있는가.
+- trigger: release 전 QA, dashboard incident, compliance audit, migration 중 어떤 상황에서 가장 급한가.
+- proof: 인터뷰 원문, incident 기록, 업무 시간, 기존 도구 지출이 있는가.
 
 ## Contradictions
 
-- 고통을 겪는 사용자와 구매 승인자가 동일하다는 근거는 없다.
+벤더 문서는 협업 대상을 product/engineering/analytics로 넓게 표현하지만, 실제 경제적 구매자와 champion은 고객별로 다를 수 있다. 공식 고객 사례 index만으로 구매 역할을 확정할 수 없다.
 
 ## Open Questions
 
-- 경제적 구매자와 초기 champion은 누구인가?
-- 회사 규모, 데이터팀 유무, 사용하는 분석 도구에 따라 페인포인트가 어떻게 달라지는가?
-- 현재 해결을 위해 쓰는 인력 시간과 도구 비용은 얼마인가?
+- `OQ-001`: 경제적 구매자와 초기 champion은 누구인가?
+- `OQ-003`: Value Proposition 검증에 필요한 고객 인터뷰와 행동 증거 기준은 무엇인가?
+- `OQ-004`: 수동 QA·파손 대응·계측 구현 비용은 얼마인가?
 
 ## Product Implications
 
-하나의 역할만 위한 UI보다 데이터 운영자의 통제, PM의 가시성, 개발자의 실행 맥락을 연결하는 workflow가 필요하다. 첫 ICP는 가장 자주 문제를 발견하고 해결 책임을 지는 데이터 운영 조직에서 검증할 가치가 있다.
+초기 메시지는 “데이터팀 도구”보다 “release와 analytics 사이의 책임 공백을 줄이는 증거 계층”으로 잡는 편이 넓은 실무자에게 이해된다. 다만 실제 판매 motion은 buyer/champion 검증 전까지 확정하면 안 된다.
 
 ## See Also
 
-- [[source-practitioner-pain-points|실무자 페인포인트 Source 요약]] - 역할별 근거
-- [[automation-opportunity|행동데이터 자동화 기회]] - 제품 가설과 미검증 영역
+- [[buyer-and-champion|구매자와 champion 가설]] - 역할별 구매 가능성
+- [[tracking-qa-workflow|트래킹 QA 운영 workflow]] - 문제 발생 흐름
 
 ## 출처
 
 - <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
+- <a id="source-2"></a>[[source-avo-official-data-design|Source Summary: Avo 공식 문서와 가격]] - `SRC-20260721-avo-official-data-design`
+- <a id="source-3"></a>[[source-amplitude-official-data-governance|Source Summary: Amplitude 공식 Data Governance]] - `SRC-20260721-amplitude-official-data-governance`

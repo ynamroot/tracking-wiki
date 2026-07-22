@@ -13,36 +13,43 @@ sources:
 
 ## Current Synthesis
 
-오토캡처는 커버리지와 소급 분석을 얻는 대신 의미 부여·노이즈 제거·프라이버시·정의 수리를 뒤로 미룬다. 명시 계측과 태그매니저는 의미와 커스텀 속성을 앞에서 통제하지만 개발 리소스와 수동 QA에 의존한다. 시장은 두 방식 중 하나를 고르기보다 오토캡처 베이스라인과 핵심 이벤트 명시 계측을 결합하는 방향으로 수렴한다.
+오토캡처는 수동 계측의 누락 문제를 완화하지만 의미 부여, 검증, 데이터 모델링을 없애지는 못한다. 태그매니저는 배포 없이 태그 설정을 바꿀 수 있게 하지만 DOM 스크레이핑, dataLayer 품질, preview 중심 수동 검증이라는 취약성을 남긴다. <sup>[🔗](#source-1)</sup>
 
 ## Evidence
 
-- Heap, PostHog, Fullstory, Pendo 계열은 DOM 상호작용을 먼저 모으고 이벤트 의미를 사후 정의한다. <sup>[🔗](#source-1)</sup>
-- 사후 정의도 CSS selector와 화면 구조에 의존해 UI 변경 시 깨지며, 현재 제품은 대체로 사람이 정의를 수리한다. <sup>[🔗](#source-1)</sup>
-- GTM은 Tag, Trigger, Variable, dataLayer로 명시 계측을 구성하지만 preview는 사람이 수행하는 배포 전 디버깅이다. <sup>[🔗](#source-1)</sup>
-- DOM scraping과 selector 기반 trigger는 오토캡처 정의와 동일한 UI 변경 취약성을 가진다. <sup>[🔗](#source-1)</sup>
-- 오토캡처는 커스텀 비즈니스 속성에 한계가 있고 명시 계측은 소급성과 커버리지에 한계가 있다. <sup>[🔗](#source-1)</sup>
+- Heap/PostHog/Amplitude/Mixpanel 계열 오토캡처는 클릭·페이지뷰·폼 제출 같은 UI 신호를 자동 수집하고 나중에 사람이 이벤트 의미를 정의하는 모델을 제공한다. <sup>[🔗](#source-1)</sup>
+- 오토캡처 원조 계열에서도 verification 또는 curation 단계가 남아 있어 “수집 자동화 = 분석 신뢰 자동화”는 아니다. <sup>[🔗](#source-1)</sup>
+- GTM류 태그매니저는 preview/debug workflow가 있지만 상시 production 검증이나 plan-config-real event 자동 대조는 기본 기능이 아니다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+오토캡처는 원시 interaction stream을 쌓고, 사람이 selector나 visual labeling으로 의미 있는 action을 지정한다. 이 구조는 정의를 나중에 바꿔도 과거 raw interaction을 재해석할 수 있다는 장점이 있지만, 비즈니스 속성이나 서버 계산값은 자동으로 얻기 어렵다. 태그매니저는 dataLayer와 DOM selector를 이용해 tag를 발화하지만, selector와 page structure drift가 생기면 설정이 조용히 깨질 수 있다.
+
+## Evaluation Criteria
+
+- coverage: 자동으로 잡는 interaction 종류와 빠지는 custom business property.
+- durability: DOM/class/name/aria/title 변경에서 label 또는 selector가 살아남는 정도.
+- governance: 누가 label을 승인하고, 누가 stale definition을 청소하는가.
+- evidence: UI 요소, user action, emitted event, destination delivery가 한 증거 묶음으로 남는가.
 
 ## Contradictions
 
-- 오토캡처의 비용과 품질 평가는 벤더별 제품 범위와 이해관계에 따라 상반된다.
-- “핵심 이벤트 10~20개” 같은 실무 권고는 보편적 기준이라기보다 조사 자료의 종합으로 취급해야 한다.
+오토캡처는 수동 계측 비판자와 지지자 모두에게 다른 결론을 준다. 빠른 coverage와 retrospective labeling은 강점이지만, 핵심 KPI는 여전히 명시 계측과 schema 관리가 필요하다는 하이브리드 결론으로 수렴한다.
 
 ## Open Questions
 
-- 자동 수집 범위와 개인정보 위험을 제품 정책으로 어떻게 제한할 것인가?
-- selector 대신 요소 지문을 사용해 어느 수준까지 개편 내성을 확보할 수 있는가?
-- 태그매니저 설정을 읽기만 할지, 승인 후 수정까지 수행할지 결정해야 한다.
+- `OQ-006`: 기존 tag manager와 공존할지 대체할지 결정해야 한다.
+- `OQ-008`: 요소 지문과 자율 순회 평가 기준이 필요하다.
 
 ## Product Implications
 
-기회는 전수 수집 자체보다 플랜·설정·실발생을 연결하고, UI 변경을 감지해 요소 이력을 계승하며, 수정 후보를 승인 대기열에 올리는 데 있다.
+차별화 기회는 “오토캡처냐 수동 계측이냐”의 선택지가 아니라, UI 요소와 이벤트 의미를 자동 증빙하고 drift가 생긴 뒤 사람이 무엇을 고쳐야 하는지 좁혀주는 계층이다.
 
 ## See Also
 
-- [[collection-and-validation-patterns|수집 및 검증 패턴]] - 시장의 주요 기술 접근
-- [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 배포 후 검증 제품군
+- [[autocapture-and-tag-manager-layer|오토캡처와 태그매니저 계층]] - 하이브리드 수집 모델
+- [[element-event-evidence|요소-이벤트 증거 모델]] - 시각 증빙 기회
 
 ## 출처
 
-- <a id="source-1"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
+- <a id="source-1"></a>[[source-autocapture-tag-managers|오토캡처 진영과 태그매니저 계층 조사]] - `SRC-20260721-autocapture-tag-managers`

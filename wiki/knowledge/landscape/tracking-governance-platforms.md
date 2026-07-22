@@ -1,62 +1,68 @@
 ---
-title: "트래킹 거버넌스 플랫폼"
+title: 트래킹 거버넌스 플랫폼
 type: comparison
 status: current
-confidence: medium
+confidence: high
 created: 2026-07-21
 updated: 2026-07-22
 sources:
-  - SRC-20260721-amplitude-data-ampli
-  - SRC-20260721-avo
   - SRC-20260721-tracking-governance-four-tools
   - SRC-20260721-tracking-governance-remaining-tools
+  - SRC-20260721-segment-protocols-official
+  - SRC-20260721-mparticle-data-planning-official
+  - SRC-20260721-rudderstack-tracking-plans-official
 ---
 
 # 트래킹 거버넌스 플랫폼
 
 ## Current Synthesis
 
-주요 거버넌스 플랫폼은 plan authoring, codegen, CI, ingestion validation, catalog 중 일부를 조합한다. 검증 위치와 위반 처리 철학은 다르지만 사람이 무엇을 계측할지 정하고 호출을 구현한다는 전제는 공통이다.
+트래킹 거버넌스 플랫폼은 tracking plan을 기준으로 event/property schema drift를 줄인다. Segment, mParticle, RudderStack은 공식 Source로 기능 경계가 보강되었고, 공통적으로 payload가 존재한 뒤의 validation에는 강하지만 누락된 UI action/event는 별도 계층 없이는 알기 어렵다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
 
 ## Evidence
 
-| 제품 | 설계·코드 | 검증 위치 | 위반 처리 | UI 인과 증빙 |
-|---|---|---|---|---|
-| Avo | Plan, branch, Codegen | compile, CI, runtime schema | issue 표시 | 설계 Journey만 부분 지원 |
-| Amplitude Data | Plan, Ampli | compile, CI, ingestion Observe | 경고, 변환, 차단 | 별도 Visual Labeling |
-| Segment Protocols | Plan, Typewriter | client, ingestion | allow, block, omit, transform | 없음 |
-| RudderStack | Plan, RudderTyper | compile, PR, ingestion | propagate, drop, reroute | 없음 |
-| mParticle | Data Plan, Smartype | compile, ingestion | allow, block, quarantine | 없음 |
-| Mixpanel Lexicon | Catalog 중심 | 주로 사후 | hide, manual block, review | autocapture 맥락만 부분 지원 |
-| Snowplow | Schema, Snowtype | enrich pipeline | failed event 격리 및 replay | 수동 screenshot attachment |
+- Segment Protocols는 Tracking Plan을 data source에 적용하고 일치하지 않는 event/property를 violation으로 만든다. <sup>[🔗](#source-3)</sup>
+- Segment strict controls는 non-conforming events를 block하고 quarantined Segment source로 보낼 수 있다. <sup>[🔗](#source-3)</sup>
+- mParticle data plan은 최대 1,000 data points를 지원하며, 400개 초과 시 API/Builder 사용을 권장한다. <sup>[🔗](#source-4)</sup>
+- mParticle의 block 가능한 data는 unplanned violations로 제한된다. <sup>[🔗](#source-4)</sup>
+- RudderStack Tracking Plans는 incoming event non-compliance를 monitor/act on하며 Free 1 plan/5 events, Growth unlimited plans/75 events, Enterprise unlimited/unlimited limits를 둔다. <sup>[🔗](#source-5)</sup>
 
-표는 네 accepted Source의 교차 종합이다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
+## Mechanics
+
+Segment는 CDP boundary에서 violation과 controls를 제공한다. mParticle은 enterprise data plan과 API/SDK validation workflow를 강조한다. RudderStack은 Tracking Plans, Data Catalog, Event Audit API, tiered violation management를 결합한다. 세 제품 모두 이미 들어온 payload의 schema 적합성에는 강하지만, “버튼이 바뀌어 event가 아예 발생하지 않음”은 payload가 없으므로 blind spot이 된다.
+
+## Evaluation Criteria
+
+| 기준 | Segment | mParticle | RudderStack |
+|---|---|---|---|
+| 검증 위치 | source/CDP pipeline | client-before-arrival 및 ingestion | source/event audit |
+| 위반 처리 | block/quarantine/transform | unplanned violation block 중심 | Drop 또는 configurable |
+| 가격 구조 | Business/CDP optional add-on | 공개 정액 없음 | Free/Growth/Enterprise 제한 공개 |
+| 잔여 공백 | 미계측 action | missing event | UI-action proof |
 
 ## Contradictions
 
-- 같은 제품의 차단 범위와 가격이 두 거버넌스 Source에서 다르게 상세화돼 최신 공식 문서 검증이 필요하다.
-- codegen이 “미구현 이벤트”를 탐지하는 범위는 제품과 언어에 따라 다르다.
+secondary Source의 가격과 공식 price page는 불일치할 수 있다. 최신 의사결정에서는 공식 Source를 우선한다.
 
 ## Open Questions
 
-- 초기 고객이 이미 사용하는 tracking plan 또는 CDP는 무엇인가?
-- 기존 platform 연동과 독립 plan authoring 중 어느 진입 전략이 빠른가?
-- violation을 자동 수정할 때 고객이 허용하는 승인 경계는 어디인가?
+- 기존 고객 stack과 공존할 때 어떤 plan source를 읽어야 하는가?
+- missing event를 governance platform에 어떤 형태의 evidence로 전달할 것인가?
 
 ## Product Implications
 
-경쟁 기준을 schema 기능 수로 잡으면 대형 플랫폼과 겹친다. UI에서 실제 발생까지의 provenance와 수리 loop를 독립 가치로 증명해야 한다.
+제품 통합 우선순위는 Segment/RudderStack/mParticle plan import와 expected event set 생성이다. 초기 value는 payload validation이 아니라 payload가 없는 missing action을 증명하는 데 있다.
 
 ## See Also
 
-- [[avo|Avo]] - 설계와 codegen 중심 경쟁사
-- [[amplitude-data|Amplitude Data]] - 분석 생태계 통합 경쟁사
-- [[schema-and-data-contracts|스키마 및 데이터 계약]] - 검증 인프라 계층
-- [[automation-opportunity|행동데이터 자동화 기회]] - 제품 차별화 가설
+- [[validation-layer-model|검증 계층 모델]] - payload 존재 전후의 차이
+- [[pricing-and-packaging|가격과 패키징 비교]] - 공식 가격/패키징
+- [[element-event-evidence|요소-이벤트 증거 모델]] - missing event proof
 
 ## 출처
 
-- <a id="source-1"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
-- <a id="source-2"></a>[[source-avo|Source Summary: Avo]] - `SRC-20260721-avo`
-- <a id="source-3"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
-- <a id="source-4"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-1"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-2"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-3"></a>[[source-segment-protocols-official|Source Summary: Twilio Segment Protocols 공식 문서]] - `SRC-20260721-segment-protocols-official`
+- <a id="source-4"></a>[[source-mparticle-data-planning-official|Source Summary: mParticle Data Planning 공식 문서]] - `SRC-20260721-mparticle-data-planning-official`
+- <a id="source-5"></a>[[source-rudderstack-tracking-plans-official|Source Summary: RudderStack Tracking Plans 공식 문서]] - `SRC-20260721-rudderstack-tracking-plans-official`

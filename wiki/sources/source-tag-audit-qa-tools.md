@@ -13,36 +13,44 @@ sources:
 
 ## Current Synthesis
 
-태그 감사 시장은 크롤링과 사람이 정의한 여정을 사용하는 ObservePoint, 실제 트래픽에서 기준선을 학습하는 Trackingplan, 녹화된 시나리오와 CI를 결합하는 DataTrue, 크롤과 실시간 감시를 결합하는 Tag Inspector로 구분할 수 있다. 각 방식은 발화 여부와 payload 검증에는 강하지만 화면의 미계측 요소를 능동적으로 찾고, UI 개편 후 요소 이력을 자동 계승하고, 수정까지 실행하는 폐루프는 제공하지 않는다.
+태그 감사 시장은 주기 crawl, scripted scenario, 실사용자 traffic monitoring, tag library classification을 조합해 “태그가 발화했는가”를 검사한다. 강점은 운영 감시와 compliance evidence이고, 약점은 새 UI 요소를 발견해 tracking plan에 연결하거나 깨진 설정을 자동 수리하는 실행 계층이 약하다는 점이다. <sup>[🔗](#source-1)</sup>
 
 ## Evidence
 
-- 크롤·시나리오 방식은 UI 동작과 네트워크 요청을 연결할 수 있지만 커버리지가 사람이 만든 URL·규칙·여정에 묶인다. <sup>[🔗](#source-1)</sup>
-- 실트래픽 청취는 규칙 작성 부담 없이 실제 이벤트와 기준선 이탈을 감지하지만 발생하지 않은 상호작용과 미계측 요소는 볼 수 없다. <sup>[🔗](#source-1)</sup>
-- 조사된 네 도구 모두 개편 후 selector 또는 시나리오를 자동 이관하는 요소 지문 기반 self-healing을 핵심 기능으로 제공하지 않는다. <sup>[🔗](#source-1)</sup>
-- 증빙은 네트워크 요청, payload, 로그, 일부 요소 하이라이트 중심이며 요소별 시각 증빙은 제한적이다. <sup>[🔗](#source-1)</sup>
-- 기존 제품은 대체로 관측·경보·진단에서 멈추고 태그 수정이나 신규 계측 실행은 사람에게 남긴다. <sup>[🔗](#source-1)</sup>
+- ObservePoint류는 웹사이트를 크롤링해 태그 발화, 목적지, privacy condition을 점검한다. <sup>[🔗](#source-1)</sup>
+- DataTrue류는 사용자가 정의한 scenario와 custom validation rule로 tag test를 수행한다. <sup>[🔗](#source-1)</sup>
+- Trackingplan류는 실사용자 traffic을 청취해 이벤트·속성·목적지 baseline을 학습하고 이탈을 감지한다. <sup>[🔗](#source-1)</sup>
+- Tag Inspector류는 synthetic scan과 realtime monitoring을 결합해 태그·쿠키·PII 동작을 감시한다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+검증 방식은 크게 두 축으로 나뉜다. synthetic 방식은 사람이 지정한 page나 scenario를 정기적으로 순회해 expected tag를 확인한다. passive 방식은 production traffic을 관찰해 baseline과 drift를 비교한다. synthetic은 배포 전 검증에 가깝지만 coverage 설계가 사람 몫이고, passive는 실제 트래픽을 보지만 이미 발생한 뒤에야 이상을 알 수 있다.
+
+## Evaluation Criteria
+
+- scan coverage: SPA route, consent state, region, auth state, checkout path를 얼마나 돌 수 있는가.
+- signal fidelity: tag fired, payload schema, destination delivery, privacy rule, PII leak를 어디까지 본다.
+- remediation: issue detection에서 ownership routing, fix suggestion, verification rerun까지 이어지는가.
+- evidence durability: scan trace와 UI screenshot이 event claim과 연결되는가.
 
 ## Contradictions
 
-- 일부 경쟁사 한계와 가격 평가는 Trackingplan의 비교 자료나 제3자 집계에 의존하므로 공식 문서 및 사용자 인터뷰 검증이 필요하다.
-- “analytics 검증을 내세우는 AI QA 도구가 사실상 없다”는 결론은 조사 범위 내 관찰이며 시장 전체의 부재를 확정하지 않는다.
+자동 순회 QA는 이미 시장에 있지만 “순회” 자체와 “계측 의미를 이해하고 새 coverage를 제안하는 것”은 다르다. 경쟁 부재 주장은 tag audit 기능이 아니라 요소-이벤트 의미 증빙과 self-healing 범위로 좁혀야 한다.
 
 ## Open Questions
 
-- 실제 구매자는 데이터팀, 마케팅 운영팀, QA팀 중 누구인가?
-- 고객은 능동 순회와 실트래픽 청취 중 어느 접근을 더 신뢰하는가?
-- 자동 수정 권한을 어느 수준까지 허용할 의사가 있는가?
+- `OQ-002`: 첫 MVP outcome을 배포 전 회귀 검증으로 둘지 운영 경보로 둘지 결정해야 한다.
+- `OQ-008`: 평가 dataset과 coverage 기준이 필요하다.
 
 ## Product Implications
 
-차별화 가설은 능동 탐색, 요소 지문, UI 요소와 이벤트의 인과 증빙, 개편 후 이력 계승, 승인 기반 수정 루프의 결합이다.
+초기 wedge는 기존 tag audit과 정면충돌하기보다 “tracking plan과 UI 요소 사이의 evidence gap” 또는 “배포 전 changed UI path 회귀 검증”으로 좁히는 편이 안전하다.
 
 ## See Also
 
-- [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 네 가지 경쟁 방식 비교
-- [[collection-and-validation-patterns|수집 및 검증 패턴]] - 수집부터 관측까지의 기술 축
+- [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 경쟁군 비교
+- [[autonomous-traversal-evaluation|자율 순회 평가 기준]] - benchmark와 제품 평가 분리
 
 ## 출처
 
-- <a id="source-1"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
+- <a id="source-1"></a>[[source-tag-audit-qa-tools|태그 감사 및 자동 순회 QA 도구 4종 경쟁 분석]] - `SRC-20260721-tag-audit-qa-tools`

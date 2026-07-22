@@ -1,53 +1,59 @@
 ---
-title: "스키마 및 데이터 계약"
+title: 스키마 및 데이터 계약
 type: technology
 status: current
-confidence: medium
+confidence: high
 created: 2026-07-21
 updated: 2026-07-22
 sources:
   - SRC-20260721-schema-data-contracts
-  - SRC-20260721-tracking-governance-four-tools
-  - SRC-20260721-tracking-governance-remaining-tools
+  - SRC-20260721-snowplow-dbt-data-quality-official
 ---
 
 # 스키마 및 데이터 계약
 
 ## Current Synthesis
 
-행동데이터 품질 검증은 코드·PR, 수집 SDK, ingestion pipeline, warehouse 순서의 연속선에 놓인다. 앞단일수록 수정 비용을 줄이지만 실제 발생 전에는 runtime 상태를 모르고, 뒷단일수록 실제 데이터를 보지만 이미 손상이 발생했다. 격리와 replay는 hard block의 유실 위험을 낮추는 공통 안전장치다.
+스키마와 데이터 계약은 행동데이터 품질의 하류 안전망이다. Snowplow는 pipeline failure taxonomy와 failed event 격리를 제공하고, dbt contract는 model output shape를 build 시점에 강제한다. 하지만 둘 다 UI 요소가 빠졌거나 user action이 event로 연결되지 않은 문제를 직접 보지는 못한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup>
 
 ## Evidence
 
-- JSON Schema 계열은 Segment, mParticle, Snowplow 등에서 tracking plan 또는 event contract의 기반으로 사용된다. <sup>[🔗](#source-1)</sup>
-- Snowplow는 event가 참조하는 schema를 registry에서 해결하고 pipeline에서 검증한다. <sup>[🔗](#source-2)</sup>
-- data contract는 schema뿐 아니라 품질, SLA, ownership을 생산자·소비자 합의로 형식화한다. <sup>[🔗](#source-2)</sup>
-- warehouse observability는 freshness, volume, distribution, schema, lineage 이상을 사후 감지한다. <sup>[🔗](#source-2)</sup>
-- hard block은 복구 불가능한 유실을 만들 수 있어 propagate, quarantine, failed-event replay 방식이 병행된다. <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-1)</sup>
+- Snowplow failed events는 pipeline processing problem을 포괄하며 failure stage를 collection, validation, enrichment, loading으로 구분한다. <sup>[🔗](#source-2)</sup>
+- common validation/enrichment failures는 warehouse/lake의 별도 table로 continuous loading할 수 있다. <sup>[🔗](#source-2)</sup>
+- replay recovery는 복잡하고 모든 경우에 가능하지 않다. <sup>[🔗](#source-2)</sup>
+- dbt model contract는 returned dataset shape를 정의하고 맞지 않으면 model build가 되지 않는다. <sup>[🔗](#source-2)</sup>
+- 내부 Source는 warehouse observability가 UI 계측 누락을 직접 알기 어렵다고 정리한다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+schema-first pipeline은 payload가 들어온 뒤 정상/실패 경로를 나눈다. 실패 경로는 데이터 유실을 줄이고 재처리 가능성을 남기지만, 운영 복잡도와 ownership을 요구한다. dbt contract는 transform layer의 consumer-facing shape를 지키는 데 강하다. 행동데이터 UI 검증 제품은 이 하류 contract보다 앞에서 expected event가 생성됐는지를 봐야 한다.
+
+## Evaluation Criteria
+
+- contract subject: event payload, enriched event, table row, model output 중 무엇인가.
+- failure isolation: bad event를 버리는가, quarantine하는가, replay 가능한가.
+- lineage: UI action부터 warehouse row까지 추적할 수 있는가.
+- enforcement cost: strict block이 데이터 유실을 만들지 않는가.
 
 ## Contradictions
 
-- “shift-left”가 항상 우월한 것은 아니다. compile-time 검사는 실제 환경과 UI 동작을 보지 못하며 runtime 검사를 대체하지 못한다.
-- schema 호환성 규칙은 destination warehouse와 도구별 구현에 따라 다르다.
+하류 validation이 강할수록 데이터 품질이 좋아지지만, missing event는 validation 대상 자체가 없다. 이 차이를 문서에서 계속 분리해야 한다.
 
 ## Open Questions
 
-- MVP의 canonical event contract를 직접 정의할지 외부 plan을 참조할지 결정해야 한다.
-- failed event의 보존 기간, 개인정보, replay 책임을 어떻게 설계할 것인가?
-- UI 요소 변경을 schema version과 연결할 별도 version model이 필요한가?
+- UI element fingerprint와 event schema version을 어떤 contract로 묶을 것인가?
+- failed event model을 missing event proof에도 적용할 수 있는가?
 
 ## Product Implications
 
-제품은 schema registry가 아니라 UI-to-event evidence contract를 소유하고 기존 schema 시스템과 adapter로 연결하는 구조가 적합해 보인다.
+제품은 하류 contract를 대체하지 않고 upstream evidence contract를 추가해야 한다. schema registry와 연동하려면 event name/property뿐 아니라 route, UI fingerprint, build version도 기록해야 한다.
 
 ## See Also
 
-- [[source-schema-data-contracts|스키마 및 데이터 계약 Source 요약]] - Snowplow와 observability 근거
-- [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 제품별 적용
-- [[collection-and-validation-patterns|행동데이터 수집 및 검증 패턴]] - 브라우저 검증 방식
+- [[validation-layer-model|검증 계층 모델]] - contract 위치
+- [[element-event-evidence|요소-이벤트 증거 모델]] - upstream evidence
 
 ## 출처
 
-- <a id="source-1"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
-- <a id="source-2"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
-- <a id="source-3"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-1"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
+- <a id="source-2"></a>[[source-snowplow-dbt-data-quality-official|Source Summary: Snowplow와 dbt 공식 데이터 품질 문서]] - `SRC-20260721-snowplow-dbt-data-quality-official`

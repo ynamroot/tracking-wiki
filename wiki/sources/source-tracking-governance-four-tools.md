@@ -7,43 +7,50 @@ created: 2026-07-21
 updated: 2026-07-22
 sources:
   - SRC-20260721-tracking-governance-four-tools
-  - SRC-20260721-tracking-governance-remaining-tools
 ---
 
 # Source Summary: 트래킹 거버넌스 도구 4종
 
 ## Current Synthesis
 
-Segment, Mixpanel, mParticle, RudderStack은 모두 수동 계측을 전제로 하며 schema 또는 metadata 수준에서 품질을 관리한다. Segment·mParticle·RudderStack은 codegen과 수집 시점 제어를 제공하고 Mixpanel Lexicon은 사후 문서화와 검토에 가깝다. UI 요소와 실제 이벤트의 시각적 매핑은 공통 사각지대다.
+Segment, Mixpanel, mParticle, RudderStack은 tracking plan과 실제 데이터의 불일치를 각기 다른 위치에서 다룬다. 공통점은 사람이 무엇을 계측할지 정하고 개발자가 구현한다는 전제를 유지한다는 점이다. 차이는 검증 위치와 위반 처리 철학이다. <sup>[🔗](#source-1)</sup>
 
 ## Evidence
 
-- Segment는 Typewriter와 수집 단계 schema controls를 결합한다. <sup>[🔗](#source-1)</sup>
-- Mixpanel Lexicon은 의미·소유자·준수 상태를 관리하지만 대부분 수집 이후의 서술적 거버넌스다. <sup>[🔗](#source-1)</sup>
-- mParticle은 Smartype과 ingestion validation을 결합하고 일부 위반을 저장 전 차단한다. <sup>[🔗](#source-1)</sup>
-- RudderStack은 RudderTyper, PR 검토, runtime tracking plan 검증을 여러 단계에 배치한다. <sup>[🔗](#source-1)</sup>
-- 네 제품 모두 생성된 호출을 코드에 배치하는 사람의 판단을 없애지 않는다. <sup>[🔗](#source-1)</sup>
+- Segment Protocols는 tracking plan과 source validation을 연결하고, 일부 위반을 block/omit/allow할 수 있다. <sup>[🔗](#source-1)</sup>
+- Mixpanel Lexicon은 사후 dictionary/governance 성격이 강하며, 강제 게이트보다는 정리·문서화에 가깝다. <sup>[🔗](#source-1)</sup>
+- mParticle Data Planning은 plan schema와 ingestion validation을 강하게 결합하고, 차단/격리 trade-off가 중요하다. <sup>[🔗](#source-1)</sup>
+- RudderStack은 tracking plan, Data Catalog, RudderTyper, PR/CI 검증, ingestion validation을 조합한다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+검증 시점은 compile/codegen, PR/CI, client/runtime, ingestion pipeline, post-ingestion dictionary로 나뉜다. 앞단일수록 수정 비용은 낮지만 실제 사용자 행동을 보지 못하고, 뒷단일수록 실제 데이터를 보지만 이미 손상이 발생했을 수 있다.
+
+## Evaluation Criteria
+
+- validation placement: compile, PR, runtime, ingestion, warehouse 중 어디인가.
+- violation disposition: allow, block, omit, transform, quarantine, propagate.
+- developer dependency: SDK call과 plan version tag를 누가 심는가.
+- visual/action evidence: UI 요소와 event claim을 연결하는가.
 
 ## Contradictions
 
-- [[source-tracking-governance-remaining-tools|후속 비교 자료]]와 범위가 겹치며 세부 기능·가격 설명에 일부 차이가 있어 공식 원문 재검증이 필요하다. <sup>[🔗](#source-2)</sup>
-- 차단 가능 항목과 티어 제한은 제품 변경에 따라 달라질 수 있다.
+이 Source는 일부 공식 문서와 제3자 가격/리뷰 요약을 함께 사용한다. 가격과 기능 tier는 공식 primary Source로 보강된 페이지에서 우선 해석해야 한다.
 
 ## Open Questions
 
-- 고객은 hard block, quarantine, propagate 중 어떤 위반 처리 정책을 실제로 채택하는가?
-- codegen과 CI 검사가 운영 파손률을 얼마나 줄였는가?
+- 경쟁사별 최신 pricing과 feature gate를 claim 단위로 업데이트해야 한다.
+- UI 요소 증빙 부재가 실제 구매 이유가 될 만큼 중요한가?
 
 ## Product Implications
 
-새 제품은 기존 schema validation을 다시 만들기보다 UI 인과 맥락과 안전한 수정 loop를 추가하는 쪽이 명확하다.
+경쟁 포지션은 “새 tracking plan platform”보다 “기존 plan/CDP가 보지 못하는 UI-action evidence와 pre-release drift detection”으로 잡는 편이 차별화가 분명하다.
 
 ## See Also
 
-- [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 중복 Source를 통합한 비교
-- [[schema-and-data-contracts|스키마 및 데이터 계약]] - 검증 위치와 실패 처리
+- [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 통합 비교
+- [[validation-layer-model|검증 계층 모델]] - 검증 위치별 trade-off
 
 ## 출처
 
-- <a id="source-1"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
-- <a id="source-2"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-1"></a>[[source-tracking-governance-four-tools|트래킹 플랜 거버넌스 도구 4종 조사]] - `SRC-20260721-tracking-governance-four-tools`

@@ -13,35 +13,42 @@ sources:
 
 ## Current Synthesis
 
-행동데이터 운영의 반복 병목은 파손을 늦게 발견하고, 명명과 문서가 실제 구현에서 표류하며, 계측과 QA가 여러 역할 사이의 수작업으로 남는 것이다. 결과는 데이터 운영자의 사후 대응 부담, PM의 출시 후 분석 공백, 개발자의 컨텍스트 전환, 조직 전체의 데이터 신뢰 하락으로 나타난다.
+이 Source는 행동데이터 운영이 단순한 SDK 삽입 문제가 아니라 PM, 개발자, 데이터/analytics 담당자, QA가 반복적으로 맞물리는 운영 문제라는 점을 보여준다. 핵심 병목은 tracking plan 작성, 구현 티켓화, 코드 삽입, 릴리즈 전 QA, 릴리즈 후 파손 감지, downstream 신뢰 회복이 서로 분리되어 있다는 데 있다. <sup>[🔗](#source-1)</sup>
 
 ## Evidence
 
-- 가장 반복적으로 보고된 문제는 이벤트 중단·중복·이름 변경을 대시보드 이상 이후에 발견하는 것이다. <sup>[🔗](#source-1)</sup>
-- 명명 규칙과 변경 이력이 일관되지 않아 이벤트 의미 확인이 사람에게 의존한다. <sup>[🔗](#source-1)</sup>
-- 조직과 스쿼드 수가 늘수록 배포별 수동 QA와 문서 유지 비용이 증가한다. <sup>[🔗](#source-1)</sup>
-- PM은 출시 후 데이터 부재를 발견하고, 개발자는 계측을 비즈니스 로직과 분리된 반복 업무로 경험한다. <sup>[🔗](#source-1)</sup>
-- 자료는 데이터 품질 문제로 분석 시간과 도구 신뢰가 손실된다고 종합한다. <sup>[🔗](#source-1)</sup>
+- 행동데이터 파손은 “이벤트가 안 온다”보다 넓다. 이벤트명 drift, 속성 타입 오류, 필수 속성 누락, 중복 이벤트, 목적지별 변환 오류, 태그·동의 조건별 발화 차이가 모두 운영 비용을 만든다. <sup>[🔗](#source-1)</sup>
+- PM과 데이터 담당자는 무엇을 측정해야 하는지 알고 있어도 코드 삽입과 릴리즈 검증은 개발자·QA queue에 의존한다. <sup>[🔗](#source-1)</sup>
+- 내부 조사 자료의 정량 claim은 벤더 블로그와 2차 인용을 포함하므로, 구매자·예산·시간 비용은 고객 인터뷰나 incident 기록으로 다시 검증해야 한다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+workflow는 대체로 `분석 질문 -> tracking plan -> 개발 티켓 -> 코드 삽입 -> QA -> 배포 -> 대시보드 이상 발견 -> 원인 추적` 순서다. 이 흐름에서 앞단의 의도와 뒷단의 실발생 데이터가 직접 연결되지 않으면 각 팀은 서로 다른 증거를 본다. PM은 요구사항 문서를 보고, 개발자는 코드와 SDK 타입을 보고, 데이터 담당자는 warehouse나 analytics tool의 결과를 본다.
+
+## Evaluation Criteria
+
+- 고객 인터뷰에서는 “누가 고통을 느끼는가”와 “누가 돈을 내는가”를 분리해야 한다.
+- 현재 비용은 업무 시간, release delay, incident 수, dashboard 신뢰 하락, downstream 분석 재작업으로 측정한다.
+- pain severity는 빈도보다 “발견 지연”과 “수정까지 필요한 cross-functional handoff 수”를 함께 봐야 한다.
 
 ## Contradictions
 
-- 일부 정량 수치는 벤더 블로그가 다른 조사 결과를 재인용한 것이므로 원 조사까지 독립 검증해야 한다.
+내부 Source는 여러 공개 자료를 종합했지만 실제 고객 원문은 아니다. 경제적 구매자와 초기 champion을 확정하기에는 근거 수준이 부족하다.
 
 ## Open Questions
 
-- 어떤 역할이 구매자이고 어떤 역할이 일상 사용자인가?
-- 파손 탐지 시간, QA 시간, 계측 리드타임 중 어느 지표가 구매 의사에 가장 직접적인가?
-- 국내 팀과 글로벌 팀의 도구·조직 구조 차이가 페인포인트 우선순위를 바꾸는가?
+- `OQ-001`: 경제적 구매자와 초기 champion은 누구인가?
+- `OQ-004`: 수동 QA·파손 대응·계측 구현 비용은 얼마인가?
 
 ## Product Implications
 
-제품은 경보만 늘리기보다 파손 원인과 책임 범위를 좁히고, 배포 전후 검증을 자동화하며, 이벤트 의미와 변경 이력을 함께 보존해야 한다.
+초기 제품은 “계측을 더 쉽게 작성”보다 “의도, 구현, 실발생 사이의 증거 chain을 줄이는 것”에 초점을 맞춰야 한다. 구매자는 데이터 리더일 수 있지만, champion은 release QA나 PM일 가능성을 별도로 검증해야 한다.
 
 ## See Also
 
-- [[behavioral-data-practitioners|행동데이터 운영 실무자]] - 역할별 문제와 기대 결과
-- [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 현재 시장의 파손 탐지 방식
+- [[behavioral-data-practitioners|행동데이터 운영 실무자]] - 역할별 문제와 구매 가설
+- [[tracking-qa-workflow|트래킹 QA 운영 workflow]] - 릴리즈 전후 검증 흐름
 
 ## 출처
 
-- <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
+- <a id="source-1"></a>[[source-practitioner-pain-points|행동데이터 운영 실무자 페인포인트 조사]] - `SRC-20260721-practitioner-pain-points`

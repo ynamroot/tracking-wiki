@@ -13,35 +13,43 @@ sources:
 
 ## Current Synthesis
 
-Amplitude Data는 트래킹 플랜, Ampli codegen, CI status 검사, Observe 런타임 관측을 연결해 설계와 실제 데이터의 drift를 줄인다. 타입과 스키마 정합성은 여러 단계에서 검증하지만 이벤트 호출 위치 선정과 실제 UI 상호작용에서의 발화는 개발자와 수동 QA에 남는다.
+Amplitude Data와 Ampli는 tracking plan을 implementation workflow에 연결해 설계와 계측 drift를 줄인다. 그러나 생성되는 것은 타입 안전 wrapper와 CI/status 검증이며, UI의 어느 지점에서 언제 호출해야 하는지는 여전히 사람이 결정한다. <sup>[🔗](#source-1)</sup>
 
 ## Evidence
 
-- Ampli는 플랜에서 타입 안전 wrapper를 생성해 필수 속성과 enum 오류를 컴파일 또는 런타임에 잡는다. <sup>[🔗](#source-1)</sup>
-- `ampli status`는 코드의 Ampli 호출과 플랜을 대조해 미구현 이벤트를 CI에서 표시한다. <sup>[🔗](#source-1)</sup>
-- Observe는 유입 이벤트를 Unexpected, Valid, Invalid, Out of Date로 분류하고 경고·차단·변환을 지원한다. <sup>[🔗](#source-1)</sup>
-- 생성된 함수를 코드의 정확한 위치에서 호출하고 검증 경고를 운영하는 일은 사람에게 남는다. <sup>[🔗](#source-1)</sup>
-- Ampli 자체에는 UI 요소와 실제 이벤트 발화의 시각적 인과 증빙이 없다. <sup>[🔗](#source-1)</sup>
+- 내부 보고서는 Amplitude Data를 설계 UI, Ampli code generation, CI 검증, Observe 운영 감시의 4겹 구조로 요약한다. <sup>[🔗](#source-1)</sup>
+- Ampli는 wrapper를 생성하지만 개발자가 그 wrapper를 코드의 적절한 위치에 직접 호출해야 한다. <sup>[🔗](#source-1)</sup>
+- “컴파일된다”는 사실은 실제 사용자가 UI를 눌렀을 때 올바른 이벤트가 발화된다는 의미론적 정확성을 보장하지 않는다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+Amplitude 계열은 tracking plan을 code artifact로 변환해 개발자 오류를 줄인다. Ampli CLI는 plan을 pull해 wrapper를 생성하고, status/check 흐름은 구현 상태와 plan drift를 일부 드러낸다. 런타임/사후 관측은 이미 들어온 event stream을 기준으로 이상을 찾는다.
+
+## Evaluation Criteria
+
+- codegen coverage: 이벤트명, 속성 타입, required field, destination 호출을 얼마나 강제하는가.
+- semantic coverage: “어떤 UI 행동이 어떤 이벤트를 내야 하는가”를 검증하는가.
+- lifecycle coverage: 설계, 구현, CI, runtime, observe 중 어디까지 이어지는가.
+- migration cost: 기존 Amplitude ecosystem 안팎에서 도입 가능한가.
 
 ## Contradictions
 
-- 가격 비교와 고객 불만 일부는 제3자 집계에 의존해 독립 검증이 필요하다.
-- “end-to-end governance”라는 제품 범위와 업스트림에서 차단·변환된 데이터를 Observe가 볼 수 없다는 제약 사이에 관측 경계가 있다.
+내부 보고서의 가격·계약 규모 claim은 공식 가격 외 제3자 집계를 포함한다. 최신 가격과 governance feature는 공식 Source로 보강해 해석해야 한다.
 
 ## Open Questions
 
-- Ampli status가 코드 스캔만으로 놓치는 동적 호출과 실제 UI 발화 오류의 비율은 어느 정도인가?
-- 기존 Amplitude 고객이 별도 UI-이벤트 검증 제품에 비용을 지불할 가능성이 있는가?
+- Amplitude 고객은 codegen보다 visual labeling/autocapture 쪽에서 어떤 pain을 더 크게 느끼는가?
+- Amplitude ecosystem 밖 고객에게 같은 workflow를 팔 수 있는가?
 
 ## Product Implications
 
-Amplitude 생태계를 대체하기보다 플랜과 실제 UI 발화를 연결하는 증빙 계층으로 보완할 가능성을 검토할 수 있다.
+Amplitude와 직접 경쟁하려면 analytics suite가 아니라 UI-action evidence와 pre-release verification을 제공해야 한다. Ampli가 강한 “타입 안전 구현”이 아니라 약한 “where/when 호출 의미 검증”을 파고드는 편이 낫다.
 
 ## See Also
 
-- [[amplitude-data|Amplitude Data]] - 제품 관점 경쟁 분석
-- [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 주요 제품 비교
+- [[amplitude-data|Amplitude Data]] - 공식 Source를 포함한 경쟁사 deep dive
+- [[codegen-and-tracking-plan-workflow|Codegen과 tracking plan workflow]] - 개발자 구현 계층
 
 ## 출처
 
-- <a id="source-1"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
+- <a id="source-1"></a>[[source-amplitude-data-ampli|Amplitude Data / Ampli SDK 경쟁 분석 리서치]] - `SRC-20260721-amplitude-data-ampli`
