@@ -82,20 +82,20 @@ Agent는 독립 서비스가 아니라 명시적인 작업 역할이다. 한 Cod
 
 ## Product Agent
 
-**입력:** `research-baseline`, Wiki, Product Decision.
+**입력:** `research-baseline`, Wiki, 승인 후보 비공개 초안, Product Decision.
 
-**절차:** 근거 Source와 Decision ID를 연결해 PRD 및 Feature Spec 초안을 만든다.
+**절차:** 근거 Source와 Decision ID를 연결해 PRD 및 Feature Spec 초안을 비공개 작업 공간에 만든다. PO가 검토해 `PD-NNN`으로 공개 수위를 정하면, 그 범위만 `product/drafts`로 옮긴다.
 
-**완료 조건:** 목표, 비목표, 검증 가능한 요구사항, 성공 지표, 위험, 미결 결정이 작성된다.
+**완료 조건:** 목표, 비목표, 검증 가능한 요구사항, 성공 지표, 위험, 미결 결정이 작성되고, 공개 수위가 정해지기 전에는 이 저장소에 아무것도 쓰지 않는다.
 
 **중단 조건:** 핵심 고객, 문제, Value Proposition이 결정되지 않았으면 초안을 확정된 것처럼 작성하지 않는다.
 
 ## Technical Reviewer
 
-**입력:** 승인된 PRD와 Feature Spec.
+**입력:** 승인된 PRD와 Feature Spec(비공개일 수 있음).
 
-**절차:** 아키텍처, 데이터, 개인정보, 보안, 신뢰성, 비용, 테스트를 검토하고 Technical Spec과 ADR을 작성한다.
+**절차:** 아키텍처, 데이터, 개인정보, 보안, 신뢰성, 비용, 테스트를 검토하고 Technical Spec과 ADR을 입력과 같은 공개 상태의 작업 공간에 쓴다. 입력이 비공개면 결과도 비공개로 두고, PO의 공개 수위 결정 이후에만 `technical/drafts`로 옮긴다.
 
-**완료 조건:** 구현 계약과 검증 전략이 명시되고 필요한 제품 변경은 CR로 분리된다.
+**완료 조건:** 구현 계약과 검증 전략이 명시되고 필요한 제품 변경은 CR로 분리되며, 공개 수위가 정해지기 전에는 이 저장소에 아무것도 쓰지 않는다.
 
 **중단 조건:** 승인 제품 요구사항과 기술 현실이 충돌하면 요구사항을 직접 수정하지 않고 Change Request를 만든다.

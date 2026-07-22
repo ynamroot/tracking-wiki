@@ -32,7 +32,7 @@
 - `raw/sources`에 승격된 자료는 수정하지 않는다. 정정은 새 Source로 추가한다.
 - 이 저장소와 GitHub Issue는 공개 정보로 취급한다. 자격증명, 개인정보, 고객 비밀, 유료·비공개 원문을 기록하거나 첨부하지 않는다.
 - 공개 URL의 저작권 원문은 복제하지 않고 URL, retrieval date, claim 단위 요약만 보존한다.
-- 비공개 제품 초안의 제목, 내부 용어, 문장을 이 저장소에 옮기지 않는다. 초안에서 나온 질문은 시장·기술 조사 질문으로 바꿔 쓴다.
+- 비공개 제품 초안, PRD, Feature Spec, Technical Spec의 제목, 내부 용어, 문장을 이 저장소에 옮기지 않는다. 거기서 나온 질문은 시장·기술 조사 질문으로 바꿔 쓴다.
 
 ## Agent 역할
 
@@ -43,11 +43,11 @@
 | Wiki Compiler | `raw/sources`, 기존 Wiki | 요약, 개념, 비교, 연결 | `wiki` |
 | Query Agent | 조사 질문, Wiki, raw Source | 답변, 필요 시 종합 페이지 | `wiki/knowledge/synthesis`, `wiki/index.md`, `wiki/log.md`, `wiki/open-questions.md` |
 | Wiki Auditor | 전체 Wiki | audit report, open question | `wiki/audits`, `wiki/open-questions.md` |
-| 초안 검토 Agent | 비공개 제품 초안(저장소 밖), Wiki | 판정 보고서(저장소 밖), open question, 조사 공백 Issue | `wiki/open-questions.md`, `wiki/log.md`, 지식 페이지의 `Open Questions` 절(동기화 한정) |
-| Product Agent | Wiki, 승인된 결정 | PRD와 기능 초안 | `product/drafts` |
-| Technical Reviewer | 승인 제품 문서 | 기술 초안, ADR, Change Request | `technical/drafts`, `technical/adr`, `technical/change-requests` |
+| 초안 검토 Agent | 비공개 제품 초안(저장소 밖), Wiki | 판정 보고서(저장소 밖), open question, 조사 공백 Issue | `wiki/open-questions.md`, `wiki/log.md`, 지식 페이지의 `미결 질문` 절(동기화 한정) |
+| Product Agent | `research-baseline`, Wiki, 승인 후보 비공개 초안, Product Decision | PRD와 기능 초안(비공개 작업 공간) | `product/decisions`(공개 수위 판단만); PD가 공개를 택한 범위에 한해 `product/drafts` |
+| Technical Reviewer | 승인된 PRD와 Feature Spec(비공개일 수 있음) | 기술 초안, ADR, Change Request(비공개일 수 있음) | PD가 공개를 택한 범위에 한해 `technical/drafts`, `technical/adr`, `technical/change-requests` |
 
-초안 검토 Agent의 판정 보고서와 초안 원문은 이 공개 저장소 밖 비공개 작업 공간에 있다. 그 구체 경로는 저장소에 적지 않고 비공개 쪽 운영 문서가 관리한다. 절차는 `OPERATIONS.md`의 "제품 초안 논증" 절을 따른다.
+초안 검토 Agent의 판정 보고서와 초안 원문, Product Agent와 Technical Reviewer의 PRD·Feature Spec·Technical Spec·ADR 초안은 모두 이 공개 저장소 밖 비공개 작업 공간에 있다. 그 구체 경로는 저장소에 적지 않고 비공개 쪽 운영 문서가 관리한다. 절차는 `OPERATIONS.md`의 "제품 초안 논증", "Productization", "Technical Review" 절을 따른다.
 
 한 작업에서 여러 역할이 필요하면 역할별 단계를 순서대로 수행하고, 각 단계의 권한 경계를 지킨다.
 
@@ -77,6 +77,7 @@
 - `product/drafts`에서 `product/approved`로의 승격은 PO가 수행한다.
 - `technical/drafts`에서 `technical/approved`로의 승격은 PO와 기술 책임자의 승인이 필요하다.
 - 비공개 초안의 "승인 후보" 판정은 초안 검토 Agent가 하고, 초안 승인과 공개 수위 결정은 PO가 한다.
+- 비공개 PRD·Feature Spec·Technical Spec의 공개 수위 결정(`PD-NNN`)도 PO가 하며, 결정 전에는 `product/drafts`·`technical/drafts`에 아무것도 기록하지 않는다.
 - 제품 요구사항 변경이 필요하면 `technical/change-requests`에 Change Request를 작성한다.
 - baseline tag는 승인자가 명시적으로 동결을 요청한 경우에만 생성한다.
 

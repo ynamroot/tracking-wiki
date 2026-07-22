@@ -210,9 +210,17 @@ git tag -a research-baseline -m "Freeze approved research baseline"
 
 ## 8. Productization
 
-Product Agent는 `research-baseline`을 기준으로 `product/drafts`에 PRD와 Feature Spec을 작성한다. 논증을 통과해 "승인 후보"가 된 비공개 초안도 이때 입력으로 쓴다. 다만 비공개 초안에서 파생된 PRD는 PO가 공개 수위를 `PD-NNN`으로 결정한 뒤에만 `product/drafts`에 기록한다. 선택지는 전문 공개, 일반화 요약만 반영, 비공개 유지·PRD는 Wiki 인용만으로 작성이다. 제안된 제품 판단은 `product/decisions`에 `status: proposed`로 남긴다.
+Product Agent는 `research-baseline`을 기준으로 PRD와 Feature Spec 초안을 만든다. 논증을 통과해 "승인 후보"가 된 비공개 초안도 이때 입력으로 쓴다.
 
-PO는 다음을 검토한다.
+초안은 이 공개 저장소가 아니라 비공개 작업 공간에 먼저 쓴다. PRD는 흩어진 Wiki 지식을 타깃 고객·요구사항·성공 지표 하나로 압축한 실행 청사진이라, 개별 사실이 이미 Wiki에 공개돼 있어도 그 종합 자체가 더 구체적인 노출이기 때문이다. 6절의 세 문항 점검과 같은 원칙이 적용된다.
+
+```text
+Product Agent 역할로 비공개 작업 공간에 PRD와 Feature Spec 초안을 작성하라.
+research-baseline과 Wiki를 근거로 삼고 Source 앵커를 유지하라.
+비공개 초안이나 그 문장을 이 공개 저장소에 옮기지 마라.
+```
+
+PO는 비공개 초안을 검토하고 다음을 확인한다.
 
 - 고객과 문제 정의가 Source에 의해 뒷받침되는가?
 - Value Proposition과 비목표가 명확한가?
@@ -220,11 +228,11 @@ PO는 다음을 검토한다.
 - 성공 지표가 제품 목표와 연결되는가?
 - 해석이나 제안이 외부 사실로 표현되지 않았는가?
 
-승인 시에만 PO가 문서를 `product/approved`로 이동하고 승인 metadata를 기록한다.
+검토 후 `PD-NNN`으로 공개 수위를 정한다. 선택지는 전문 공개, 일반화 요약만 공개, 비공개 유지다. 전문 공개나 일반화 요약을 택한 경우에만 그 범위의 PRD가 `product/drafts`에 기록되고, PO가 이를 `product/approved`로 승격한다. 비공개 유지를 택하면 PRD 본문은 이 저장소에 들어오지 않고, `product/decisions`에는 `PD-NNN`과 공개 여부를 정한 판단 사유만 `status: proposed`로 남긴다 — PD 문서 자체는 "무엇을 왜 공개하거나 안 하는가"만 담고, PRD 본문(고객·요구사항·지표)은 옮기지 않는다.
 
 ## 9. Technical Review
 
-Technical Reviewer는 승인 제품 문서만을 입력으로 사용한다. `technical/drafts`에 Technical Spec, `technical/adr`에 ADR을 작성한다.
+Technical Reviewer는 승인된 PRD와 Feature Spec을 입력으로 사용한다. 입력이 비공개 상태면 Technical Spec과 ADR도 같은 비공개 작업 공간에 먼저 쓴다. 공개 여부는 제품 계층과 같은 `PD-NNN` 결정을 따르되, 기술 세부가 더 민감하면 별도 `PD-NNN`으로 판단을 추가한다. 공개가 결정된 범위만 `technical/drafts`에 기록되고, PO와 기술 책임자 승인 후 `technical/approved`로 승격한다.
 
 반드시 다음을 검토한다.
 
@@ -236,7 +244,7 @@ Technical Reviewer는 승인 제품 문서만을 입력으로 사용한다. `tec
 - 관측 가능성과 운영 절차
 - 테스트와 점진적 rollout
 
-제품 요구사항 변경이 필요하면 `technical/change-requests`에 CR을 작성한다. PO가 CR을 승인 또는 거절한 뒤 관련 제품 및 기술 초안을 갱신한다.
+제품 요구사항 변경이 필요하면 `technical/change-requests`에 CR을 작성한다. CR은 근거가 된 제품·기술 문서와 같은 공개 상태를 따른다. PO가 CR을 승인 또는 거절한 뒤 관련 제품 및 기술 초안을 갱신한다.
 
 ## 10. Spec Baseline And Archive
 
