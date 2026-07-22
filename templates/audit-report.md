@@ -39,6 +39,13 @@ scope: full
 | Priority | Question | Suggested Source Type |
 |---|---|---|
 
+## 가독성
+
+한영 혼용, 미해설 약어, 영어 절 이름, 앵커 몰림, `관련 문서`의 key-terms 링크 누락을 점검한다.
+
+| Page | Problem | Severity | Action |
+|---|---|---|---|
+
 ## Changes Applied
 
 Wiki Auditor의 권한 안에서 수행한 변경만 기록한다.

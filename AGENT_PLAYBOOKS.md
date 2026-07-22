@@ -39,17 +39,32 @@ Agent는 독립 서비스가 아니라 명시적인 작업 역할이다. 한 Cod
 
 **입력:** `raw/sources`의 accepted Source 하나와 기존 Wiki.
 
-**절차:** `OPERATIONS.md`의 Ingest Workflow를 그대로 수행한다.
+**절차:** `OPERATIONS.md`의 Ingest Workflow를 그대로 수행한다. 작성 후 `SCHEMA.md`의 문장 작성 원칙으로 가독성 자기 점검(약어 첫 등장 풀이, 용어 통일, 한영 혼용 제거, `관련 문서`의 key-terms 링크, claim 옆 앵커, 비전문가 독해 가능 여부)을 수행한다.
 
-**완료 조건:** Source summary, 관련 지식 페이지, `index.md`, `log.md`, 필요한 open question이 같은 변경에서 갱신된다.
+**완료 조건:** Source summary, 관련 지식 페이지, `index.md`, `log.md`, 필요한 open question이 같은 변경에서 갱신되고, 가독성 자기 점검을 통과한다.
 
 **중단 조건:** Source provenance가 불완전하거나 자동 정책에서 채택되지 않은 자료면 ingest하지 않는다.
+
+## Query Agent
+
+**입력:** 조사 질문, Wiki, raw Source.
+
+**절차:**
+
+1. `wiki/index.md`에서 시작해 필요한 Wiki 페이지와 raw Source를 읽는다.
+2. 확인된 사실, 종합한 해석, 제품 제안, 미결 질문을 구분해 답한다.
+3. 가치 있는 분석은 `wiki/knowledge/synthesis`에 근거 Source와 함께 저장하고 `SCHEMA.md`의 문장 작성 원칙을 따른다.
+4. 저장 시 `index.md`와 `log.md`를 같은 변경에서 갱신한다.
+
+**완료 조건:** 답변이 사실·종합·제안·미결 질문으로 구분되고, Wiki에 저장한 경우 `index.md`와 `log.md`가 갱신된다.
+
+**중단 조건:** Wiki만으로 답할 수 없으면 추측하지 않고 `open-questions.md`와 GitHub `question:open` Issue에 조사 공백을 남긴다.
 
 ## Wiki Auditor
 
 **입력:** Wiki 전체 또는 지정 범위.
 
-**절차:** 구조, 인용, 링크, 모순, 최신성, 고립 페이지, 조사 공백을 검사한다.
+**절차:** 구조, 인용, 링크, 모순, 최신성, 고립 페이지, 조사 공백, 그리고 가독성(영어 비율, 미해설 약어, 절 이름 규정 준수, 앵커 위치, `관련 문서`의 key-terms 링크)을 검사한다.
 
 **완료 조건:** `wiki/audits/YYYY-MM-DD-audit.md`가 생성되고 중요한 공백이 `open-questions.md`에 반영된다.
 

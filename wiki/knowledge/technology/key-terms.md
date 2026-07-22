@@ -18,16 +18,16 @@ sources:
 
 # 핵심 용어 해설
 
-## Current Synthesis
+## 현재 종합
 
 이 Wiki는 행동데이터 수집, 검증, 경쟁 제품, 웹 자동화 평가를 함께 다루기 때문에 외래어와 약어가 많다. 아래 용어는 문서 전체에서 반복해서 쓰이는 기본 단어다. 이 페이지는 제품 결론을 새로 제안하지 않고, 기존 Source를 읽기 위한 용어 안내 역할을 한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup> 더 상세하고 벤더 고유 용어(SchemaVer, Iglu, 격리, 전파, 데드레터 큐 등)까지 다루는 목록은 [[tracking-terminology|트래킹 상세·벤더 용어 사전]]에 있다. <sup>[🔗](#source-8)</sup>
 
-## Evidence
+## 근거
 
 - 내부 조사 Source들은 tracking plan, tag manager, schema, validation, benchmark 같은 용어를 반복해서 사용한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
 - 상용 도구 조사와 공식 문서 보강은 selector, DOM, dataLayer, synthetic scan, passive monitoring, funnel 같은 웹 분석 운영 용어를 추가로 사용한다. <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
-## Mechanics
+## 작동 방식
 
 | 용어 | 쉬운 설명 |
 |---|---|
@@ -60,23 +60,23 @@ sources:
 | 구매자(buyer) | 실제 예산을 승인하는 사람이나 조직. |
 | 챔피언(champion) | 문제를 강하게 느끼고 내부에서 도입을 밀어줄 사람. |
 
-## Evaluation Criteria
+## 평가 기준
 
 새 문서를 작성할 때는 이 표의 쉬운 설명을 기본 표현으로 사용한다. 원어는 독자가 검색하거나 공식 문서를 대조해야 할 때만 괄호로 병기한다.
 
-## Contradictions
+## 모순
 
 같은 용어가 제품마다 조금 다르게 쓰일 수 있다. 예를 들어 “검증”은 코드 작성 전 확인, 이벤트 수집 시점 확인, 데이터 창고 적재 후 확인을 모두 가리킬 수 있다. 그래서 문서에서는 검증 위치를 함께 적어야 한다.
 
-## Open Questions
+## 미결 질문
 
 - 문서가 늘어나면서 새 약어나 벤더 고유 용어가 생기면 이 페이지에 추가해야 한다.
 
-## Product Implications
+## 제품 시사점
 
 제품 문서와 PRD를 작성할 때도 “정확한 용어”보다 “팀 사이에 오해가 없는 용어”를 우선해야 한다. 특히 구매자·챔피언 인터뷰에서는 영어 약어보다 실제 업무 표현을 사용해야 한다.
 
-## See Also
+## 관련 문서
 
 - [[tracking-terminology|트래킹 상세·벤더 용어 사전]] - 스키마·옵저버빌리티·거버넌스·파이프라인의 상세·벤더 용어.
 - [[validation-layer-model|검증 계층 모델]] - “검증”이 어디에서 일어나는지 구분한다.
@@ -84,11 +84,11 @@ sources:
 
 ## 출처
 
-- <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
-- <a id="source-2"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
-- <a id="source-3"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
-- <a id="source-4"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
-- <a id="source-5"></a>[[source-web-agent-eval-benchmarks|Source Summary: Web Agent Evaluation Benchmarks]] - `SRC-20260721-web-agent-eval-benchmarks`
-- <a id="source-6"></a>[[source-commercial-tools-survey|Source Summary: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
-- <a id="source-7"></a>[[source-commercial-tools-official-docs|Source Summary: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`
-- <a id="source-8"></a>[[source-tracking-glossary|Source Summary: 트래킹 플랜 자동화 용어집]] - `SRC-20260722-tracking-glossary`
+- <a id="source-1"></a>[[source-practitioner-pain-points|자료 요약: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
+- <a id="source-2"></a>[[source-autocapture-tag-managers|자료 요약: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
+- <a id="source-3"></a>[[source-tracking-governance-four-tools|자료 요약: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-4"></a>[[source-schema-data-contracts|자료 요약: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
+- <a id="source-5"></a>[[source-web-agent-eval-benchmarks|자료 요약: Web Agent Evaluation Benchmarks]] - `SRC-20260721-web-agent-eval-benchmarks`
+- <a id="source-6"></a>[[source-commercial-tools-survey|자료 요약: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
+- <a id="source-7"></a>[[source-commercial-tools-official-docs|자료 요약: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`
+- <a id="source-8"></a>[[source-tracking-glossary|자료 요약: 트래킹 플랜 자동화 용어집]] - `SRC-20260722-tracking-glossary`

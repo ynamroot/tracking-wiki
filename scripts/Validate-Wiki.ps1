@@ -1,9 +1,15 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
 $errors = New-Object System.Collections.Generic.List[string]
 $warnings = New-Object System.Collections.Generic.List[string]
-$sourceHeading = ([string][char]0xCD9C) + ([string][char]0xCC98)
+
+# 이 파일은 반드시 UTF-8 BOM으로 저장한다. BOM이 없으면 Windows PowerShell 5.1이
+# 한글 리터럴을 ANSI로 잘못 읽어 절 이름 검사가 조용히 실패한다. 아래 가드가 그 경우를 잡는다.
+if ([int][char]"출처"[0] -ne 0xCD9C) {
+    throw "Validate-Wiki.ps1 must be saved as UTF-8 with BOM; Korean literals are corrupted."
+}
+$sourceHeading = "출처"
 $sourceEmoji = [char]::ConvertFromUtf32(0x1F517)
 
 function Add-ValidationError {
@@ -126,8 +132,9 @@ foreach ($sourceSet in $sourceSets) {
 }
 
 $wikiFields = @("title", "type", "status", "confidence", "created", "updated", "sources")
-$wikiSections = @("Current Synthesis", "Evidence", "Contradictions", "Open Questions", "See Also")
+$wikiSections = @("현재 종합", "근거", "모순", "미결 질문", "제품 시사점", "관련 문서")
 $excludedWikiFiles = @("AGENTS.md", "README.md", "index.md", "log.md", "open-questions.md")
+$abbreviations = @("SDK", "CDP", "QA", "PM", "MVP", "UAT", "ICP", "MTU", "PRD", "CI", "PR", "API", "DOM", "KPI")
 $knowledgePages = Get-ChildItem -LiteralPath (Join-Path $root "wiki") -Filter "*.md" -File -Recurse |
     Where-Object {
         $excludedWikiFiles -notcontains $_.Name -and
@@ -262,6 +269,44 @@ foreach ($page in $knowledgePages) {
 
     if (@($citationAnchors).Count -gt 0 -and -not $sourcesHeadingMatch.Success) {
         Add-ValidationError "$relativePath contains Source citations but is missing its Source footer section"
+    }
+
+    # 가독성 검사: 핵심 용어 해설 링크 (ERROR)
+    # 모든 지식 페이지와 자료 요약은 관련 문서에 [[key-terms]]를 연결한다. key-terms 자신은 제외.
+    if ($page.BaseName -ne "key-terms" -and $content -notmatch '\[\[key-terms(\]\]|\|)') {
+        Add-ValidationError "$relativePath is missing a [[key-terms]] link (SCHEMA 문장 작성 원칙)"
+    }
+
+    # 가독성 heuristic을 위한 본문 정리: 코드/URL/HTML/표/링크 타깃을 제거해 산문만 남긴다.
+    $prose = $bodyBeforeSources
+    $prose = [regex]::Replace($prose, '(?s)```.*?```', '')
+    $prose = [regex]::Replace($prose, '`[^`]*`', '')
+    $prose = [regex]::Replace($prose, 'https?://\S+', '')
+    $prose = [regex]::Replace($prose, '<[^>]+>', '')
+    $prose = [regex]::Replace($prose, '(?m)^\|.*\|\s*$', '')
+    $prose = [regex]::Replace($prose, '\[\[[^\]|]+\|([^\]]+)\]\]', '$1')
+    $prose = [regex]::Replace($prose, '\[\[([^\]]+)\]\]', '$1')
+
+    # 가독성 검사: 미풀이 약어 (WARNING)
+    # 약어가 본문에 쓰였는데 어디에도 괄호 gloss(고객데이터플랫폼(CDP) 형태)가 인접하지 않으면 경고.
+    foreach ($abbr in $abbreviations) {
+        if ($prose -cmatch "(?<![A-Za-z])$abbr(?![A-Za-z])" -and
+            $prose -notmatch "[(（][^)）]*$abbr" -and
+            $prose -cnotmatch "$abbr[)）]" -and
+            $prose -cnotmatch "$abbr\s*[(（]") {
+            $warnings.Add("$relativePath uses '$abbr' without a first-use Korean gloss")
+        }
+    }
+
+    # 가독성 검사: 영어 비율 (WARNING)
+    $latin = [regex]::Matches($prose, '[A-Za-z]').Count
+    $hangul = [regex]::Matches($prose, '[가-힣]').Count
+    if (($latin + $hangul) -gt 200) {
+        $ratio = $latin / ($latin + $hangul)
+        $threshold = if ($relativePath -like "wiki/sources/*") { 0.40 } else { 0.30 }
+        if ($ratio -gt $threshold) {
+            $warnings.Add(("{0} English-letter ratio {1:P0} exceeds {2:P0}" -f $relativePath, $ratio, $threshold))
+        }
     }
 }
 

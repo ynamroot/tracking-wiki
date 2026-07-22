@@ -1,5 +1,5 @@
 ---
-title: "Source Summary: RudderStack Tracking Plans 공식 문서"
+title: "자료 요약: RudderStack Tracking Plans 공식 문서"
 type: source-summary
 status: current
 confidence: high
@@ -9,13 +9,13 @@ sources:
   - SRC-20260721-rudderstack-tracking-plans-official
 ---
 
-# Source Summary: RudderStack Tracking Plans 공식 문서
+# 자료 요약: RudderStack Tracking Plans 공식 문서
 
-## Current Synthesis
+## 현재 종합
 
 RudderStack 공식 Source는 Tracking Plans가 incoming event data의 non-compliance를 monitor하고 act on하는 기능이며, Free/Growth/Enterprise별 plan/event limit과 violation management 차이가 있음을 확인한다. <sup>[🔗](#source-1)</sup>
 
-## Evidence
+## 근거
 
 - Tracking Plans는 predefined plans 기반으로 incoming event data의 non-compliance를 monitor하고 act on한다. <sup>[🔗](#source-1)</sup>
 - 기능은 `track`, `identify`, `page`, `screen`, `group` event rules, required property/attribute, data type 정의를 포함한다. <sup>[🔗](#source-1)</sup>
@@ -23,33 +23,34 @@ RudderStack 공식 Source는 Tracking Plans가 incoming event data의 non-compli
 - plan limit은 Free 1 plan/5 events per plan, Growth unlimited plans/75 events per plan, Enterprise unlimited plans/unlimited events per plan이다. <sup>[🔗](#source-1)</sup>
 - violation management는 Free에서 Drop Events, Growth/Enterprise에서 Configurable로 표시된다. <sup>[🔗](#source-1)</sup>
 
-## Mechanics
+## 작동 방식
 
 RudderStack은 CDP source boundary에서 inbound event를 tracking plan과 대조하고, plan/config에 따라 violation을 처리한다. Data Catalog API와 dashboard 관리가 함께 제공되어 code/API driven governance로 이동하는 경향이 있다.
 
-## Evaluation Criteria
+## 평가 기준
 
 - free viability: 1 plan/5 events 제한이 실제 pilot에 충분한가.
 - violation policy: Drop-only와 configurable의 운영 차이.
 - event coverage: alias 미지원 같은 excluded call이 제품 설계에 미치는 영향.
 
-## Contradictions
+## 모순
 
 기존 secondary Source의 Growth 가격과 공식 price page의 최신 표시가 달라질 수 있다. 공식 Source를 우선한다.
 
-## Open Questions
+## 미결 질문
 
 - RudderStack 고객에게 pre-release UI path 검증이 Data Catalog/Tracking Plan과 어떤 관계를 가지는가?
 - configurable violation management가 실제로 어느 tier에서 구매되는가?
 
-## Product Implications
+## 제품 시사점
 
 RudderStack은 Free tier에도 governance 맛보기를 제공하므로, 신규 제품은 free pilot에서 차별화 가능한 visual proof 또는 changed-route regression을 보여줘야 한다.
 
-## See Also
+## 관련 문서
 
 - [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - RudderStack 비교
 - [[pricing-and-packaging|가격과 패키징 비교]] - tier별 제한
+- [[key-terms|핵심 용어 해설]] - 반복되는 용어 풀이.
 
 ## 출처
 

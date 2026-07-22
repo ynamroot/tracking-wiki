@@ -41,6 +41,7 @@
 | Intake Agent | GitHub Issue, URL, 파일 | 정규화 및 자동 판정된 Source record | `raw/inbox`, `raw/sources`, `raw/rejected` |
 | Research Agent | inbox 자료, 조사 질문 | 검증 메모, 보강 Source | `raw/inbox` |
 | Wiki Compiler | `raw/sources`, 기존 Wiki | 요약, 개념, 비교, 연결 | `wiki` |
+| Query Agent | 조사 질문, Wiki, raw Source | 답변, 필요 시 종합 페이지 | `wiki/knowledge/synthesis`, `wiki/index.md`, `wiki/log.md`, `wiki/open-questions.md` |
 | Wiki Auditor | 전체 Wiki | audit report, open question | `wiki/audits`, `wiki/open-questions.md` |
 | 초안 검토 Agent | 비공개 제품 초안(저장소 밖), Wiki | 판정 보고서(저장소 밖), open question, 조사 공백 Issue | `wiki/open-questions.md`, `wiki/log.md`, 지식 페이지의 `Open Questions` 절(동기화 한정) |
 | Product Agent | Wiki, 승인된 결정 | PRD와 기능 초안 | `product/drafts` |

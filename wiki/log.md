@@ -86,3 +86,7 @@ Home 항목이 루트 링크가 아니라 `home` slug로 정렬되어 목록 최
 ## [2026-07-22] review | 비공개 제품 초안 2회차 검토
 
 비공개 제품 초안 한 건을 현재 Wiki(commit 57fd430)를 근거로 재검토했다. Wiki로 판정할 수 없는 항목을 조사 질문으로 등록했다 — `OQ-009`(운영 환경 자동 순회의 합성 이벤트 식별·격리 관행), `OQ-010`(화면 증거의 개인정보 마스킹·보존 관행), `OQ-011`(자동 발견·초안 생성의 승인 병목 규모)을 신규로 열고, `OQ-005`(오병합 허용 상한)와 `OQ-008`(계층별 발견율 기준)의 범위를 넓혔다. 새 질문은 `autonomous-traversal-evaluation`, `element-event-evidence`, `automation-opportunity`의 미결 질문 절에 미러링했다. 초안 내용은 저장소에 기록하지 않았다.
+
+## [2026-07-22] update | 절 이름 한국어 전환과 가독성 규칙 도입
+
+공개 Wiki 41개 페이지의 영어 절 이름을 한국어로 바꿨다(`Current Synthesis`→`현재 종합`, `Evidence`→`근거`, `Contradictions`→`모순`, `Open Questions`→`미결 질문`, `Product Implications`→`제품 시사점`, `See Also`→`관련 문서`, `Mechanics`→`작동 방식`, `Context`→`배경`, `Evaluation Criteria`→`평가 기준`). Quartz 목차도 한국어로 렌더링된다. 자료 요약 제목 접두사를 `Source Summary:`에서 `자료 요약:`으로 통일했다. 모든 지식 페이지와 자료 요약의 `관련 문서`에 [[key-terms|핵심 용어 해설]] 링크를 넣었다. `SCHEMA.md` 문장 작성 원칙에 비전문가·전문가 이중 독자 정의, 한영 혼용 금지, 약어 첫 등장 풀이, claim 옆 앵커, `status` 운영 규칙, 핵심 논지 단일 canonical 페이지 규칙을 추가하고, `wiki/AGENTS.md`는 이를 참조만 하도록 정리했다. `AGENTS.md`에 Query Agent 역할, `AGENT_PLAYBOOKS.md`에 Query Agent 플레이북과 Wiki Compiler·Auditor의 가독성 점검, `OPERATIONS.md` Ingest Workflow에 가독성 자기 점검 단계와 audit 체크리스트 가독성 항목을 추가했다. `Validate-Wiki.ps1`은 한국어 필수 절(제품 시사점 포함) 검사, key-terms 링크 검사, 미해설 약어·영어 비율 경고를 추가했다. 지식의 의미와 Source 연결은 바꾸지 않았다.
