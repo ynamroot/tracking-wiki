@@ -13,43 +13,43 @@ sources:
 
 ## 현재 종합
 
-태그 감사 시장은 주기 crawl, scripted scenario, 실사용자 traffic monitoring, tag library classification을 조합해 “태그가 발화했는가”를 검사한다. 강점은 운영 감시와 compliance evidence이고, 약점은 새 UI 요소를 발견해 tracking plan에 연결하거나 깨진 설정을 자동 수리하는 실행 계층이 약하다는 점이다. <sup>[🔗](#source-1)</sup>
+태그 감사 시장은 주기적인 크롤링(crawl), 시나리오 스크립트, 실사용자 트래픽 감시, 태그 라이브러리 분류를 조합해 “태그가 발화했는가”를 검사한다. 강점은 운영 감시와 규정 준수 증거이고, 약점은 새 UI 요소를 발견해 트래킹 플랜에 연결하거나 깨진 설정을 자동으로 고치는 실행 계층이 약하다는 점이다. <sup>[🔗](#source-1)</sup>
 
 ## 근거
 
-- ObservePoint류는 웹사이트를 크롤링해 태그 발화, 목적지, privacy condition을 점검한다. <sup>[🔗](#source-1)</sup>
-- DataTrue류는 사용자가 정의한 scenario와 custom validation rule로 tag test를 수행한다. <sup>[🔗](#source-1)</sup>
-- Trackingplan류는 실사용자 traffic을 청취해 이벤트·속성·목적지 baseline을 학습하고 이탈을 감지한다. <sup>[🔗](#source-1)</sup>
-- Tag Inspector류는 synthetic scan과 realtime monitoring을 결합해 태그·쿠키·PII 동작을 감시한다. <sup>[🔗](#source-1)</sup>
+- ObservePoint류는 웹사이트를 크롤링해 태그 발화, 목적지, 개인정보 보호 조건(privacy condition)을 점검한다. <sup>[🔗](#source-1)</sup>
+- DataTrue류는 사용자가 정의한 시나리오와 맞춤 검증 규칙으로 태그 테스트를 수행한다. <sup>[🔗](#source-1)</sup>
+- Trackingplan류는 실사용자 트래픽을 듣고 이벤트·속성·목적지의 기준선(baseline)을 학습해 이탈을 감지한다. <sup>[🔗](#source-1)</sup>
+- Tag Inspector류는 합성 스캔(synthetic scan)과 실시간 감시를 결합해 태그, 쿠키, 개인식별정보(PII) 동작을 감시한다. <sup>[🔗](#source-1)</sup>
 
 ## 작동 방식
 
-검증 방식은 크게 두 축으로 나뉜다. synthetic 방식은 사람이 지정한 page나 scenario를 정기적으로 순회해 expected tag를 확인한다. passive 방식은 production traffic을 관찰해 baseline과 drift를 비교한다. synthetic은 배포 전 검증에 가깝지만 coverage 설계가 사람 몫이고, passive는 실제 트래픽을 보지만 이미 발생한 뒤에야 이상을 알 수 있다.
+검증 방식은 크게 두 축으로 나뉜다. 합성 방식은 사람이 지정한 페이지나 시나리오를 정기적으로 순회해 기대하는 태그가 나오는지 확인한다. 수동 관찰 방식은 실제 운영 트래픽을 관찰해 기준선과 이탈(drift)을 비교한다. 합성 방식은 배포 전 검증에 가깝지만 검사 범위를 사람이 설계해야 하고, 수동 관찰 방식은 실제 트래픽을 보지만 이미 문제가 발생한 뒤에야 이상을 알 수 있다.
 
 ## 평가 기준
 
-- scan coverage: SPA route, consent state, region, auth state, checkout path를 얼마나 돌 수 있는가.
-- signal fidelity: tag fired, payload schema, destination delivery, privacy rule, PII leak를 어디까지 본다.
-- remediation: issue detection에서 ownership routing, fix suggestion, verification rerun까지 이어지는가.
-- evidence durability: scan trace와 UI screenshot이 event claim과 연결되는가.
+- 스캔 범위: 단일 페이지 앱(SPA) 경로, 동의 상태, 지역, 로그인 상태, 결제 경로를 얼마나 돌 수 있는가.
+- 신호 정확도: 태그 발화, 페이로드 스키마, 목적지 전달, 개인정보 규칙, 개인식별정보 유출을 어디까지 보는가.
+- 문제 해결: 문제 감지에서 담당자 배정, 수정 제안, 재검증 실행까지 이어지는가.
+- 증거의 지속성: 스캔 기록과 UI 화면 캡처가 이벤트 주장과 연결되는가.
 
 ## 모순
 
-자동 순회 QA는 이미 시장에 있지만 “순회” 자체와 “계측 의미를 이해하고 새 coverage를 제안하는 것”은 다르다. 경쟁 부재 주장은 tag audit 기능이 아니라 요소-이벤트 의미 증빙과 self-healing 범위로 좁혀야 한다.
+자동 순회 품질 검사(QA)는 이미 시장에 있지만 “순회” 자체와 “계측의 의미를 이해하고 새 검사 범위를 제안하는 것”은 다르다. 경쟁이 없다는 주장은 태그 감사 기능이 아니라 요소-이벤트 의미 증빙과 자가치유(self-healing) 범위로 좁혀야 한다.
 
 ## 미결 질문
 
-- `OQ-002`: 첫 MVP outcome을 배포 전 회귀 검증으로 둘지 운영 경보로 둘지 결정해야 한다.
-- `OQ-008`: 평가 dataset과 coverage 기준이 필요하다.
+- `OQ-002`: 첫 최소기능제품(MVP)의 결과물을 배포 전 회귀 검증으로 둘지 운영 경보로 둘지 결정해야 한다.
+- `OQ-008`: 평가 데이터셋과 검사 범위 기준이 필요하다.
 
 ## 제품 시사점
 
-초기 wedge는 기존 tag audit과 정면충돌하기보다 “tracking plan과 UI 요소 사이의 evidence gap” 또는 “배포 전 changed UI path 회귀 검증”으로 좁히는 편이 안전하다.
+초기 진입점(wedge)은 기존 태그 감사와 정면충돌하기보다 “트래킹 플랜과 UI 요소 사이의 증거 공백” 또는 “배포 전 변경된 UI 경로의 회귀 검증”으로 좁히는 편이 안전하다.
 
 ## 관련 문서
 
 - [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 경쟁군 비교
-- [[autonomous-traversal-evaluation|자율 순회 평가 기준]] - benchmark와 제품 평가 분리
+- [[autonomous-traversal-evaluation|자율 순회 평가 기준]] - 벤치마크와 제품 평가 분리
 - [[key-terms|핵심 용어 해설]] - 반복되는 용어 풀이.
 
 ## 출처

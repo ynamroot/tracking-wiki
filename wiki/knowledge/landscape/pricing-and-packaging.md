@@ -17,40 +17,40 @@ sources:
 
 ## 현재 종합
 
-공식 Source 기준 가격 공개 수준은 크게 다르다. Avo는 Free/Team 가격을 명확히 공개하고 Enterprise를 custom으로 둔다. Amplitude는 Free event volume을 공개하고 Growth/Enterprise를 custom으로 둔다. Segment Protocols와 mParticle은 핵심 governance 가격이 공개 정액이 아니며, RudderStack은 Free/Growth/Enterprise별 tracking plan limit을 비교적 명확히 공개한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
+공식 자료 기준으로 가격을 공개하는 정도는 제품마다 크게 다르다. Avo는 Free·Team 가격을 명확히 공개하고 Enterprise는 맞춤 견적(custom)으로 둔다. Amplitude는 Free 등급의 이벤트 허용량을 공개하고 Growth·Enterprise는 맞춤 견적으로 둔다. Segment Protocols와 mParticle은 핵심 거버넌스 가격이 공개된 정액이 아니며, RudderStack은 Free·Growth·Enterprise별 트래킹 플랜(tracking plan) 한도를 비교적 명확히 공개한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
 
 ## 근거
 
-- Avo Free는 $0, 2 editors, 100k Inspector observed events이고 Team은 annual $250/month, monthly $300/month다. <sup>[🔗](#source-1)</sup>
-- Avo Enterprise는 enforceable approvals, automated required reviews, enforceable standards, 1M Inspector observed events, SSO, premium support를 포함한다. <sup>[🔗](#source-1)</sup>
-- Amplitude Free plan은 2 million events/month를 포함하고 Growth/Enterprise는 custom-priced다. <sup>[🔗](#source-2)</sup>
-- Segment Protocols는 Customer Data Pipeline Business plan과 CDP plans의 optional add-on이다. <sup>[🔗](#source-3)</sup>
-- RudderStack Tracking Plans는 Free 1 plan/5 events, Growth unlimited plans/75 events, Enterprise unlimited/unlimited로 제한된다. <sup>[🔗](#source-4)</sup>
-- mParticle 공식 Source는 공개 정액 가격을 확정하지 못하며 Data Plan feature와 API/SDK workflow를 설명한다. <sup>[🔗](#source-5)</sup>
+- Avo Free는 $0에 편집자(editor) 2명과 Inspector가 관찰하는 이벤트 100k를 제공하고, Team은 연간 결제 시 $250/month, 월간 결제 시 $300/month다. <sup>[🔗](#source-1)</sup>
+- Avo Enterprise는 강제 가능한 승인, 필수 리뷰 자동화, 강제 가능한 표준, Inspector가 관찰하는 이벤트 1M, 단일 로그인(SSO), 우선 지원을 포함한다. <sup>[🔗](#source-1)</sup>
+- Amplitude Free 등급은 2 million events/month를 포함하고, Growth·Enterprise는 맞춤 견적이다. <sup>[🔗](#source-2)</sup>
+- Segment Protocols는 Customer Data Pipeline Business plan과 고객데이터플랫폼(CDP) 등급에서 선택으로 추가하는 옵션(optional add-on)이다. <sup>[🔗](#source-3)</sup>
+- RudderStack Tracking Plans는 Free는 1 plan/5 events, Growth는 unlimited plans/75 events, Enterprise는 unlimited/unlimited로 제한된다. <sup>[🔗](#source-4)</sup>
+- mParticle 공식 자료는 공개된 정액 가격을 확정하지 못하며, Data Plan 기능과 API·SDK(개발 도구 모음) 흐름을 설명한다. <sup>[🔗](#source-5)</sup>
 
 ## 작동 방식
 
-가격은 제품 포지션을 말한다. Avo는 editor와 observed events 중심으로 data design workspace를 판다. Amplitude는 analytics event volume과 platform tier가 중심이다. Segment/mParticle은 enterprise data pipeline add-on 성격이 강하다. RudderStack은 governance feature를 낮은 tier에도 보여주지만 limit으로 expansion을 유도한다.
+가격은 제품이 어떤 자리를 노리는지 보여 준다. Avo는 편집자 수와 관찰한 이벤트 수를 중심으로 데이터 설계 작업공간을 판다. Amplitude는 분석 이벤트 사용량과 플랫폼 등급이 중심이다. Segment와 mParticle은 기업용 데이터 파이프라인에 얹는 추가 기능(add-on) 성격이 강하다. RudderStack은 거버넌스 기능을 낮은 등급에도 보여 주지만, 한도를 두어 상위 등급으로 올라가도록 유도한다.
 
 ## 평가 기준
 
-- self-serve 가능성: 공개 가격과 무료 tier가 pilot을 가능하게 하는가.
-- usage metric: editor, event volume, MTU, plan/event count 중 무엇을 과금 기준으로 삼는가.
-- governance gate: approval, standards, violation management가 어느 tier부터 의미 있는가.
-- integration cost: 기존 analytics/CDP spend 위에 추가 budget을 요구하는가.
+- 직접 도입(self-serve) 가능성: 공개된 가격과 무료 등급이 소규모 시범 도입(pilot)을 가능하게 하는가.
+- 사용량 기준: 편집자 수, 이벤트 사용량, 월간 추적 이용자(MTU), 계획·이벤트 수 중 무엇을 과금 기준으로 삼는가.
+- 거버넌스 문턱: 승인, 표준, 위반 관리가 어느 등급부터 의미 있게 제공되는가.
+- 도입 비용: 기존 분석 도구나 CDP 지출 위에 추가 예산을 요구하는가.
 
 ## 모순
 
-secondary Source의 제3자 계약 규모와 공식 가격은 비교 목적이 다르다. 제품 판단에는 공식 가격을 우선하고, 실제 지불 의사는 인터뷰나 구매 사례로 검증해야 한다.
+2차 자료의 제3자 계약 규모와 공식 가격은 비교하려는 목적이 다르다. 제품 판단에는 공식 가격을 우선하고, 실제로 돈을 낼 의향은 인터뷰나 구매 사례로 검증해야 한다.
 
 ## 미결 질문
 
-- 신규 제품의 가격 metric은 route/run, tracked event, team seat, connected destination 중 무엇이 적절한가?
-- buyer가 이미 CDP/analytics 비용을 내는 경우 addon budget을 만들 수 있는가?
+- 신규 제품의 과금 기준은 경로 실행 횟수(route/run), 추적한 이벤트 수, 팀 좌석 수, 연결된 목적지 수 중 무엇이 적절한가?
+- 구매자(buyer)가 이미 CDP나 분석 도구 비용을 내고 있다면 추가 예산을 만들 수 있는가?
 
 ## 제품 시사점
 
-초기 packaging은 enterprise governance suite가 아니라 release 검증 run 또는 project당 evidence automation으로 self-serve pilot을 가능하게 해야 한다.
+초기 상품 구성은 기업용 거버넌스 묶음이 아니라, 출시 검증 실행이나 프로젝트별 증거 자동화로 직접 도입 시범(self-serve pilot)을 가능하게 해야 한다.
 
 ## 관련 문서
 

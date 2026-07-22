@@ -24,8 +24,8 @@ sources:
 - Segment Protocols는 데이터가 들어오는 곳에 트래킹 플랜을 적용해 규칙 위반을 만들고, 차단이나 격리 기능을 제공한다. <sup>[🔗](#source-2)</sup>
 - mParticle Node SDK는 데이터 플랜과 버전을 가져와 이벤트 묶음을 수집 지점에 도착하기 전에 검증하는 것을 목적으로 한다. <sup>[🔗](#source-3)</sup>
 - RudderStack Event Audit API는 들어오는 이벤트와 부가 정보를 트래킹 플랜과 비교한다. <sup>[🔗](#source-4)</sup>
-- Snowplow는 collection, validation, enrichment, loading failure stage를 구분한다. <sup>[🔗](#source-5)</sup>
-- 인접 도구 Source는 검증 위치를 코드/PR, 수집, pipeline, warehouse로 배열한다. <sup>[🔗](#source-1)</sup>
+- Snowplow는 수집(collection), 검증(validation), 보강(enrichment), 적재(loading) 실패 단계를 구분한다. <sup>[🔗](#source-5)</sup>
+- 인접 도구 Source는 검증 위치를 코드와 풀리퀘스트(PR), 수집 지점, 데이터 파이프라인(pipeline), 데이터 창고(warehouse)로 배열한다. <sup>[🔗](#source-1)</sup>
 
 ## 작동 방식
 
@@ -43,16 +43,16 @@ sources:
 
 ## 모순
 
-“before arrival”은 payload가 생성된 뒤 collector 도착 전일 수 있다. 제품 문서에서는 사전/사후를 사용자 action 기준, 배포 기준, pipeline 기준으로 구분해야 한다.
+“도착 전(before arrival)”은 전송 내용(payload)이 생성된 뒤 수집기(collector)에 도착하기 전일 수 있다. 제품 문서에서는 사전과 사후를 사용자 행동 기준, 배포 기준, 파이프라인 기준으로 구분해야 한다.
 
 ## 미결 질문
 
 - MVP가 어느 계층에서 가장 빠르게 신뢰를 얻을 수 있는가?
-- UI evidence layer의 output을 existing governance violation으로 변환할 수 있는가?
+- 화면 증거 계층(UI evidence layer)의 결과를 기존 거버넌스 위반(governance violation) 형식으로 변환할 수 있는가?
 
 ## 제품 시사점
 
-기술 설계는 계층별 output contract를 명확히 해야 한다. UI traversal result가 Segment/RudderStack/mParticle plan violation, Snowplow failed-event-like artifact, 또는 자체 issue 중 무엇으로 표현될지 결정해야 한다.
+기술 설계는 계층별 출력 계약(output contract)을 명확히 해야 한다. 화면 순회 결과(UI traversal result)를 Segment·RudderStack·mParticle의 플랜 위반, Snowplow의 실패 이벤트 같은 기록, 또는 자체 이슈 중 무엇으로 표현할지 결정해야 한다.
 
 ## 관련 문서
 

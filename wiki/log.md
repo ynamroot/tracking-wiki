@@ -90,3 +90,7 @@ Home 항목이 루트 링크가 아니라 `home` slug로 정렬되어 목록 최
 ## [2026-07-22] update | 절 이름 한국어 전환과 가독성 규칙 도입
 
 공개 Wiki 41개 페이지의 영어 절 이름을 한국어로 바꿨다(`Current Synthesis`→`현재 종합`, `Evidence`→`근거`, `Contradictions`→`모순`, `Open Questions`→`미결 질문`, `Product Implications`→`제품 시사점`, `See Also`→`관련 문서`, `Mechanics`→`작동 방식`, `Context`→`배경`, `Evaluation Criteria`→`평가 기준`). Quartz 목차도 한국어로 렌더링된다. 자료 요약 제목 접두사를 `Source Summary:`에서 `자료 요약:`으로 통일했다. 모든 지식 페이지와 자료 요약의 `관련 문서`에 [[key-terms|핵심 용어 해설]] 링크를 넣었다. `SCHEMA.md` 문장 작성 원칙에 비전문가·전문가 이중 독자 정의, 한영 혼용 금지, 약어 첫 등장 풀이, claim 옆 앵커, `status` 운영 규칙, 핵심 논지 단일 canonical 페이지 규칙을 추가하고, `wiki/AGENTS.md`는 이를 참조만 하도록 정리했다. `AGENTS.md`에 Query Agent 역할, `AGENT_PLAYBOOKS.md`에 Query Agent 플레이북과 Wiki Compiler·Auditor의 가독성 점검, `OPERATIONS.md` Ingest Workflow에 가독성 자기 점검 단계와 audit 체크리스트 가독성 항목을 추가했다. `Validate-Wiki.ps1`은 한국어 필수 절(제품 시사점 포함) 검사, key-terms 링크 검사, 미해설 약어·영어 비율 경고를 추가했다. 지식의 의미와 Source 연결은 바꾸지 않았다.
+
+## [2026-07-22] update | 전체 페이지 본문 한영 혼용 제거
+
+공개 Wiki 39개 지식 페이지와 자료 요약의 본문 문장을 비전문가가 읽을 수 있게 다듬었다. 한 문장 안의 한국어·영어 혼용을 없애고, 외래어와 약어를 첫 등장 시 쉬운 한국어로 풀었으며(예: `고객데이터플랫폼(CDP)`, `수집 도구(SDK)`, `품질 검증(QA)`), 문서마다 한 용어를 한 표현으로 통일했다. 제품·기능·벤치마크 이름, 가격, 수치, 표 데이터, 모든 `🔗` 출처 앵커와 위키링크 대상, `OQ`/`SRC` ID는 그대로 두어 주장과 근거의 연결은 바꾸지 않았다. 영어가 남은 세 페이지 제목(`champion`, `workflow`, `Codegen`)을 `챔피언`, `흐름`, `코드 생성`으로 바꾸고 index 표기도 맞췄다. 남은 영어 비율·약어 경고는 대부분 제품 고유명과 첫 등장 원어 병기에서 오는 것으로, 오류가 아니라 검토용 신호다.

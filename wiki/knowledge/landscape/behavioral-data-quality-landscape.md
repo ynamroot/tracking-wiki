@@ -19,14 +19,14 @@ sources:
 
 ## 현재 종합
 
-시장은 다섯 계층으로 분절되어 있다: 오토캡처와 태그매니저, 트래킹 플랜과 코드 생성, 고객데이터플랫폼(CDP) 수집 지점 거버넌스, 태그 감사와 QA, 데이터 웨어하우스의 스키마·데이터 계약·옵저버빌리티다. 각 계층은 다른 실패를 잡지만, 화면 요소와 실제 이벤트 발화 사이의 인과 증빙은 일관되게 약하다. 새 상용 도구 조사는 이 분절 구조를 더 분명히 만들고, 공식 문서 보강은 자동 순회와 실트래픽 관찰, 오토캡처가 이미 제품화된 영역임을 확인한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
+시장은 다섯 계층으로 분절되어 있다: 오토캡처와 태그매니저, 트래킹 플랜과 코드 생성, 고객데이터플랫폼(CDP) 수집 지점 거버넌스, 태그 감사와 품질 검증(QA), 데이터 웨어하우스의 스키마·데이터 계약·관측 가능성(옵저버빌리티)이다. 각 계층은 다른 실패를 잡지만, 화면 요소와 실제 이벤트 발화 사이의 인과 증빙은 일관되게 약하다. 새 상용 도구 조사는 이 분절 구조를 더 분명히 만들고, 공식 문서 보강은 자동 순회와 실트래픽 관찰, 오토캡처가 이미 제품화된 영역임을 확인한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## 근거
 
-- 오토캡처는 raw interaction coverage를 높이지만 의미 부여와 verification이 남는다. <sup>[🔗](#source-2)</sup>
-- tracking governance platform은 plan, codegen, ingestion validation을 제공하지만 수동 계측 전제를 유지한다. <sup>[🔗](#source-4)</sup>
-- tag audit/QA 도구는 scan과 monitoring을 제공하지만 coverage 설계와 수정 실행이 남는다. <sup>[🔗](#source-3)</sup>
-- schema/data contract 계층은 pipeline/warehouse 품질을 강화하지만 UI 미계측 요소를 직접 보지 못한다. <sup>[🔗](#source-5)</sup>
+- 오토캡처는 원시 행동(raw interaction)의 수집 범위를 높이지만, 의미 부여와 검증이 과제로 남는다. <sup>[🔗](#source-2)</sup>
+- 트래킹 거버넌스 플랫폼은 트래킹 플랜(plan), 코드 생성(codegen), 수집 지점 검증을 제공하지만 수동 계측을 전제로 유지한다. <sup>[🔗](#source-4)</sup>
+- 태그 감사·QA 도구는 스캔과 상시 감시(monitoring)를 제공하지만, 점검 범위 설계와 수정 실행이 과제로 남는다. <sup>[🔗](#source-3)</sup>
+- 스키마·데이터 계약 계층은 파이프라인과 데이터 웨어하우스 품질을 강화하지만, 화면에서 계측되지 않은 요소는 직접 보지 못한다. <sup>[🔗](#source-5)</sup>
 - 상용 도구 조사는 ObservePoint, Trackingplan, Heap, PostHog, Amplitude/Mixpanel Autocapture, GTM을 서로 다른 검증 위치의 도구로 묶는다. 공식 문서 보강은 이 분류가 공개 제품 설명과 대체로 맞음을 확인한다. <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## 작동 방식
@@ -37,23 +37,23 @@ sources:
 
 ## 평가 기준
 
-- 계층: UI, tag manager, code, SDK, ingestion, warehouse 중 어디에서 개입하는가.
-- 시간: 배포 전, 배포 직후, 실트래픽 후, downstream incident 후 중 언제 발견하는가.
-- 행위: detect, explain, assign owner, suggest fix, verify fix 중 어디까지 하는가.
-- 증거: screenshot/DOM/network/schema/destination을 연결하는가.
+- 계층: 화면(UI), 태그매니저, 코드, SDK(개발 도구 모음), 수집 지점, 데이터 웨어하우스 중 어디에서 개입하는가.
+- 시간: 배포 전, 배포 직후, 실제 트래픽 발생 후, 하위 시스템 장애(downstream incident) 후 중 언제 발견하는가.
+- 행위: 탐지, 설명, 담당자 지정, 수정 제안, 수정 확인 중 어디까지 하는가.
+- 증거: 화면 캡처·DOM·네트워크·스키마·목적지를 연결하는가.
 
 ## 모순
 
-경쟁 기능 부재 주장은 공개 Source 기준이다. 신생 도구와 enterprise-only 기능은 계속 조사해야 한다.
+경쟁 제품에 특정 기능이 없다는 주장은 공개 자료를 기준으로 한 것이다. 신생 도구와 기업 전용(enterprise-only) 기능은 계속 조사해야 한다.
 
 ## 미결 질문
 
-- `OQ-006`: 기존 tool stack과 공존할지 대체할지 결정해야 한다.
-- `OQ-007`: 공식 Source가 더 보강됐지만 가격과 enterprise-only 기능은 계속 최신성 확인이 필요하다.
+- `OQ-006`: 기존 도구 묶음(tool stack)과 함께 쓸지, 대체할지 결정해야 한다.
+- `OQ-007`: 공식 자료가 더 보강됐지만, 가격과 기업 전용 기능은 계속 최신 상태를 확인해야 한다.
 
 ## 제품 시사점
 
-시장 지도상 wedge는 “새 CDP”나 “새 분석 플랫폼”이 아니라, 기존 트래킹 플랜, 고객데이터플랫폼, 태그 감사 도구가 공유하지 못하는 화면 행동 증거 계층이다.
+시장 지도에서 진입 지점(wedge)은 “새 CDP”나 “새 분석 플랫폼”이 아니라, 기존 트래킹 플랜과 고객데이터플랫폼, 태그 감사 도구가 함께 갖지 못한 화면 행동 증거 계층이다.
 
 ## 관련 문서
 

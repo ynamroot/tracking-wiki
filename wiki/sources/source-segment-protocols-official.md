@@ -13,42 +13,42 @@ sources:
 
 ## 현재 종합
 
-Segment Protocols는 tracking plan을 Segment source에 적용해 non-conforming event/property를 violation으로 만들고, strict controls와 quarantine/transform workflow를 제공한다. 공식 가격 기준 Protocols는 optional add-on으로 확인된다. <sup>[🔗](#source-1)</sup>
+Segment Protocols는 트래킹 플랜을 Segment 소스에 적용해 규칙에 맞지 않는 이벤트와 속성을 위반으로 처리하고, 엄격한 통제(strict controls)와 격리·변환 흐름을 제공한다. 공식 가격 기준으로 Protocols는 선택 부가 상품(optional add-on)으로 확인된다. <sup>[🔗](#source-1)</sup>
 
 ## 근거
 
-- Protocols는 Tracking Plan으로 event/property를 정의하고 product, engineering, analytics, business teams의 central source of truth로 쓰는 흐름을 제시한다. <sup>[🔗](#source-1)</sup>
-- Tracking plan을 one or more data sources에 적용하고 일치하지 않는 event/property는 violation을 생성한다. <sup>[🔗](#source-1)</sup>
-- Strict controls는 non-conforming events를 block할 수 있고, quarantined Segment source로 보낼 수 있다. <sup>[🔗](#source-1)</sup>
-- Protocols는 Customer Data Pipeline Business plan과 Customer Data Platform plans의 optional add-on이다. <sup>[🔗](#source-1)</sup>
+- Protocols는 Tracking Plan으로 이벤트와 속성을 정의하고, 이를 제품, 엔지니어링, 분석, 사업 팀이 함께 믿고 따르는 단일 기준(central source of truth)으로 쓰는 흐름을 제시한다. <sup>[🔗](#source-1)</sup>
+- 트래킹 플랜을 하나 이상의 데이터 소스에 적용하고, 일치하지 않는 이벤트와 속성은 위반으로 기록한다. <sup>[🔗](#source-1)</sup>
+- 엄격한 통제는 규칙에 맞지 않는 이벤트를 차단할 수 있고, 격리된 Segment 소스로 보낼 수 있다. <sup>[🔗](#source-1)</sup>
+- Protocols는 Customer Data Pipeline Business 요금제와 Customer Data Platform 요금제의 선택 부가 상품이다. <sup>[🔗](#source-1)</sup>
 
 ## 작동 방식
 
-Segment는 CDP ingestion boundary에서 governance를 수행한다. 이미 SDK/API가 보낸 payload를 tracking plan과 비교하고, 정책에 따라 allow/block/omit/transform/quarantine한다. 이 방식은 destination pollution을 막는 데 강하지만, 사용자가 클릭해야 할 UI 요소가 애초에 계측되지 않았는지는 별도 signal이 필요하다.
+Segment는 고객데이터플랫폼(CDP)의 데이터 수집 지점에서 거버넌스(governance)를 수행한다. 이미 소프트웨어 개발 키트(SDK)나 API가 보낸 페이로드를 트래킹 플랜과 비교하고, 정책에 따라 허용·차단·생략·변환·격리한다. 이 방식은 잘못된 데이터가 목적지로 흘러드는 오염을 막는 데 강하지만, 사용자가 클릭해야 할 화면 요소가 애초에 계측되지 않았는지는 별도의 신호가 필요하다.
 
 ## 평가 기준
 
-- enforcement mode: strict controls와 quarantine이 운영에 미치는 영향.
-- mode coverage: device/cloud mode별 제한.
-- pricing: add-on 구조가 buyer threshold를 높이는지.
+- 강제 방식: 엄격한 통제와 격리가 운영에 미치는 영향.
+- 모드 범위: 기기 모드와 클라우드 모드별 제한.
+- 가격: 부가 상품 구조가 구매자의 도입 문턱을 높이는지.
 
 ## 모순
 
-공식 Source는 공개 정액 add-on 가격을 제공하지 않는다. 가격 비교는 “custom/add-on”으로만 표현해야 한다.
+공식 자료는 공개된 정액 부가 상품 가격을 제공하지 않는다. 가격 비교는 “맞춤형/부가 상품”으로만 표현해야 한다.
 
 ## 미결 질문
 
-- Segment customer는 Protocols 위반을 누가 triage하는가?
-- 신규 제품이 Segment Protocols와 연동한다면 violation source를 어떻게 재검증할 것인가?
+- Segment 고객사에서는 Protocols 위반을 누가 분류·처리(triage)하는가?
+- 신규 제품이 Segment Protocols와 연동한다면 위반이 발생한 소스를 어떻게 다시 검증할 것인가?
 
 ## 제품 시사점
 
-Segment와 공존하려면 Protocols가 보는 payload violation 앞단에서 UI action coverage와 proof를 제공해야 한다.
+Segment와 공존하려면 Protocols가 보는 페이로드 위반보다 앞 단계에서 UI 동작의 범위와 증거를 제공해야 한다.
 
 ## 관련 문서
 
-- [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - CDP governance 비교
-- [[pricing-and-packaging|가격과 패키징 비교]] - add-on pricing
+- [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 고객데이터플랫폼 거버넌스 비교
+- [[pricing-and-packaging|가격과 패키징 비교]] - 부가 상품 가격
 - [[key-terms|핵심 용어 해설]] - 반복되는 용어 풀이.
 
 ## 출처

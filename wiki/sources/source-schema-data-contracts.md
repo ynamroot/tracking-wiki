@@ -13,37 +13,37 @@ sources:
 
 ## 현재 종합
 
-Schema-first collection, data contract, warehouse observability는 데이터 품질 문제를 강하게 다루지만 대부분 event가 이미 생성되었거나 pipeline에 들어온 뒤의 계층이다. 행동데이터 제품 기회는 이 하류 계약을 UI 계층의 계측 의도와 연결하는 데 있다. <sup>[🔗](#source-1)</sup>
+스키마 우선 수집(schema-first collection), 데이터 계약, 데이터 웨어하우스 관측 가능성(observability)은 데이터 품질 문제를 강하게 다루지만, 대부분 이벤트가 이미 만들어졌거나 파이프라인에 들어온 뒤의 계층이다. 행동데이터 제품의 기회는 이 하류 계약을 UI 계층의 계측 의도와 연결하는 데 있다. <sup>[🔗](#source-1)</sup>
 
 ## 근거
 
-- Snowplow 계열은 schema registry와 pipeline validation으로 잘못된 event를 정상 테이블에 넣지 않고 failed event로 격리하는 모델을 제공한다. <sup>[🔗](#source-1)</sup>
-- Data contract/dbt/observability 계층은 warehouse/model 단계의 구조·품질·freshness를 감시하지만 “클릭해야 할 버튼에 계측이 없다”는 누락을 직접 알기 어렵다. <sup>[🔗](#source-1)</sup>
-- 실패 이벤트 격리와 replay는 hard block의 데이터 유실 위험을 낮추는 안전장치로 참고할 수 있다. <sup>[🔗](#source-1)</sup>
+- Snowplow 계열은 스키마 저장소(schema registry)와 파이프라인 검증으로 잘못된 이벤트를 정상 테이블에 넣지 않고 실패 이벤트(failed event)로 격리하는 모델을 제공한다. <sup>[🔗](#source-1)</sup>
+- 데이터 계약, dbt, 관측 가능성 계층은 데이터 웨어하우스와 모델 단계의 구조·품질·최신성(freshness)을 감시하지만, “클릭해야 할 버튼에 계측이 없다”는 누락은 직접 알기 어렵다. <sup>[🔗](#source-1)</sup>
+- 실패 이벤트 격리와 재처리(replay)는 무조건 차단(hard block)이 가진 데이터 유실 위험을 낮추는 안전장치로 참고할 수 있다. <sup>[🔗](#source-1)</sup>
 
 ## 작동 방식
 
-schema-first 접근은 producer가 event schema를 등록하고 collector/enrichment 단계에서 payload를 검증한다. data contract는 producer-consumer 사이의 dataset shape와 ownership을 명시한다. observability는 warehouse 이후의 freshness, volume, distribution, schema drift를 감시한다. 모두 중요한 안전망이지만 UI path와 event semantics를 직접 보지는 않는다.
+스키마 우선 접근은 데이터를 만드는 쪽(producer)이 이벤트 스키마를 등록하고, 수집기와 보강(enrichment) 단계에서 페이로드를 검증한다. 데이터 계약은 데이터를 만드는 쪽과 쓰는 쪽(consumer) 사이의 데이터셋 형태와 소유 책임을 명시한다. 관측 가능성은 데이터 웨어하우스 이후의 최신성, 데이터 양, 분포, 스키마 변형(schema drift)을 감시한다. 모두 중요한 안전망이지만 UI 경로와 이벤트의 의미를 직접 보지는 않는다.
 
 ## 평가 기준
 
-- contract boundary: SDK payload, ingestion event, enriched event, model output 중 어디를 계약으로 삼는가.
-- failure handling: reject, quarantine, DLQ, failed table, replay, alert.
-- ownership: schema owner, producer team, consumer team, incident responder.
-- pre-event visibility: event가 발생하기 전 누락을 발견할 수 있는가.
+- 계약 경계: 소프트웨어 개발 키트(SDK) 페이로드, 수집 이벤트, 보강된 이벤트, 모델 출력 중 어디를 계약으로 삼는가.
+- 실패 처리: 거부, 격리, 데드레터 큐(DLQ), 실패 테이블, 재처리, 경보.
+- 소유 책임: 스키마 소유자, 데이터를 만드는 팀, 쓰는 팀, 사고 대응자.
+- 이벤트 발생 전 가시성: 이벤트가 발생하기 전에 누락을 발견할 수 있는가.
 
 ## 모순
 
-“수집 전 검증”이라는 표현은 code/SDK 단계와 ingestion pipeline 단계를 구분해야 한다. 일부 검증은 사용자 행동 이후지만 warehouse 이전이다.
+“수집 전 검증”이라는 표현은 코드와 SDK 단계, 그리고 수집 파이프라인 단계를 구분해야 한다. 일부 검증은 사용자 행동 이후이지만 데이터 웨어하우스 이전이다.
 
 ## 미결 질문
 
-- UI 요소 지문이 schema contract와 어떤 identifier로 연결되어야 하는가?
-- failed event safety model을 계측 자동 수정에 적용할 수 있는가?
+- UI 요소 지문이 스키마 계약과 어떤 식별자(identifier)로 연결되어야 하는가?
+- 실패 이벤트 안전 모델을 계측 자동 수정에 적용할 수 있는가?
 
 ## 제품 시사점
 
-새 제품은 하류 data contract를 대체하기보다 상류 UI/evidence contract를 추가해야 한다. 하류 contract와 연결하려면 event schema version, UI element fingerprint, route/build version을 함께 기록해야 한다.
+새 제품은 하류 데이터 계약을 대체하기보다 상류의 UI·증거 계약을 추가해야 한다. 하류 계약과 연결하려면 이벤트 스키마 버전, UI 요소 지문, 경로·빌드 버전을 함께 기록해야 한다.
 
 ## 관련 문서
 

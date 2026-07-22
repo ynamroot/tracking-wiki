@@ -16,18 +16,18 @@ sources:
 
 ## 현재 종합
 
-MVP 후보는 세 가지다: 배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안. 현재 Source 기준으로 가장 방어적인 순서는 배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안이다. 자동 계측 제안은 매력적이지만 정확도·안전성 근거가 가장 부족하다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
+최소기능제품(MVP) 후보는 세 가지다: 배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안. 현재 자료(Source) 기준으로 가장 방어적인 순서는 배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안이다. 자동 계측 제안은 매력적이지만 정확도·안전성 근거가 가장 부족하다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
 
 ## 근거
 
-- 실무 pain은 수동 QA와 늦은 파손 발견을 반복 문제로 제시한다. <sup>[🔗](#source-1)</sup>
-- tag audit 도구는 운영 감시와 scan이 이미 경쟁군임을 보여준다. <sup>[🔗](#source-2)</sup>
-- web-agent benchmark는 traversal automation의 seed를 제공하지만 tracking-specific evaluation은 별도 설계가 필요하다. <sup>[🔗](#source-3)</sup>
-- 인접 도구 Source는 배포 전 검증과 요소-이벤트 증빙을 공백으로 제시한다. <sup>[🔗](#source-4)</sup>
+- 실무의 어려움(pain)은 수동 품질 검사(QA)와 늦은 파손 발견을 반복되는 문제로 제시한다. <sup>[🔗](#source-1)</sup>
+- 태그 감사(tag audit) 도구는 운영 감시와 스캔(scan)이 이미 경쟁 영역임을 보여준다. <sup>[🔗](#source-2)</sup>
+- 웹 에이전트 벤치마크(web-agent benchmark)는 화면 순회 자동화(traversal automation)의 출발점(seed)을 제공하지만, 트래킹 전용 평가(tracking-specific evaluation)는 별도 설계가 필요하다. <sup>[🔗](#source-3)</sup>
+- 인접 도구 자료는 배포 전 검증과 요소-이벤트 증거를 공백으로 제시한다. <sup>[🔗](#source-4)</sup>
 
 ## 작동 방식
 
-배포 전 회귀 검증은 PR/build에서 changed route를 돌고 expected event proof를 만든다. 운영 파손 경보는 production traffic baseline과 anomaly를 감지한다. 자동 계측 제안은 UI 요소와 business intent를 추론해 새 event 또는 code insertion을 제안한다. 세 단계는 maturity ladder로 볼 수 있다.
+배포 전 회귀 검증은 코드 변경 요청(PR)이나 빌드 단계에서 바뀐 화면 경로(changed route)를 돌며 기대 이벤트가 실제로 발생했다는 증거(expected event proof)를 만든다. 운영 파손 경보는 운영 트래픽의 평소 기준선(production traffic baseline)과 이상치(anomaly)를 감지한다. 자동 계측 제안은 화면 요소와 업무 의도(business intent)를 추론해 새 이벤트나 코드 삽입(code insertion)을 제안한다. 세 단계는 성숙도 사다리(maturity ladder)로 볼 수 있다.
 
 ## 평가 기준
 
@@ -39,21 +39,21 @@ MVP 후보는 세 가지다: 배포 전 회귀 검증, 운영 파손 경보, 자
 
 ## 모순
 
-고객에 따라 운영 경보가 더 급할 수 있다. Source만으로 MVP를 확정하면 안 되고 인터뷰로 release pain과 incident pain을 비교해야 한다.
+고객에 따라 운영 경보가 더 급할 수 있다. 자료만으로 MVP를 확정하면 안 되고, 인터뷰로 배포 관련 어려움(release pain)과 운영 사고 관련 어려움(incident pain)을 비교해야 한다.
 
 ## 미결 질문
 
-- `OQ-002`: 첫 MVP outcome은 무엇인가?
-- `OQ-003`: value proposition 검증 기준은 무엇인가?
+- `OQ-002`: 첫 MVP 성과는 무엇인가?
+- `OQ-003`: 가치 제안(value proposition) 검증 기준은 무엇인가?
 
 ## 제품 시사점
 
-우선순위 제안은 `배포 전 회귀 검증 -> 운영 경보 -> 자동 계측 제안`이다. 자동 계측은 proof와 approval loop가 검증된 뒤 확장해야 한다.
+우선순위 제안은 `배포 전 회귀 검증 -> 운영 경보 -> 자동 계측 제안`이다. 자동 계측은 증거(proof)와 승인 흐름(approval loop)이 검증된 뒤 확장해야 한다.
 
 ## 관련 문서
 
 - [[automation-opportunity|행동데이터 자동화 기회]] - 전체 기회
-- [[tracking-qa-workflow|트래킹 QA 운영 workflow]] - release use case
+- [[tracking-qa-workflow|트래킹 QA 운영 흐름]] - 배포 사용 사례
 - [[key-terms|핵심 용어 해설]] - 반복되는 용어 풀이.
 
 ## 출처

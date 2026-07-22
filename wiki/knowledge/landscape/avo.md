@@ -14,43 +14,43 @@ sources:
 
 ## 현재 종합
 
-Avo는 가장 직접적인 경쟁/참조 제품이다. tracking plan을 application data definition으로 삼고, Journeys, Codegen, Inspector, approval, downstream registry sync를 결합한다. 강점은 설계와 구현 사이의 운영 규율이고, 남는 공백은 runtime UI action과 emitted event의 자동 시각 증빙이다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup>
+Avo는 가장 직접적인 경쟁·참조 제품이다. 트래킹 플랜(tracking plan)을 제품의 데이터 정의서로 삼고, Journeys, Codegen, Inspector, 승인 절차, 하위 도구로의 정의 동기화를 하나로 묶는다. 강점은 설계와 구현 사이를 잇는 운영 규율이고, 남는 공백은 실행 중 화면 동작과 실제로 전송된 이벤트를 자동으로 시각 증빙하는 부분이다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup>
 
 ## 근거
 
-- 공식 Source는 Avo Tracking Plan이 codegen과 validation에 사용되는 중심 명세라고 확인한다. <sup>[🔗](#source-2)</sup>
-- Workspace 구성 요소는 Journeys, Events, Properties, Metrics, Publishing, Connection Setup, Codegen, Inspector다. <sup>[🔗](#source-2)</sup>
-- 내부 Source는 Codegen이 wrapper를 만들지만 개발자가 호출 위치와 시점을 직접 결정해야 한다고 요약한다. <sup>[🔗](#source-1)</sup>
-- Free는 $0, 2 editors, 100k Inspector observed events이고 Team은 annual $250/month, monthly $300/month다. <sup>[🔗](#source-2)</sup>
-- Enterprise는 enforceable approvals, automated required reviews, enforceable standards, 1M Inspector observed events, SSO, premium support를 포함한다. <sup>[🔗](#source-2)</sup>
+- 공식 자료는 Avo Tracking Plan이 코드 생성(codegen)과 검증에 쓰이는 중심 명세임을 확인한다. <sup>[🔗](#source-2)</sup>
+- 작업공간(Workspace)의 구성 요소는 Journeys, Events, Properties, Metrics, Publishing, Connection Setup, Codegen, Inspector다. <sup>[🔗](#source-2)</sup>
+- 내부 자료는 Codegen이 호출 함수(wrapper)를 만들어 주지만, 개발자가 그 함수를 어디서 언제 부를지는 직접 정해야 한다고 요약한다. <sup>[🔗](#source-1)</sup>
+- Free는 $0에 편집자(editor) 2명과 Inspector가 관찰하는 이벤트 100k를 제공하고, Team은 연간 결제 시 $250/month, 월간 결제 시 $300/month다. <sup>[🔗](#source-2)</sup>
+- Enterprise는 강제 가능한 승인, 필수 리뷰 자동화, 강제 가능한 표준, Inspector가 관찰하는 이벤트 1M, 단일 로그인(SSO), 우선 지원을 포함한다. <sup>[🔗](#source-2)</sup>
 
 ## 작동 방식
 
-Avo는 data design을 명세로 고정하고, generated function을 코드에 pull해 implementation을 표준화한다. Inspector는 실제 event schema shape를 관찰해 plan과 비교한다. Journeys는 screenshot 기반으로 설계 의도를 시각화하지만, runtime에서 “이 버튼을 누르면 이 event가 이 payload로 전송됐다”를 자동 proof로 묶는 계층은 확인되지 않는다.
+Avo는 데이터 설계를 명세로 고정하고, 자동 생성된 함수를 코드로 가져와 구현 방식을 표준화한다. Inspector는 실제 이벤트의 스키마 형태를 관찰해 트래킹 플랜과 비교한다. Journeys는 화면 캡처(screenshot)를 바탕으로 설계 의도를 보여 주지만, 실행 중에 “이 버튼을 누르면 이 이벤트가 이 페이로드(payload, 전송 내용물)로 전송됐다”를 자동 증거로 묶는 계층은 확인되지 않는다.
 
 ## 평가 기준
 
-- 직접 경쟁 강도: tracking plan, codegen, Inspector가 overlap한다.
-- 보완 가능성: Avo plan을 읽어 UI traversal test를 생성할 수 있는가.
-- pricing wedge: Avo Team/Enterprise feature와 비교해 더 작은 팀에도 value를 줄 수 있는가.
-- evidence gap: Journeys design artifact와 runtime proof 사이를 메울 수 있는가.
+- 직접 경쟁 강도: 트래킹 플랜, 코드 생성, Inspector 기능이 서로 겹친다.
+- 보완 가능성: Avo 트래킹 플랜을 읽어 화면 순회 테스트를 만들 수 있는가.
+- 가격 진입 지점(pricing wedge): Avo Team/Enterprise 기능과 비교해 더 작은 팀에도 가치를 줄 수 있는가.
+- 증거 공백: Journeys의 설계 산출물과 실행 중 증거 사이를 메울 수 있는가.
 
 ## 모순
 
-Avo는 이미 screenshot/Journey를 제공하므로 “시각 매핑이 전혀 없다”고 쓰면 부정확하다. 정확한 공백은 design-time visual mapping과 runtime action-event evidence의 차이다.
+Avo는 이미 화면 캡처와 Journey를 제공하므로 “시각 연결이 전혀 없다”고 쓰면 부정확하다. 정확한 공백은 설계 시점의 시각 연결과 실행 시점의 행동-이벤트 증거 사이의 차이다.
 
 ## 미결 질문
 
-- Avo 고객이 실제로 가장 자주 실패하는 단계는 authoring, implementation, QA, production triage 중 어디인가?
-- 신규 제품이 Avo와 통합할 수 있다면 source of truth는 Avo plan인가 별도 plan인가?
+- Avo 고객이 실제로 가장 자주 실패하는 단계는 설계 작성, 구현, 품질 검증(QA), 운영 중 문제 분류 중 어디인가?
+- 신규 제품이 Avo와 연동한다면 기준이 되는 원본(source of truth)은 Avo 트래킹 플랜인가, 별도 계획인가?
 
 ## 제품 시사점
 
-Avo 대체 포지션은 위험하다. 초기에는 Avo/Segment/Amplitude plan 위에서 changed UI path를 자동 순회하고 runtime event proof를 붙이는 보완 계층이 더 현실적이다.
+Avo를 대체하려는 자리 잡기는 위험하다. 초기에는 Avo·Segment·Amplitude의 트래킹 플랜 위에서, 바뀐 화면 경로를 자동으로 순회하고 실행 중 이벤트 증거를 붙이는 보완 계층이 더 현실적이다.
 
 ## 관련 문서
 
-- [[codegen-and-tracking-plan-workflow|Codegen과 tracking plan workflow]] - Avo/Amplitude 구현 패턴
+- [[codegen-and-tracking-plan-workflow|코드 생성과 트래킹 플랜 흐름]] - Avo/Amplitude 구현 패턴
 - [[element-event-evidence|요소-이벤트 증거 모델]] - Avo가 남기는 공백
 - [[pricing-and-packaging|가격과 패키징 비교]] - Avo 가격 기준
 - [[key-terms|핵심 용어 해설]] - 반복되는 용어 풀이.
