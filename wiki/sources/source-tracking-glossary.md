@@ -1,0 +1,52 @@
+---
+title: "Source Summary: 트래킹 플랜 자동화 용어집"
+type: source-summary
+status: current
+confidence: medium
+created: 2026-07-22
+updated: 2026-07-22
+sources:
+  - SRC-20260722-tracking-glossary
+---
+
+# Source Summary: 트래킹 플랜 자동화 용어집
+
+## Current Synthesis
+
+이 Source는 행동데이터 수집·검증 조사에 반복해서 등장하는 기술 용어와 벤더 고유 용어를 7개 축으로 묶어 우리말로 풀이한 교차 용어집이다. 계측 기본, 스키마·검증, 옵저버빌리티, 오토캡처·요소 식별, 태그매니저, 데이터 계약·거버넌스, 위반 처리·파이프라인 운영을 한 문서에서 정리한다. 기존 [[key-terms|핵심 용어 해설]]이 독자를 위한 기본 용어 빠른 안내라면, 이 자료는 도메인별·벤더별 상세 용어의 근거가 된다. <sup>[🔗](#source-1)</sup>
+
+## Evidence
+
+- 용어집은 원자료 8종(이미 이 Wiki에 `SRC-20260721-*`로 accepted)에 나온 용어만 근거로 삼고, 외부 웹 리서치는 하지 않았다고 명시한다. 즉 용어 풀이의 근거는 이미 채택된 Source로 추적 가능하다. <sup>[🔗](#source-1)</sup>
+- 벤더 고유 용어를 명시적으로 구분한다. 코드 생성 도구 이름(Avo Codegen, Amplitude Ampli, Segment Typewriter, Snowplow Snowtype, mParticle Smartype, RudderStack RudderTyper)과 Mixpanel의 코드젠 부재, Snowplow의 SchemaVer·Iglu·자기기술 이벤트, mParticle의 데이터 플랜·데이터 포인트, Monte Carlo의 옵저버빌리티 다섯 기둥이 대표 예다. <sup>[🔗](#source-1)</sup>
+- 요소 식별 계층에서 요소 지문, 자가치유 셀렉터, 속성 안정성 순위, 신뢰도 점수 같은 제품 핵심 개념을 별도 축으로 정의한다. <sup>[🔗](#source-1)</sup>
+
+## Mechanics
+
+용어집은 각 용어에 원어, 한 줄 풀이, 필요 시 어느 도구가 쓰는 개념인지, 원자료에 링크가 있던 경우 외부 출처 URL을 붙였다. 링크가 없던 용어는 URL을 생략했다. 이 구조 덕분에 지식 페이지가 특정 용어를 쓸 때 이 용어집을 근거로 참조할 수 있다.
+
+## Evaluation Criteria
+
+- 새 지식 페이지가 도입하는 전문 용어는 이 용어집에 정의가 있는지 먼저 확인한다.
+- 벤더 고유 기능 이름은 이 용어집의 구분을 따르되, 기능·가격 claim은 각 벤더의 primary Source로 검증한다.
+
+## Contradictions
+
+용어집은 외부 웹 리서치 없이 원자료에 있던 정의만 정리했으므로, 정의의 최신성이나 벤더별 미묘한 차이까지 보장하지 않는다. 같은 용어가 제품마다 다르게 쓰이는 경우(예: "검증"의 위치)는 용어집도 개별 지식 페이지에서 위치를 함께 적도록 남겨 둔다.
+
+## Open Questions
+
+- 문서가 늘면서 새 약어나 벤더 고유 용어가 생기면 용어 정의를 [[key-terms|핵심 용어 해설]]과 [[tracking-terminology|트래킹 상세·벤더 용어 사전]]에 함께 반영해야 한다.
+
+## Product Implications
+
+제품·PRD 문서를 쓸 때 "정확한 용어"보다 "팀 사이 오해가 없는 용어"를 우선한다. 특히 요소 지문, 자가치유, 신뢰도 점수 같은 개념은 제품 차별화 축이므로, 정의를 통일해 두면 기능 정의와 기술 스펙에서 표현이 흔들리지 않는다.
+
+## See Also
+
+- [[key-terms|핵심 용어 해설]] - 독자용 기본 용어 빠른 안내
+- [[tracking-terminology|트래킹 상세·벤더 용어 사전]] - 이 Source를 반영한 도메인별 상세 용어 지식 페이지
+
+## 출처
+
+- <a id="source-1"></a>[[source-tracking-glossary|트래킹 플랜 자동화 — 용어집]] - `SRC-20260722-tracking-glossary`

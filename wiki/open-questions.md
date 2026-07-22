@@ -20,7 +20,7 @@ description: 아직 해결되지 않은 조사 질문, Source 간 모순, 제품
 - [ ] `OQ-001` 경제적 구매자와 초기 champion은 데이터 운영자, analytics engineer, PM, QA 중 누구인가?
 - [ ] `OQ-002` 첫 MVP outcome은 배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안 중 무엇인가?
 - [ ] `OQ-003` Value Proposition을 검증할 고객 인터뷰와 행동 증거의 최소 기준은 무엇인가?
-- [ ] `OQ-004` 현재 수동 QA·파손 대응·계측 구현에 쓰는 시간과 비용은 얼마인가?
+- [ ] `OQ-004` 현재 수동 QA·파손 대응·계측 구현에 쓰는 시간과 비용은 얼마인가? 2026-07-22 역할별 페인포인트 분석이 문제의 존재와 일반성을 이름 있는 외부 자료(Trackingplan, RudderStack, House of Martech, incident.io, 원티드랩)로 보강했으나, 타깃 고객의 실제 시간·비용 수치는 여전히 미해결이다.
 - [ ] `OQ-005` 요소 지문과 자율 순회가 실제 제품 개편에서 달성해야 할 정확도와 안전 기준은 무엇인가?
 - [ ] `OQ-006` 기존 Avo, Amplitude, Segment, GTM과 공존할지 일부를 대체할지 결정해야 한다.
 - [~] `OQ-007` 제품 방향을 지지하는 핵심 주장과 가격 정보를 공식 primary Source record로 확장해야 한다. 2026-07-22 기준 Avo, Amplitude, Segment, mParticle, RudderStack, Snowplow/dbt, web-agent benchmark에 더해 ObservePoint, Trackingplan, Heap, PostHog, Amplitude Visual Labeling, Mixpanel Autocapture, Google Tag Manager의 공식 Source가 추가됐다. 다만 가격·tier 최신성, enterprise-only 기능, 공식 접근이 안정적이지 않았던 DataTrue/Tag Inspector 세부 claim, 고객 구매 증거는 남아 있다.
@@ -30,7 +30,7 @@ description: 아직 해결되지 않은 조사 질문, Source 간 모순, 제품
 
 - 거버넌스 도구의 기능·가격·차단 범위는 2026-07-22 재-ingest에서 공식 Source로 일부 보정했다. 다만 vendor 가격·tier는 수시로 바뀌므로 제품 의사결정 직전 재확인이 필요하다.
 - 경쟁 기능 부재 주장은 공개 자료에 기반하므로 신생 및 비공개 기능 조사가 필요하다.
-- 벤더 블로그가 인용한 정량 데이터는 원 조사까지 provenance를 확장해야 한다.
+- 벤더 블로그가 인용한 정량 데이터는 원 조사까지 provenance를 확장해야 한다. 역할별 페인포인트 분석의 "품질 좋은 데이터 3%(HBR)", "분석가 시간 40%(Forrester)"도 Mixpanel 블로그가 제3자를 재인용한 secondary 수치다.
 - web-agent benchmark는 자율 순회 task success를 평가하지만 tracking-specific event correctness와 element continuity를 직접 평가하지 않는다.
 - DataTrue와 Tag Inspector의 세부 기능·가격은 제출된 상용 도구 조사와 기존 secondary Source에는 있으나, 이번 official bundle에서는 claim-level로 확정하지 않았다. 제품 판단에 쓰려면 별도 primary Source 보강이 필요하다.
 

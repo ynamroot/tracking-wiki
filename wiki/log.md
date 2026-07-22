@@ -74,3 +74,7 @@ Home 항목이 루트 링크가 아니라 `home` slug로 정렬되어 목록 최
 ## [2026-07-22] ingest | 상용 도구 조사 및 공식 문서 보강 반영
 
 `SRC-20260722-commercial-tools-survey`를 ingest하고, `SRC-20260722-commercial-tools-official-docs`를 Research Agent 보강 Source로 추가했다. 새 Source summary `source-commercial-tools-survey`, `source-commercial-tools-official-docs`를 만들고, 시장 지형, 태그 감사 및 QA 도구, 오토캡처와 태그매니저 계층, 요소-이벤트 증거 모델, 행동데이터 자동화 기회, 프로젝트 지식 개요, 연구 신뢰도 지도, 핵심 용어 해설을 갱신했다. `OQ-007`은 더 넓은 공식 Source로 부분 해소했지만 DataTrue/Tag Inspector 세부 claim, 가격·tier 최신성, 고객 구매 증거는 남겨 두었다.
+
+## [2026-07-22] ingest | 용어집과 역할별 페인포인트 분석 통합
+
+`2607_tracking-plan`에서 AI와 함께 정리한 조사 산출물 2건을 intake·ingest했다. `SRC-20260722-tracking-glossary`(7개 축의 기술·벤더 용어집)와 `SRC-20260722-pain-point-analysis`(외부 1차 자료와 내부 실증으로 교차 검증한 역할별 페인포인트)를 secondary로 자동 채택하고 원문을 hash와 함께 `raw/assets`에 보존했다. 두 자료의 근거 원자료는 이미 accepted Source로 추적 가능하다. Source summary `source-tracking-glossary`, `source-pain-point-analysis`를 만들고, 새 지식 페이지 `tracking-terminology`(핵심 용어 해설의 기본 용어를 전제로 한 상세·벤더 용어 사전)를 추가했으며 `key-terms`와 상호 연결했다. `behavioral-data-practitioners`에는 파손의 침묵·수동 QA 부담·무인지 파손이 이름 있는 복수 외부 자료에서 독립 재확인된다는 점과 고통의 사슬(수작업 의존 → 커버리지·품질 제한 → 파손 방치 → 신뢰 상실)을 보강했다. 정량 수치(3% HBR, 40% Forrester)는 벤더 블로그의 secondary 재인용으로 표기했다. `OQ-004`는 문제 일반성이 보강됐으나 타깃 고객의 실제 비용은 미해결이라 열림 상태로 유지했다.

@@ -13,13 +13,14 @@ sources:
   - SRC-20260721-web-agent-eval-benchmarks
   - SRC-20260722-commercial-tools-survey
   - SRC-20260722-commercial-tools-official-docs
+  - SRC-20260722-tracking-glossary
 ---
 
 # 핵심 용어 해설
 
 ## Current Synthesis
 
-이 Wiki는 행동데이터 수집, 검증, 경쟁 제품, 웹 자동화 평가를 함께 다루기 때문에 외래어와 약어가 많다. 아래 용어는 문서 전체에서 반복해서 쓰이는 기본 단어다. 이 페이지는 제품 결론을 새로 제안하지 않고, 기존 Source를 읽기 위한 용어 안내 역할을 한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
+이 Wiki는 행동데이터 수집, 검증, 경쟁 제품, 웹 자동화 평가를 함께 다루기 때문에 외래어와 약어가 많다. 아래 용어는 문서 전체에서 반복해서 쓰이는 기본 단어다. 이 페이지는 제품 결론을 새로 제안하지 않고, 기존 Source를 읽기 위한 용어 안내 역할을 한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup> 더 상세하고 벤더 고유 용어(SchemaVer, Iglu, 격리, 전파, 데드레터 큐 등)까지 다루는 목록은 [[tracking-terminology|트래킹 상세·벤더 용어 사전]]에 있다. <sup>[🔗](#source-8)</sup>
 
 ## Evidence
 
@@ -77,6 +78,7 @@ sources:
 
 ## See Also
 
+- [[tracking-terminology|트래킹 상세·벤더 용어 사전]] - 스키마·옵저버빌리티·거버넌스·파이프라인의 상세·벤더 용어.
 - [[validation-layer-model|검증 계층 모델]] - “검증”이 어디에서 일어나는지 구분한다.
 - [[element-event-evidence|요소-이벤트 증거 모델]] - 증거와 요소 지문을 더 자세히 설명한다.
 
@@ -89,3 +91,4 @@ sources:
 - <a id="source-5"></a>[[source-web-agent-eval-benchmarks|Source Summary: Web Agent Evaluation Benchmarks]] - `SRC-20260721-web-agent-eval-benchmarks`
 - <a id="source-6"></a>[[source-commercial-tools-survey|Source Summary: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
 - <a id="source-7"></a>[[source-commercial-tools-official-docs|Source Summary: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`
+- <a id="source-8"></a>[[source-tracking-glossary|Source Summary: 트래킹 플랜 자동화 용어집]] - `SRC-20260722-tracking-glossary`

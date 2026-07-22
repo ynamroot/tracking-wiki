@@ -48,6 +48,7 @@ workflow는 대체로 `분석 질문 -> tracking plan -> 개발 티켓 -> 코드
 
 - [[behavioral-data-practitioners|행동데이터 운영 실무자]] - 역할별 문제와 구매 가설
 - [[tracking-qa-workflow|트래킹 QA 운영 workflow]] - 릴리즈 전후 검증 흐름
+- [[source-pain-point-analysis|Source Summary: 역할별 페인포인트 분석]] - 같은 raw 조사를 외부 자료로 보강한 파생 분석
 
 ## 출처
 
