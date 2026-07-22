@@ -11,13 +11,15 @@ sources:
   - SRC-20260721-autocapture-tag-managers
   - SRC-20260721-tracking-governance-remaining-tools
   - SRC-20260721-snowplow-dbt-data-quality-official
+  - SRC-20260722-commercial-tools-survey
+  - SRC-20260722-commercial-tools-official-docs
 ---
 
 # 요소-이벤트 증거 모델
 
 ## Current Synthesis
 
-요소-이벤트 증거 모델은 이 프로젝트의 핵심 차별화 후보이다. 목표는 화면 요소, 사용자 행동, 실제 발생한 이벤트, 전송 내용의 규칙, 도착한 분석 도구, 배포 버전 정보를 하나의 증거 묶음으로 연결하는 것이다. 기존 도구는 이 사슬의 일부만 본다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
+요소-이벤트 증거 모델은 이 프로젝트의 핵심 차별화 후보이다. 목표는 화면 요소, 사용자 행동, 실제 발생한 이벤트, 전송 내용의 규칙, 도착한 분석 도구, 배포 버전 정보를 하나의 증거 묶음으로 연결하는 것이다. 기존 도구는 이 사슬의 일부만 본다. 상용 도구 조사와 공식 문서 보강은 선택자(selector), label, tag trigger, journey 같은 부분 기술이 이미 있지만, 이들을 행동데이터 검증용 증거 묶음으로 합치는 계층은 약하다는 점을 보강한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## Evidence
 
@@ -26,10 +28,13 @@ sources:
 - 오토캡처 도구는 원시 행동을 수집하지만, 그 행동이 어떤 사업적 의미를 갖는지 정하고 검증하는 일은 남는다. <sup>[🔗](#source-3)</sup>
 - 인접 도구 Source는 요소↔이벤트 시각 매핑·증빙이 거의 모두 약하다고 정리한다. <sup>[🔗](#source-4)</sup>
 - Snowplow/dbt Source는 failure artifact와 contract enforcement의 safety model을 참고하게 해준다. <sup>[🔗](#source-5)</sup>
+- Heap, PostHog, Amplitude, GTM 공식 문서는 label, action, trigger가 선택자나 DOM 조건에 기대는 경우가 있음을 보여준다. 선택자는 빠르게 시작하기 쉽지만 화면 구조가 바뀌면 같은 요소를 안정적으로 찾기 어렵다. <sup>[🔗](#source-7)</sup>
 
 ## Mechanics
 
 증거 묶음은 최소한 다음 정보를 가져야 한다: 화면 경로와 배포 버전, 요소 지문, 화면 요소를 찾는 단서, 화면 캡처, 행동 종류, 기대 이벤트, 실제 네트워크 요청이나 SDK가 보낸 내용, 스키마 검증 결과, 목적지 도착 여부, 시간, 재실행 명령. 요소 지문은 선택자(selector) 하나만 쓰면 쉽게 깨진다. 역할, 텍스트, 위치, 화면 구조, 시각적 단서를 함께 조합해야 한다.
+
+상용 도구들은 보통 증거의 한 조각만 남긴다. 태그 감사 도구는 네트워크 요청과 규칙 위반을 잘 남기고, 오토캡처 도구는 원시 클릭과 사후 label을 남기며, 태그매니저는 trigger와 tag firing을 보여준다. 이 프로젝트의 증거 모델은 이 조각들을 한 화면 행동 단위로 묶는 것을 목표로 해야 한다.
 
 ## Evaluation Criteria
 
@@ -64,3 +69,5 @@ sources:
 - <a id="source-3"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
 - <a id="source-4"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
 - <a id="source-5"></a>[[source-snowplow-dbt-data-quality-official|Source Summary: Snowplow와 dbt 공식 데이터 품질 문서]] - `SRC-20260721-snowplow-dbt-data-quality-official`
+- <a id="source-6"></a>[[source-commercial-tools-survey|Source Summary: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
+- <a id="source-7"></a>[[source-commercial-tools-official-docs|Source Summary: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`

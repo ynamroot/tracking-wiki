@@ -11,17 +11,20 @@ sources:
   - SRC-20260721-tracking-governance-four-tools
   - SRC-20260721-schema-data-contracts
   - SRC-20260721-web-agent-eval-benchmarks
+  - SRC-20260722-commercial-tools-survey
+  - SRC-20260722-commercial-tools-official-docs
 ---
 
 # 핵심 용어 해설
 
 ## Current Synthesis
 
-이 Wiki는 행동데이터 수집, 검증, 경쟁 제품, 웹 자동화 평가를 함께 다루기 때문에 외래어와 약어가 많다. 아래 용어는 문서 전체에서 반복해서 쓰이는 기본 단어다. 이 페이지는 제품 결론을 새로 제안하지 않고, 기존 Source를 읽기 위한 용어 안내 역할을 한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
+이 Wiki는 행동데이터 수집, 검증, 경쟁 제품, 웹 자동화 평가를 함께 다루기 때문에 외래어와 약어가 많다. 아래 용어는 문서 전체에서 반복해서 쓰이는 기본 단어다. 이 페이지는 제품 결론을 새로 제안하지 않고, 기존 Source를 읽기 위한 용어 안내 역할을 한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## Evidence
 
 - 내부 조사 Source들은 tracking plan, tag manager, schema, validation, benchmark 같은 용어를 반복해서 사용한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
+- 상용 도구 조사와 공식 문서 보강은 selector, DOM, dataLayer, synthetic scan, passive monitoring, funnel 같은 웹 분석 운영 용어를 추가로 사용한다. <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## Mechanics
 
@@ -40,6 +43,12 @@ sources:
 | CDP | 고객데이터플랫폼. 여러 곳에서 들어온 고객·이벤트 데이터를 모아 다른 도구로 보내는 시스템. |
 | 태그매니저(tag manager) | 웹사이트 코드를 매번 배포하지 않고도 마케팅·분석 태그를 설정하는 도구. |
 | 오토캡처(autocapture) | 클릭이나 페이지 이동 같은 행동을 사람이 일일이 지정하지 않아도 자동으로 모으는 방식. |
+| 선택자(selector) | 화면 안의 특정 요소를 찾기 위한 주소. CSS selector나 XPath가 대표적이며, 화면 구조가 바뀌면 깨질 수 있다. |
+| DOM | 브라우저가 HTML 화면을 나무 구조로 표현한 것. 오토캡처와 태그매니저는 이 구조에서 버튼, 입력창, 링크를 찾는 경우가 많다. |
+| dataLayer | 태그매니저에 분석용 값을 전달하기 위해 웹페이지가 미리 쌓아 두는 데이터 공간. DOM에서 값을 긁는 것보다 안정적인 방식으로 여겨진다. |
+| 합성 스캔(synthetic scan) | 실제 사용자를 기다리지 않고, 브라우저나 봇이 정해진 페이지와 경로를 직접 실행해 검사하는 방식. |
+| 수동 관찰(passive monitoring) | 도구가 실제 사용자 트래픽을 듣고 평소와 다른 이벤트·속성·목적지를 감지하는 방식. 여기서 수동은 사람이 한다는 뜻이 아니라 “트래픽을 먼저 만들지 않는다”는 뜻이다. |
+| 퍼널(funnel) | 가입, 결제, 문의처럼 사용자가 순서대로 거치는 단계 묶음. 어느 단계에서 이탈하는지 분석할 때 쓴다. |
 | 수집 지점(ingestion) | 이벤트가 분석 시스템이나 데이터 파이프라인으로 처음 들어오는 지점. |
 | 데이터 웨어하우스(warehouse) | 분석에 쓰기 위해 데이터를 모아 두는 저장소. |
 | 증거(proof/evidence) | “이 화면에서 이 행동을 했고, 이 이벤트가 실제로 발생했다”는 것을 재현 가능하게 보여주는 기록. |
@@ -78,3 +87,5 @@ sources:
 - <a id="source-3"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
 - <a id="source-4"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
 - <a id="source-5"></a>[[source-web-agent-eval-benchmarks|Source Summary: Web Agent Evaluation Benchmarks]] - `SRC-20260721-web-agent-eval-benchmarks`
+- <a id="source-6"></a>[[source-commercial-tools-survey|Source Summary: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
+- <a id="source-7"></a>[[source-commercial-tools-official-docs|Source Summary: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`

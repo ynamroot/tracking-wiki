@@ -23,7 +23,7 @@ description: 아직 해결되지 않은 조사 질문, Source 간 모순, 제품
 - [ ] `OQ-004` 현재 수동 QA·파손 대응·계측 구현에 쓰는 시간과 비용은 얼마인가?
 - [ ] `OQ-005` 요소 지문과 자율 순회가 실제 제품 개편에서 달성해야 할 정확도와 안전 기준은 무엇인가?
 - [ ] `OQ-006` 기존 Avo, Amplitude, Segment, GTM과 공존할지 일부를 대체할지 결정해야 한다.
-- [~] `OQ-007` 제품 방향을 지지하는 핵심 주장과 가격 정보를 공식 primary Source record로 확장해야 한다. 2026-07-22 기준 Avo, Amplitude, Segment, mParticle, RudderStack, Snowplow/dbt, web-agent benchmark는 primary Source가 추가됐지만 최신성 재확인과 고객 구매 증거는 남아 있다.
+- [~] `OQ-007` 제품 방향을 지지하는 핵심 주장과 가격 정보를 공식 primary Source record로 확장해야 한다. 2026-07-22 기준 Avo, Amplitude, Segment, mParticle, RudderStack, Snowplow/dbt, web-agent benchmark에 더해 ObservePoint, Trackingplan, Heap, PostHog, Amplitude Visual Labeling, Mixpanel Autocapture, Google Tag Manager의 공식 Source가 추가됐다. 다만 가격·tier 최신성, enterprise-only 기능, 공식 접근이 안정적이지 않았던 DataTrue/Tag Inspector 세부 claim, 고객 구매 증거는 남아 있다.
 - [ ] `OQ-008` 자율 순회와 요소 지문 가설을 검증할 대표 UI 변경 dataset과 평가 기준은 무엇인가?
 
 ## Source Contradictions
@@ -32,6 +32,7 @@ description: 아직 해결되지 않은 조사 질문, Source 간 모순, 제품
 - 경쟁 기능 부재 주장은 공개 자료에 기반하므로 신생 및 비공개 기능 조사가 필요하다.
 - 벤더 블로그가 인용한 정량 데이터는 원 조사까지 provenance를 확장해야 한다.
 - web-agent benchmark는 자율 순회 task success를 평가하지만 tracking-specific event correctness와 element continuity를 직접 평가하지 않는다.
+- DataTrue와 Tag Inspector의 세부 기능·가격은 제출된 상용 도구 조사와 기존 secondary Source에는 있으나, 이번 official bundle에서는 claim-level로 확정하지 않았다. 제품 판단에 쓰려면 별도 primary Source 보강이 필요하다.
 
 ## Product Decisions Pending
 
@@ -44,8 +45,9 @@ description: 아직 해결되지 않은 조사 질문, Source 간 모순, 제품
 
 - 고객 인터뷰: `buyer-and-champion`, `tracking-qa-workflow`, `mvp-outcome-options`의 low-confidence claim을 검증한다.
 - Prototype evaluation: `autonomous-traversal-evaluation`의 기준으로 controlled UI-change dataset을 만든다.
-- 공식 문서 재확인: 가격·tier·feature gate는 제품 결정 직전 다시 확인한다.
+- 공식 문서 재확인: 가격·tier·feature gate는 제품 결정 직전 다시 확인한다. DataTrue와 Tag Inspector는 공식 원자료 접근을 별도 루프로 보강한다.
 
 ## 해소 기록
 
 - 2026-07-22: `OQ-007`은 부분 해소로 전환했다. 공식 Source가 추가되고 `pricing-and-packaging`, `tracking-governance-platforms`, `research-confidence-map`에 반영됐지만 고객 구매 증거와 최신성 재확인은 남아 있다.
+- 2026-07-22: 상용 도구 조사 ingest에서 ObservePoint, Trackingplan, Heap, PostHog, Amplitude Visual Labeling, Mixpanel Autocapture, Google Tag Manager의 공식 문서 보강을 추가했다. `OQ-007`의 공식 Source 범위는 넓어졌지만 DataTrue/Tag Inspector의 세부 claim과 가격·tier 최신성은 남아 있다.

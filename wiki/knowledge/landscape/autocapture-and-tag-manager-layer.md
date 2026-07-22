@@ -8,13 +8,15 @@ updated: 2026-07-22
 sources:
   - SRC-20260721-autocapture-tag-managers
   - SRC-20260721-amplitude-data-ampli
+  - SRC-20260722-commercial-tools-survey
+  - SRC-20260722-commercial-tools-official-docs
 ---
 
 # 오토캡처와 태그매니저 계층
 
 ## Current Synthesis
 
-오토캡처와 태그매니저는 모두 “코드 배포 없이 더 많이/더 빨리 수집”하려는 계층이지만, 신뢰 문제를 제거하지 않는다. 오토캡처는 raw interaction을 확보한 뒤 의미를 나중에 붙이고, 태그매니저는 설정 변경의 속도를 높이지만 selector/dataLayer drift를 남긴다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup>
+오토캡처와 태그매니저는 모두 “코드 배포 없이 더 많이 또는 더 빨리 수집”하려는 계층이지만, 신뢰 문제를 제거하지 않는다. 오토캡처는 원시 행동(raw interaction)을 확보한 뒤 의미를 나중에 붙이고, 태그매니저는 설정 변경 속도를 높이지만 선택자(selector)와 dataLayer drift를 남긴다. 공식 문서 보강은 Heap, PostHog, Amplitude, Mixpanel, GTM이 이 구조 안에서 움직인다는 점을 확인한다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
 
 ## Evidence
 
@@ -22,10 +24,16 @@ sources:
 - Amplitude Visual Labeling은 DOM 변경이 요소 참조를 깨뜨릴 수 있지만 raw autocapture data가 남아 있어 label 정의를 갱신할 수 있다는 모델을 제시한다. <sup>[🔗](#source-1)</sup>
 - Amplitude 내부 Source는 Visual Labeling이 code-based Ampli track과는 별도 축이라고 설명한다. <sup>[🔗](#source-2)</sup>
 - GTM의 DOM scraping은 page structure에 의존하고 preview는 session-based manual debug다. <sup>[🔗](#source-1)</sup>
+- Heap 공식 문서는 자동 수집된 event에 visualizer로 label을 붙이고, inactive event를 repair flow로 수리하는 흐름을 제공한다. <sup>[🔗](#source-4)</sup>
+- PostHog Actions와 Amplitude Visual Labeling 공식 문서는 자동 수집 데이터에 사후 정의를 붙이는 모델을 확인한다. <sup>[🔗](#source-4)</sup>
+- Mixpanel Autocapture는 기본적으로 민감한 입력 요소를 제외하고 제한된 HTML attribute를 수집한다. <sup>[🔗](#source-4)</sup>
+- GTM Element Visibility trigger는 ID 또는 CSS selector로 요소 표시를 감지하고, preview/debug는 사람이 직접 탐색하며 tag firing을 확인하는 흐름이다. <sup>[🔗](#source-4)</sup>
 
 ## Mechanics
 
-오토캡처는 “먼저 수집, 나중에 의미 부여”이고, tracking plan/codegen은 “먼저 의미 정의, 그 다음 구현”이다. 태그매니저는 marketing/analytics tag orchestration을 빠르게 하지만, dataLayer와 selector 품질이 낮으면 검증 공백을 키운다. 세 접근은 대체 관계보다 하이브리드 관계다.
+오토캡처는 “먼저 수집, 나중에 의미 부여”이고, 트래킹 플랜과 코드 생성은 “먼저 의미 정의, 그 다음 구현”이다. 태그매니저는 마케팅·분석 태그 운영을 빠르게 하지만, dataLayer와 선택자 품질이 낮으면 검증 공백을 키운다. 세 접근은 대체 관계보다 하이브리드 관계다.
+
+오토캡처의 장점은 과거 원시 데이터를 다시 해석할 수 있다는 점이다. 약점은 화면 구조가 바뀌면 label/action 조건이 낡고, 입력값이나 사업 맥락 같은 의미 있는 속성을 자동으로 얻기 어렵다는 점이다. 태그매니저의 장점은 배포 없이 수정할 수 있다는 점이고, 약점은 사람이 preview에서 확인한 세션과 실제 운영 환경 사이에 계속 감시 공백이 남는다는 점이다.
 
 ## Evaluation Criteria
 
@@ -45,7 +53,7 @@ sources:
 
 ## Product Implications
 
-제품은 오토캡처를 부정하지 말고, raw interaction과 manual tracking event를 같은 proof graph로 묶는 계층을 검토해야 한다.
+제품은 오토캡처를 부정하지 말고, 원시 행동과 명시적으로 계측한 이벤트를 같은 증거 그래프로 묶는 계층을 검토해야 한다. 태그매니저를 쓰는 고객에게는 “설정을 바꾼 뒤 실제 화면 경로에서 기대 이벤트가 계속 발생하는지”를 검증하는 방식이 더 이해하기 쉽다.
 
 ## See Also
 
@@ -56,3 +64,5 @@ sources:
 
 - <a id="source-1"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
 - <a id="source-2"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
+- <a id="source-3"></a>[[source-commercial-tools-survey|Source Summary: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
+- <a id="source-4"></a>[[source-commercial-tools-official-docs|Source Summary: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`

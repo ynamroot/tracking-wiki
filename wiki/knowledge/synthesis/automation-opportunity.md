@@ -12,13 +12,15 @@ sources:
   - SRC-20260721-tracking-governance-four-tools
   - SRC-20260721-tracking-governance-remaining-tools
   - SRC-20260721-web-agent-eval-benchmarks
+  - SRC-20260722-commercial-tools-survey
+  - SRC-20260722-commercial-tools-official-docs
 ---
 
 # 행동데이터 자동화 기회
 
 ## Current Synthesis
 
-가장 강한 기회는 “행동데이터 수집을 전부 자동화한다”가 아니다. 더 정확한 표현은 “화면 변경과 분석 이벤트 신뢰 사이의 증거 공백을 자동으로 좁힌다”이다. 기존 도구는 트래킹 플랜, 코드 생성(codegen), 태그 감사, 수집 지점 검증을 제공하지만, 화면에서 한 행동이 실제 이벤트로 이어졌는지 보여주는 증거 사슬은 약하다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
+가장 강한 기회는 “행동데이터 수집을 전부 자동화한다”가 아니다. 더 정확한 표현은 “화면 변경과 분석 이벤트 신뢰 사이의 증거 공백을 자동으로 좁힌다”이다. 기존 도구는 트래킹 플랜, 코드 생성(codegen), 태그 감사, 수집 지점 검증, 오토캡처, 태그매니저를 제공하지만, 화면에서 한 행동이 실제 이벤트로 이어졌는지 보여주는 증거 사슬은 약하다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-7)</sup> <sup>[🔗](#source-8)</sup>
 
 ## Evidence
 
@@ -27,10 +29,13 @@ sources:
 - 거버넌스 플랫폼, 즉 수집 규칙을 관리하는 제품은 전송 내용 검증에는 강하지만 빠진 화면 행동은 직접 보지 못한다. <sup>[🔗](#source-4)</sup>
 - 인접 도구 Source는 요소↔이벤트 시각 증빙을 가장 넓은 공백으로 본다. <sup>[🔗](#source-5)</sup>
 - 웹 에이전트 평가 자료는 화면 순회 자동화 가능성을 보여주지만, 행동데이터 검증 전용 정답 데이터셋은 별도로 필요하다. <sup>[🔗](#source-6)</sup>
+- 상용 도구 조사와 공식 문서 보강은 ObservePoint류의 합성 실행, Trackingplan류의 실트래픽 관찰, Heap/PostHog/Amplitude/Mixpanel류의 사후 정의, GTM류의 설정 기반 태그 운영이 이미 존재함을 확인한다. <sup>[🔗](#source-7)</sup> <sup>[🔗](#source-8)</sup>
 
 ## Mechanics
 
 기회는 네 단계로 구성된다. 첫째, 기존 트래킹 플랜, 고객데이터플랫폼, 스키마에서 기대 이벤트 목록을 가져온다. 둘째, 이번 배포에서 바뀐 화면 경로를 찾는다. 셋째, 재현 가능한 브라우저 순회로 사용자 행동을 수행하고 네트워크 요청이나 SDK가 보낸 내용을 관찰한다. 넷째, 사람이 다시 확인할 수 있는 증거 묶음을 만들고 담당자에게 수정 또는 승인 요청을 보낸다.
+
+상용 도구 지형을 반영하면 초기 메시지는 더 좁아져야 한다. “자동 QA”나 “오토캡처 대체”가 아니라 “기존 도구가 만든 계획과 실제 화면 행동 사이를 증명하는 검증 계층”이라고 설명해야 한다.
 
 ## Evaluation Criteria
 
@@ -51,7 +56,7 @@ sources:
 
 ## Product Implications
 
-가장 방어적인 첫 제품은 “자동 수정”이 아니라 “배포 전에 바뀐 화면 경로에서 기대 이벤트가 발생하는지 증명하는 것”이다. 이는 기존 도구를 대체하지 않고 QA와 분석 업무 사이의 증거 공백을 줄인다.
+가장 방어적인 첫 제품은 “자동 수정”이 아니라 “배포 전에 바뀐 화면 경로에서 기대 이벤트가 발생하는지 증명하는 것”이다. 이는 기존 도구를 대체하지 않고 QA와 분석 업무 사이의 증거 공백을 줄인다. 자동 수정은 증거 품질과 고객 승인 흐름이 검증된 뒤에 다루는 것이 낫다.
 
 ## See Also
 
@@ -68,3 +73,5 @@ sources:
 - <a id="source-4"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
 - <a id="source-5"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
 - <a id="source-6"></a>[[source-web-agent-eval-benchmarks|Source Summary: Web Agent Evaluation Benchmarks]] - `SRC-20260721-web-agent-eval-benchmarks`
+- <a id="source-7"></a>[[source-commercial-tools-survey|Source Summary: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
+- <a id="source-8"></a>[[source-commercial-tools-official-docs|Source Summary: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`
