@@ -9,7 +9,6 @@ configuration:
   ignorePatterns:
     - AGENTS.md
     - README.md
-    - log.md
     - audits/**
   theme:
     fontOrigin: googleFonts
@@ -98,6 +97,10 @@ plugins:
     enabled: true
   - source: github:quartz-community/explorer
     enabled: true
+    options:
+      title: 읽기 순서
+      folderDefaultState: open
+      useSavedState: false
     layout:
       position: left
       priority: 50
@@ -142,6 +145,8 @@ plugins:
     options:
       links:
         GitHub: https://github.com/ynamroot/tracking-wiki
+        자료 제보: https://github.com/ynamroot/tracking-wiki/issues/new?template=source-submission.yml
+        조사 질문: https://github.com/ynamroot/tracking-wiki/issues/new?template=research-question.yml
   - source: github:quartz-community/spacer
     enabled: true
     options: {}

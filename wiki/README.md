@@ -3,6 +3,8 @@
 사람이 읽는 Canonical 목차는 [Wiki Index](index.md)다.
 
 - 웹에서 읽기: [Tracking Wiki](https://ynamroot.github.io/tracking-wiki/)
+- 자료 제보: [Source 제출 Issue](https://github.com/ynamroot/tracking-wiki/issues/new?template=source-submission.yml)
+- 조사 질문: [조사 질문 Issue](https://github.com/ynamroot/tracking-wiki/issues/new?template=research-question.yml)
 - 현재 종합: [프로젝트 지식 개요](overview.md)
 - 미결 질문: [미결 질문](open-questions.md)
 - 운영 이력: [Wiki Log](log.md)

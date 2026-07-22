@@ -3,6 +3,8 @@ description: 조사에 사용할 URL 또는 파일을 제출합니다.
 title: "[Source] "
 labels:
   - "source:new"
+assignees:
+  - "ynamroot"
 body:
   - type: markdown
     attributes:

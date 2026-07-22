@@ -9,10 +9,12 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $versionPath = Join-Path $root "site/quartz-version.txt"
 $configPath = Join-Path $root "site/quartz.config.yaml"
+$quartzTsPath = Join-Path $root "site/quartz.ts"
 $wikiPath = Join-Path $root "wiki"
 $version = (Get-Content -LiteralPath $versionPath -Raw -Encoding UTF8).Trim()
 $engineRoot = Join-Path $root ".cache/quartz/$version"
 $engineConfigPath = Join-Path $engineRoot "quartz.config.yaml"
+$engineQuartzTsPath = Join-Path $engineRoot "quartz.ts"
 $pluginMarkerPath = Join-Path $engineRoot ".tracking-wiki-plugin-config"
 
 function Invoke-ExternalCommand {
@@ -41,6 +43,9 @@ if ($LASTEXITCODE -ne 0 -or $actualVersion -ne $version) {
 }
 
 Copy-Item -LiteralPath $configPath -Destination $engineConfigPath -Force
+if (Test-Path -LiteralPath $quartzTsPath) {
+    Copy-Item -LiteralPath $quartzTsPath -Destination $engineQuartzTsPath -Force
+}
 
 if (-not (Test-Path -LiteralPath (Join-Path $engineRoot "node_modules"))) {
     Invoke-ExternalCommand -Command "npm" -Arguments @("ci", "--prefix", $engineRoot)
@@ -94,7 +99,6 @@ if (-not $Serve) {
     $excludedOutputs = @(
         "AGENTS.html",
         "README.html",
-        "log.html",
         "audits"
     )
     foreach ($excludedOutput in $excludedOutputs) {

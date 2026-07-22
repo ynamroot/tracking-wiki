@@ -32,6 +32,7 @@ $requiredPaths = @(
     "OPERATIONS.md",
     "AGENT_PLAYBOOKS.md",
     "site/quartz.config.yaml",
+    "site/quartz.ts",
     "site/quartz-version.txt",
     "scripts/Build-WikiSite.ps1",
     "raw/inbox",

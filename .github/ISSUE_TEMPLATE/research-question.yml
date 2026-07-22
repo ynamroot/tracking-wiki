@@ -3,6 +3,8 @@ description: Wiki로 답하거나 추가 조사가 필요한 질문을 등록합
 title: "[Question] "
 labels:
   - "question:open"
+assignees:
+  - "ynamroot"
 body:
   - type: textarea
     id: question

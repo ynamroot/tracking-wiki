@@ -25,6 +25,13 @@ Intake Agent는 Source를 다음 중 하나로 자동 판정한다.
 
 Agent는 provenance 재현성, 프로젝트 관련성, 원문 접근성, exact duplicate, 파일 안전성을 검사한다.
 정책을 통과하면 `accepted`로 자동 승격하고 Source record의 Triage에 판정 정책, 날짜, 사유를 기록한다.
+
+### 현재 자동화 경계
+
+- Source 제출 Issue에는 `source:new` 라벨과 `ynamroot` 담당자가 자동으로 지정된다.
+- GitHub 라벨은 처리 상태를 나타내지만, 현재 GitHub Actions는 Wiki 검증과 배포만 수행한다.
+- `source:new` 또는 `ingest:pending` 라벨 변경만으로 Intake Agent나 Wiki Compiler가 실행되지는 않는다.
+- 완전 자동 ingest에는 Issue 이벤트를 받아 LLM Agent를 실행하고 브랜치 또는 PR을 생성할 별도 runner와 인증 정보가 필요하다.
 승격한 뒤에는 수정하지 않는다.
 
 PO escalation은 범위가 불명확하거나 공개 저장소에서 다룰 수 없는 자료가 필요하거나 제품 방향을 바꿀 충돌이 있을 때만 발생한다. 비공개 자료는 escalation 여부와 무관하게 이 저장소에 기록하지 않는다.
@@ -204,4 +211,6 @@ powershell -ExecutionPolicy Bypass -File scripts/Build-WikiSite.ps1
 powershell -ExecutionPolicy Bypass -File scripts/Build-WikiSite.ps1 -Serve -Port 8080
 ```
 
-`master` push에서는 구조 검증과 Quartz build가 모두 통과한 뒤 GitHub Pages를 배포한다. `wiki/AGENTS.md`, `wiki/README.md`, `wiki/log.md`, `wiki/audits`는 사이트 빌드에서 제외한다.
+`master` push에서는 구조 검증과 Quartz build가 모두 통과한 뒤 GitHub Pages를 배포한다. `wiki/index.md`는 독자가 읽을 순서의 목차이고, `wiki/log.md`는 새 문서와 의미 있는 변경을 발견하는 공개 변경 이력이다. 새 공개 문서를 만들거나 기존 공개 문서의 의미를 바꾸면 같은 변경에서 index와 log를 함께 갱신한다.
+
+`wiki/AGENTS.md`, `wiki/README.md`, `wiki/audits`는 사이트 빌드에서 제외한다.

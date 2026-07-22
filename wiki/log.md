@@ -1,8 +1,15 @@
+---
+title: Wiki Log
+description: Tracking Wiki의 공개 변경 이력
+---
+
 # Wiki Log
 
 이 파일은 append-only다. 형식은 `## [YYYY-MM-DD] action | 설명`을 사용한다.
 
 허용 action: `ingest`, `query`, `audit`, `update`, `decision`, `freeze`.
+
+독자는 이 페이지에서 새 문서, 의미 있는 내용 변경, Open Question 상태 변화, 배포 구조 변경을 확인한다. 최신 변경은 아래쪽에 추가된다.
 
 ## [2026-07-21] update | Wiki 운영 골격 생성
 
@@ -32,6 +39,10 @@ accepted Source 8건과 knowledge page 18건을 검사했다. 구조·index·wik
 
 공개 Wiki 본문에 반복 노출되던 Source ID를 `🔗` 앵커로 바꾸고, 전체 Source ID와 Source summary 링크를 각 문서 최하단 `출처` 절로 이동했다. Schema, ingest 절차, Wiki Compiler 규칙과 validator도 같은 표기 방식을 따르도록 갱신했다.
 
+## [2026-07-22] update | GitHub Issue 참여 경로 추가
+
+Wiki 첫 화면과 사이트 footer에 자료 제보 및 조사 질문 Issue 버튼을 추가했다. Issue Form은 저장소 소유자에게 자동 할당되며, GitHub 라벨은 현재 상태 표시용이고 LLM ingest 실행은 아직 별도 runner가 필요하다는 운영 경계를 기록했다.
+
 ## [2026-07-22] ingest | accepted Source 15건 전체 재-ingest 및 전문가용 Wiki 확장
 
 accepted Source 15건을 새 ingest quality bar에 맞춰 다시 통합했다. Source summary를 15건으로 확장하고, 지식 페이지를 문제·시장·기술·종합 축의 세부 문서 19건으로 재구성했다. Avo, Amplitude, Segment, mParticle, RudderStack, Snowplow/dbt, web-agent benchmark의 primary Source를 반영해 기능·가격·평가 기준의 신뢰도를 높였고, 구매자·MVP outcome·요소 지문 정확도·고객 비용은 계속 open question으로 유지했다.
@@ -39,3 +50,7 @@ accepted Source 15건을 새 ingest quality bar에 맞춰 다시 통합했다. S
 ## [2026-07-22] update | 용어 해설과 Open Question 동기화 규칙 추가
 
 반복되는 외래어와 전문용어를 설명하는 `key-terms` 문서를 추가하고, index·overview·핵심 기술 문서 일부의 문장을 더 설명적으로 다듬었다. Open Question은 자동 동기화가 아니라 `OQ-NNN` 기반 수동 동기화임을 명시하고, 질문 추가·부분 해소·해소 시 `open-questions.md`, 관련 문서, `log.md`를 함께 갱신하도록 운영 규칙을 보강했다.
+
+## [2026-07-22] update | Wiki log 공개와 독자용 탐색 순서 정렬
+
+`wiki/log.md`를 Quartz 공개 사이트에 포함하고, `wiki/index.md`에 최근 변경 확인 섹션을 추가했다. 공개 탐색 트리는 index의 읽기 흐름에 맞춰 `overview`, `open-questions`, `log`, `knowledge`, `sources` 순서와 knowledge 하위의 문제·시장·기술·종합 순서를 우선하도록 설정했다.
