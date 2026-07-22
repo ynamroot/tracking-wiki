@@ -77,13 +77,17 @@ ExternalPlugin.Explorer({
       "sources/source-snowplow-dbt-data-quality-official": 640,
       "sources/source-web-agent-eval-benchmarks": 650,
     }
-    const getSlug = (node: ExplorerNode) => {
-      const slug = String(node.slug ?? node.data?.slug ?? "")
-      return slug.endsWith("/index") ? slug.slice(0, -"/index".length) : slug
-    }
+    const aRawSlug = String(a.slug ?? a.data?.slug ?? "")
+    const bRawSlug = String(b.slug ?? b.data?.slug ?? "")
+    const aSlug = aRawSlug.endsWith("/index")
+      ? aRawSlug.slice(0, -"/index".length)
+      : aRawSlug
+    const bSlug = bRawSlug.endsWith("/index")
+      ? bRawSlug.slice(0, -"/index".length)
+      : bRawSlug
     const rankDifference =
-      (explicitOrder[getSlug(a)] ?? Number.MAX_SAFE_INTEGER) -
-      (explicitOrder[getSlug(b)] ?? Number.MAX_SAFE_INTEGER)
+      (explicitOrder[aSlug] ?? Number.MAX_SAFE_INTEGER) -
+      (explicitOrder[bSlug] ?? Number.MAX_SAFE_INTEGER)
     if (rankDifference !== 0) {
       return rankDifference
     }
