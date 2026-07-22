@@ -27,20 +27,23 @@ ExternalPlugin.Explorer({
     }
     const rawSlug = String(node.slug ?? node.data?.slug ?? "")
     const slug = rawSlug.endsWith("/index") ? rawSlug.slice(0, -"/index".length) : rawSlug
-    if (slug === "" && Array.isArray(node.children)) {
-      const hasHome = node.children.some((child) => child.slugSegment === "home")
+    if (slug === "" && node.isFolder && Array.isArray(node.children)) {
+      const hasHome = node.children.some(
+        (child) => child.data?.slug === "" && child.data?.title === "Home",
+      )
       if (!hasHome) {
-        node.children.unshift({
+        const home = new (node.constructor as any)([], {
           slug: "",
-          slugSegment: "home",
-          displayName: "Home",
-          isFolder: false,
-          data: {
-            slug: "",
-            title: "Home",
-          },
-          children: [],
+          title: "Home",
+          filePath: "index.md",
         })
+        home.data = {
+          slug: "",
+          title: "Home",
+          filePath: "index.md",
+        }
+        home.isFolder = false
+        node.children.unshift(home)
       }
     }
     const displayName = displayNames[slug]

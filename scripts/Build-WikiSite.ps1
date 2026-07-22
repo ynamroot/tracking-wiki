@@ -78,7 +78,8 @@ $resolvedOutputPath = if ([System.IO.Path]::IsPathRooted($OutputPath)) {
 $arguments = @(
     "quartz", "build",
     "--directory", $wikiPath,
-    "--output", $resolvedOutputPath
+    "--output", $resolvedOutputPath,
+    "--concurrency", "1"
 )
 if ($Serve) {
     $arguments += @("--serve", "--port", $Port.ToString())
