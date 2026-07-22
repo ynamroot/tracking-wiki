@@ -4,7 +4,7 @@ type: comparison
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-amplitude-data-ampli
   - SRC-20260721-avo
@@ -30,7 +30,7 @@ sources:
 | Mixpanel Lexicon | Catalog 중심 | 주로 사후 | hide, manual block, review | autocapture 맥락만 부분 지원 |
 | Snowplow | Schema, Snowtype | enrich pipeline | failed event 격리 및 replay | 수동 screenshot attachment |
 
-표는 네 accepted Source의 교차 종합이다. [SRC-20260721-amplitude-data-ampli] [SRC-20260721-avo] [SRC-20260721-tracking-governance-four-tools] [SRC-20260721-tracking-governance-remaining-tools]
+표는 네 accepted Source의 교차 종합이다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
 
 ## Contradictions
 
@@ -53,3 +53,10 @@ sources:
 - [[amplitude-data|Amplitude Data]] - 분석 생태계 통합 경쟁사
 - [[schema-and-data-contracts|스키마 및 데이터 계약]] - 검증 인프라 계층
 - [[automation-opportunity|행동데이터 자동화 기회]] - 제품 차별화 가설
+
+## 출처
+
+- <a id="source-1"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
+- <a id="source-2"></a>[[source-avo|Source Summary: Avo]] - `SRC-20260721-avo`
+- <a id="source-3"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-4"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`

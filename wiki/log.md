@@ -27,3 +27,7 @@ accepted Source 8건과 knowledge page 18건을 검사했다. 구조·index·wik
 ## [2026-07-22] update | Wiki 탐색 구조와 공개 웹 경로 개편
 
 지식 페이지를 `knowledge/problem`, `knowledge/landscape`, `knowledge/technology`, `knowledge/synthesis`로 재배치했다. 사람이 먼저 읽을 순서로 index를 재작성하고 GitHub 시작 안내와 Quartz 기반 공개 사이트 경로를 추가했다. 기존 지식의 의미와 Source 연결은 변경하지 않았다.
+
+## [2026-07-22] update | 본문 Source 인용을 이모지 각주로 개편
+
+공개 Wiki 본문에 반복 노출되던 Source ID를 `🔗` 앵커로 바꾸고, 전체 Source ID와 Source summary 링크를 각 문서 최하단 `출처` 절로 이동했다. Schema, ingest 절차, Wiki Compiler 규칙과 validator도 같은 표기 방식을 따르도록 갱신했다.

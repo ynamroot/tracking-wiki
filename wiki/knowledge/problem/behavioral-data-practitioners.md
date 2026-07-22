@@ -4,7 +4,7 @@ type: customer
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-practitioner-pain-points
 ---
@@ -17,10 +17,10 @@ sources:
 
 ## Evidence
 
-- 데이터 운영자는 명명 불일치, 변경 이력 부재, 파손 원인 추적, 반복 질문과 수동 QA를 담당한다. [SRC-20260721-practitioner-pain-points]
-- PM은 출시 후 데이터가 없거나 의미가 불명확해 의사결정 시점을 놓친다. [SRC-20260721-practitioner-pain-points]
-- 프론트엔드 개발자는 스프레드시트 기반 계측, 하드코딩 오류, 배포별 확인, 리팩터링 후 파손을 경험한다. [SRC-20260721-practitioner-pain-points]
-- 역할 사이의 언어 차이와 불명확한 ownership이 문제 해결 시간을 늘린다. [SRC-20260721-practitioner-pain-points]
+- 데이터 운영자는 명명 불일치, 변경 이력 부재, 파손 원인 추적, 반복 질문과 수동 QA를 담당한다. <sup>[🔗](#source-1)</sup>
+- PM은 출시 후 데이터가 없거나 의미가 불명확해 의사결정 시점을 놓친다. <sup>[🔗](#source-1)</sup>
+- 프론트엔드 개발자는 스프레드시트 기반 계측, 하드코딩 오류, 배포별 확인, 리팩터링 후 파손을 경험한다. <sup>[🔗](#source-1)</sup>
+- 역할 사이의 언어 차이와 불명확한 ownership이 문제 해결 시간을 늘린다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -40,3 +40,7 @@ sources:
 
 - [[source-practitioner-pain-points|실무자 페인포인트 Source 요약]] - 역할별 근거
 - [[automation-opportunity|행동데이터 자동화 기회]] - 제품 가설과 미검증 영역
+
+## 출처
+
+- <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`

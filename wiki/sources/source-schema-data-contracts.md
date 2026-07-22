@@ -4,7 +4,7 @@ type: source-summary
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-schema-data-contracts
 ---
@@ -17,11 +17,11 @@ Snowplow의 schema-first 파이프라인, 형식화된 data contract, warehouse 
 
 ## Evidence
 
-- Snowplow는 self-describing event와 Iglu schema registry를 사용해 Enrich 단계에서 이벤트를 검증한다. [SRC-20260721-schema-data-contracts]
-- 검증 실패 이벤트는 정상 테이블과 분리해 보존하고 재처리할 수 있다. [SRC-20260721-schema-data-contracts]
-- data contract는 생산자와 소비자 사이의 schema, 품질, SLA, ownership 합의를 형식화한다. [SRC-20260721-schema-data-contracts]
-- data observability는 warehouse의 freshness, volume, schema, distribution, lineage 이상을 감지한다. [SRC-20260721-schema-data-contracts]
-- 어느 접근도 이벤트가 전혀 생성되지 않은 원인을 UI와 코드까지 거슬러 자동 설명하지 못한다. [SRC-20260721-schema-data-contracts]
+- Snowplow는 self-describing event와 Iglu schema registry를 사용해 Enrich 단계에서 이벤트를 검증한다. <sup>[🔗](#source-1)</sup>
+- 검증 실패 이벤트는 정상 테이블과 분리해 보존하고 재처리할 수 있다. <sup>[🔗](#source-1)</sup>
+- data contract는 생산자와 소비자 사이의 schema, 품질, SLA, ownership 합의를 형식화한다. <sup>[🔗](#source-1)</sup>
+- data observability는 warehouse의 freshness, volume, schema, distribution, lineage 이상을 감지한다. <sup>[🔗](#source-1)</sup>
+- 어느 접근도 이벤트가 전혀 생성되지 않은 원인을 UI와 코드까지 거슬러 자동 설명하지 못한다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -41,3 +41,7 @@ Snowplow의 schema-first 파이프라인, 형식화된 data contract, warehouse 
 
 - [[schema-and-data-contracts|스키마 및 데이터 계약]] - 계층별 검증 위치와 한계
 - [[collection-and-validation-patterns|행동데이터 수집 및 검증 패턴]] - 브라우저부터 warehouse까지의 방식
+
+## 출처
+
+- <a id="source-1"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`

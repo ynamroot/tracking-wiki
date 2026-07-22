@@ -4,7 +4,7 @@ type: source-summary
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-tracking-governance-remaining-tools
 ---
@@ -17,11 +17,11 @@ sources:
 
 ## Evidence
 
-- Segment와 mParticle은 schema 위반을 차단할 수 있지만 데이터 유실 위험 때문에 별도 격리나 사전 경고가 중요하다. [SRC-20260721-tracking-governance-remaining-tools]
-- RudderStack은 기본적으로 오류를 붙여 전달하는 방식으로 유실 위험을 줄인다. [SRC-20260721-tracking-governance-remaining-tools]
-- Snowplow는 위반 이벤트를 failed events로 격리하고 replay할 수 있다. [SRC-20260721-tracking-governance-remaining-tools]
-- 데이터 옵저버빌리티는 warehouse 이후의 품질 이상에는 강하지만 브라우저 계측 부재를 직접 감지하지 못한다. [SRC-20260721-tracking-governance-remaining-tools]
-- walker.js는 HTML에 선언적 이벤트 의미를 넣지만 DOM 결합과 개발자 규율이 남는다. [SRC-20260721-tracking-governance-remaining-tools]
+- Segment와 mParticle은 schema 위반을 차단할 수 있지만 데이터 유실 위험 때문에 별도 격리나 사전 경고가 중요하다. <sup>[🔗](#source-1)</sup>
+- RudderStack은 기본적으로 오류를 붙여 전달하는 방식으로 유실 위험을 줄인다. <sup>[🔗](#source-1)</sup>
+- Snowplow는 위반 이벤트를 failed events로 격리하고 replay할 수 있다. <sup>[🔗](#source-1)</sup>
+- 데이터 옵저버빌리티는 warehouse 이후의 품질 이상에는 강하지만 브라우저 계측 부재를 직접 감지하지 못한다. <sup>[🔗](#source-1)</sup>
+- walker.js는 HTML에 선언적 이벤트 의미를 넣지만 DOM 결합과 개발자 규율이 남는다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -41,3 +41,7 @@ sources:
 
 - [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 제품별 비교
 - [[schema-and-data-contracts|스키마 및 데이터 계약]] - schema-first와 observability 비교
+
+## 출처
+
+- <a id="source-1"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`

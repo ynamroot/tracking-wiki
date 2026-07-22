@@ -4,7 +4,7 @@ type: technology
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-schema-data-contracts
   - SRC-20260721-tracking-governance-four-tools
@@ -19,11 +19,11 @@ sources:
 
 ## Evidence
 
-- JSON Schema 계열은 Segment, mParticle, Snowplow 등에서 tracking plan 또는 event contract의 기반으로 사용된다. [SRC-20260721-tracking-governance-remaining-tools]
-- Snowplow는 event가 참조하는 schema를 registry에서 해결하고 pipeline에서 검증한다. [SRC-20260721-schema-data-contracts]
-- data contract는 schema뿐 아니라 품질, SLA, ownership을 생산자·소비자 합의로 형식화한다. [SRC-20260721-schema-data-contracts]
-- warehouse observability는 freshness, volume, distribution, schema, lineage 이상을 사후 감지한다. [SRC-20260721-schema-data-contracts]
-- hard block은 복구 불가능한 유실을 만들 수 있어 propagate, quarantine, failed-event replay 방식이 병행된다. [SRC-20260721-tracking-governance-four-tools] [SRC-20260721-tracking-governance-remaining-tools]
+- JSON Schema 계열은 Segment, mParticle, Snowplow 등에서 tracking plan 또는 event contract의 기반으로 사용된다. <sup>[🔗](#source-1)</sup>
+- Snowplow는 event가 참조하는 schema를 registry에서 해결하고 pipeline에서 검증한다. <sup>[🔗](#source-2)</sup>
+- data contract는 schema뿐 아니라 품질, SLA, ownership을 생산자·소비자 합의로 형식화한다. <sup>[🔗](#source-2)</sup>
+- warehouse observability는 freshness, volume, distribution, schema, lineage 이상을 사후 감지한다. <sup>[🔗](#source-2)</sup>
+- hard block은 복구 불가능한 유실을 만들 수 있어 propagate, quarantine, failed-event replay 방식이 병행된다. <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -45,3 +45,9 @@ sources:
 - [[source-schema-data-contracts|스키마 및 데이터 계약 Source 요약]] - Snowplow와 observability 근거
 - [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 제품별 적용
 - [[collection-and-validation-patterns|행동데이터 수집 및 검증 패턴]] - 브라우저 검증 방식
+
+## 출처
+
+- <a id="source-1"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-2"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
+- <a id="source-3"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`

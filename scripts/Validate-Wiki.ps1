@@ -3,6 +3,8 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $errors = New-Object System.Collections.Generic.List[string]
 $warnings = New-Object System.Collections.Generic.List[string]
+$sourceHeading = ([string][char]0xCD9C) + ([string][char]0xCC98)
+$sourceEmoji = [char]::ConvertFromUtf32(0x1F517)
 
 function Add-ValidationError {
     param([string]$Message)
@@ -190,6 +192,75 @@ foreach ($page in $knowledgePages) {
 
     if ($page.BaseName -ne "overview" -and @($sourceReferences).Count -eq 0) {
         Add-ValidationError "$relativePath does not reference an accepted source"
+    }
+
+    $frontmatterContent = [regex]::Match($content, '(?s)\A---\s*(?<frontmatter>.*?)\s*---').Groups['frontmatter'].Value
+    $declaredSourceIds = @([regex]::Matches($frontmatterContent, '(?m)^\s*-\s*(SRC-\d{8}-[a-z0-9]+(?:-[a-z0-9]+)*)\s*$') |
+        ForEach-Object { $_.Groups[1].Value } |
+        Sort-Object -Unique)
+    $bodyContent = [regex]::Replace($content, '(?s)\A---\s*.*?\s*---\s*', '')
+    $sourcesHeadingPattern = '(?m)^## {0}\r?$' -f [regex]::Escape($sourceHeading)
+    $sourcesHeadingMatch = [regex]::Match($bodyContent, $sourcesHeadingPattern)
+    $bodyBeforeSources = if ($sourcesHeadingMatch.Success) {
+        $bodyContent.Substring(0, $sourcesHeadingMatch.Index)
+    } else {
+        $bodyContent
+    }
+    if ($bodyBeforeSources -match 'SRC-\d{8}-[a-z0-9]+(?:-[a-z0-9]+)*') {
+        Add-ValidationError "$relativePath contains a visible Source ID in its body; use an emoji source anchor"
+    }
+
+    $footerEntries = [regex]::Matches($bodyContent, '(?m)^- <a id="(?<anchor>source-\d+)"></a>\[\[(?<summary>[^\]|]+)\|[^\]]+\]\] - `(?<id>SRC-\d{8}-[a-z0-9]+(?:-[a-z0-9]+)*)`\s*$')
+    $sourceAnchors = @($footerEntries |
+        ForEach-Object { $_.Groups['anchor'].Value } |
+        Sort-Object -Unique)
+    $footerSourceIds = @($footerEntries |
+        ForEach-Object { $_.Groups['id'].Value } |
+        Sort-Object -Unique)
+    $citationPattern = '<sup>\[{0}\]\(#(?<anchor>source-\d+)\)</sup>' -f [regex]::Escape($sourceEmoji)
+    $citationAnchors = @([regex]::Matches($bodyContent, $citationPattern) |
+        ForEach-Object { $_.Groups['anchor'].Value } |
+        Sort-Object -Unique)
+
+    $allSourceAnchors = [regex]::Matches($bodyContent, '<a id="source-\d+"></a>')
+    if ($allSourceAnchors.Count -ne $footerEntries.Count) {
+        Add-ValidationError "$relativePath contains a malformed Source footer entry"
+    }
+
+    $allCitationPattern = '<sup>\[{0}\]\([^)]*\)</sup>' -f [regex]::Escape($sourceEmoji)
+    $validCitationPattern = '<sup>\[{0}\]\(#source-\d+\)</sup>' -f [regex]::Escape($sourceEmoji)
+    $allCitationLinks = [regex]::Matches($bodyContent, $allCitationPattern)
+    $validCitationLinks = [regex]::Matches($bodyContent, $validCitationPattern)
+    if ($allCitationLinks.Count -ne $validCitationLinks.Count) {
+        Add-ValidationError "$relativePath contains a malformed emoji Source citation"
+    }
+
+    foreach ($citationAnchor in $citationAnchors) {
+        if ($sourceAnchors -notcontains $citationAnchor) {
+            Add-ValidationError "$relativePath contains a Source citation without a matching footer anchor: $citationAnchor"
+        }
+    }
+
+    foreach ($sourceAnchor in $sourceAnchors) {
+        if ($citationAnchors -notcontains $sourceAnchor) {
+            Add-ValidationError "$relativePath contains an unused Source footer anchor: $sourceAnchor"
+        }
+    }
+
+    foreach ($declaredSourceId in $declaredSourceIds) {
+        if ($footerSourceIds -notcontains $declaredSourceId) {
+            Add-ValidationError "$relativePath declares a Source without a footer entry: $declaredSourceId"
+        }
+    }
+
+    foreach ($footerSourceId in $footerSourceIds) {
+        if ($declaredSourceIds -notcontains $footerSourceId) {
+            Add-ValidationError "$relativePath contains an undeclared Source footer entry: $footerSourceId"
+        }
+    }
+
+    if (@($citationAnchors).Count -gt 0 -and -not $sourcesHeadingMatch.Success) {
+        Add-ValidationError "$relativePath contains Source citations but is missing its Source footer section"
     }
 }
 

@@ -4,7 +4,7 @@ type: source-summary
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-autocapture-tag-managers
 ---
@@ -17,11 +17,11 @@ sources:
 
 ## Evidence
 
-- Heap, PostHog, Fullstory, Pendo 계열은 DOM 상호작용을 먼저 모으고 이벤트 의미를 사후 정의한다. [SRC-20260721-autocapture-tag-managers]
-- 사후 정의도 CSS selector와 화면 구조에 의존해 UI 변경 시 깨지며, 현재 제품은 대체로 사람이 정의를 수리한다. [SRC-20260721-autocapture-tag-managers]
-- GTM은 Tag, Trigger, Variable, dataLayer로 명시 계측을 구성하지만 preview는 사람이 수행하는 배포 전 디버깅이다. [SRC-20260721-autocapture-tag-managers]
-- DOM scraping과 selector 기반 trigger는 오토캡처 정의와 동일한 UI 변경 취약성을 가진다. [SRC-20260721-autocapture-tag-managers]
-- 오토캡처는 커스텀 비즈니스 속성에 한계가 있고 명시 계측은 소급성과 커버리지에 한계가 있다. [SRC-20260721-autocapture-tag-managers]
+- Heap, PostHog, Fullstory, Pendo 계열은 DOM 상호작용을 먼저 모으고 이벤트 의미를 사후 정의한다. <sup>[🔗](#source-1)</sup>
+- 사후 정의도 CSS selector와 화면 구조에 의존해 UI 변경 시 깨지며, 현재 제품은 대체로 사람이 정의를 수리한다. <sup>[🔗](#source-1)</sup>
+- GTM은 Tag, Trigger, Variable, dataLayer로 명시 계측을 구성하지만 preview는 사람이 수행하는 배포 전 디버깅이다. <sup>[🔗](#source-1)</sup>
+- DOM scraping과 selector 기반 trigger는 오토캡처 정의와 동일한 UI 변경 취약성을 가진다. <sup>[🔗](#source-1)</sup>
+- 오토캡처는 커스텀 비즈니스 속성에 한계가 있고 명시 계측은 소급성과 커버리지에 한계가 있다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -42,3 +42,7 @@ sources:
 
 - [[collection-and-validation-patterns|수집 및 검증 패턴]] - 시장의 주요 기술 접근
 - [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 배포 후 검증 제품군
+
+## 출처
+
+- <a id="source-1"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`

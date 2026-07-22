@@ -4,7 +4,7 @@ type: market
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-amplitude-data-ampli
   - SRC-20260721-avo
@@ -33,7 +33,7 @@ sources:
 | autocapture | Heap, PostHog, Amplitude, Mixpanel | 빠른 coverage와 소급 분석 | 의미·노이즈·privacy·정의 수리 |
 | warehouse observability | Monte Carlo 계열 | freshness·volume·schema·lineage | 브라우저 파손 원인과 계측 부재 |
 
-이 지형은 accepted Source 7건의 교차 종합이다. [SRC-20260721-amplitude-data-ampli] [SRC-20260721-avo] [SRC-20260721-autocapture-tag-managers] [SRC-20260721-tag-audit-qa-tools] [SRC-20260721-tracking-governance-four-tools] [SRC-20260721-tracking-governance-remaining-tools] [SRC-20260721-schema-data-contracts]
+이 지형은 accepted Source 7건의 교차 종합이다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## Contradictions
 
@@ -55,3 +55,13 @@ sources:
 - [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 설계와 schema 경쟁사
 - [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - runtime 검증 경쟁사
 - [[automation-opportunity|행동데이터 자동화 기회]] - 제품 가설
+
+## 출처
+
+- <a id="source-1"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
+- <a id="source-2"></a>[[source-avo|Source Summary: Avo]] - `SRC-20260721-avo`
+- <a id="source-3"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
+- <a id="source-4"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
+- <a id="source-5"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-6"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-7"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`

@@ -4,7 +4,7 @@ type: comparison
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-tag-audit-qa-tools
   - SRC-20260721-autocapture-tag-managers
@@ -25,7 +25,7 @@ sources:
 | 실트래픽 관측 | Trackingplan | 실제 사용자 분포 | 기준선 자동 학습, 상시 이탈 감지 | 발생하지 않은 경로와 미계측 요소를 볼 수 없음 |
 | 사후 정의 | Heap, PostHog, Amplitude Autocapture | DOM 상호작용 전수 수집 | 소급 분석과 빠른 시작 | 의미 부여, 노이즈 제거, selector 수리가 수동 |
 
-위 비교는 두 내부 종합 보고서의 교차 분석이다. [SRC-20260721-tag-audit-qa-tools] [SRC-20260721-autocapture-tag-managers]
+위 비교는 두 내부 종합 보고서의 교차 분석이다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-2)</sup>
 
 ## Contradictions
 
@@ -47,3 +47,8 @@ sources:
 - [[source-tag-audit-qa-tools|태그 감사 Source 요약]] - 상세 조사 범위와 한계
 - [[collection-and-validation-patterns|수집 및 검증 패턴]] - 기술 방식별 trade-off
 - [[automation-opportunity|행동데이터 자동화 기회]] - 차별화 가설
+
+## 출처
+
+- <a id="source-1"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
+- <a id="source-2"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`

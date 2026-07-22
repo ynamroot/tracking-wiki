@@ -44,13 +44,48 @@ index와 log까지 갱신하라.
 
 1. Source record와 보존된 원문 전체를 읽는다.
 2. `wiki/index.md`에서 관련 페이지를 찾고 내용을 읽는다.
-3. `wiki/sources`에 Source summary를 생성한다.
-4. 관련 지식 페이지를 `wiki/knowledge/problem`, `landscape`, `technology`, `synthesis` 중 해당 경로에 생성하거나 갱신한다.
-5. 상충하는 주장을 `Contradictions`와 `open-questions.md`에 기록한다.
-6. 변경된 모든 페이지의 `updated`, `sources`, `confidence`를 갱신한다.
-7. `wiki/index.md`에 새 페이지와 한 줄 설명을 추가한다.
-8. `wiki/log.md`에 `ingest` 기록을 append한다.
-9. 검증 스크립트를 실행하고 Issue를 `ingest:complete`로 전환한다.
+3. Source의 핵심 주장, 방법, 한계, 제품/기술 관련성을 claim 단위로 분해한다.
+4. `wiki/sources`에 Source summary를 생성한다.
+5. 관련 지식 페이지를 `wiki/knowledge/problem`, `landscape`, `technology`, `synthesis` 중 해당 경로에 생성하거나 갱신한다.
+6. 주제가 비대해지면 새 지식 페이지로 분할하고, 상위 페이지는 지도와 핵심 종합을 유지한다.
+7. 상충하는 주장을 `Contradictions`와 `open-questions.md`에 기록한다.
+8. 변경된 모든 페이지의 `updated`, `sources`, `confidence`를 갱신한다.
+9. `wiki/index.md`에 새 페이지와 한 줄 설명을 추가한다.
+10. `wiki/log.md`에 `ingest` 기록을 append한다.
+11. 검증 스크립트를 실행하고 Issue를 `ingest:complete`로 전환한다.
+
+### Ingest Quality Bar
+
+Wiki는 단순 요약 저장소가 아니라 전문가가 빠르게 맥락과 판단 근거를 얻는 지식 문서다. 새 ingest는 다음 기준을 만족해야 한다.
+
+- Source summary는 원문 provenance, 이 자료가 답하는 질문, 핵심 claim, 적용 범위, 한계, 기존 Wiki와 달라진 점을 포함한다.
+- 지식 페이지는 최소한 배경 맥락, 작동 방식 또는 workflow, 주요 행위자와 사용 장면, 확인된 사실, 한계와 반례, 제품/기술 시사점을 구분한다.
+- 경쟁사나 기술 문서는 기능 나열에 그치지 않고 검증 위치, 운영 책임, 실패 처리, 통합 경계, 가격/패키징 또는 배포 조건을 함께 정리한다.
+- dataset이나 benchmark 문서는 task 구성, 평가 지표, coverage, 프로젝트 가설에 바로 쓸 수 있는 부분과 쓸 수 없는 부분을 분리한다.
+- 정량 주장, 가격, 기능 지원 여부, 고객 사례, benchmark 수치는 반드시 claim-level Source 앵커를 붙인다.
+- Source가 빈약하면 Wiki 본문도 확정적으로 부풀리지 않고 `confidence: low`, `Open Questions`, `needs-verification`을 명시한다.
+
+### Page Splitting And Knowledge Taxonomy
+
+`knowledge` 하위의 현재 4개 축은 탐색을 위한 상위 분류다. 세부 지식은 폴더보다 페이지 단위로 분할하고, index와 See Also로 방향을 잃지 않게 연결한다.
+
+| 상위 축 | 넣을 내용 | 분할 후보 |
+|---|---|---|
+| `problem` | 고객, 역할, workflow, pain point, 구매 맥락 | buyer/champion, QA workflow, incident cost, adoption friction |
+| `landscape` | 시장 지도, 경쟁사, 대체재, pricing, positioning | vendor별 deep dive, category comparison, pricing and packaging |
+| `technology` | 수집, 검증, schema, agent, benchmark, 운영 아키텍처 | validation layer, element fingerprinting, autonomous traversal, evaluation dataset |
+| `synthesis` | 여러 Source를 종합한 기회, 전략, 위험, 의사결정 근거 | MVP outcome, wedge hypothesis, risk register, research baseline summary |
+
+다음 중 하나에 해당하면 새 페이지로 분할한다.
+
+- 한 문서가 서로 다른 질문 두 개 이상을 답해 독자가 특정 주제만 찾기 어렵다.
+- 독립적으로 갱신될 가능성이 높은 주제다.
+- 서로 다른 Source 묶음이나 confidence 수준을 가진다.
+- 본문이 길어져 상위 종합, 세부 근거, 제품 시사점이 한 화면에서 섞인다.
+
+반대로 독립 질문, 독립 Source, 독립 갱신 가능성이 없으면 같은 페이지의 절로 유지한다.
+
+Wiki 본문의 근거 표기는 `SCHEMA.md`의 Source 앵커 형식을 따른다. 본문에는 `SRC-...`를 직접 표시하지 않고 `🔗` 앵커로 문서 하단 `출처` 절에 연결한다.
 
 ## 4. Query Workflow
 
@@ -61,7 +96,7 @@ wiki/index.md에서 시작하고 필요한 Wiki와 raw Source를 읽어라.
 가치 있는 분석은 wiki/knowledge/synthesis에 저장하고 index와 log를 갱신하라.
 ```
 
-Query 답변은 Source ID를 인용한다. Wiki만으로 답할 수 없으면 추측하지 않고 `open-questions.md`와 GitHub `question:open` Issue에 조사 공백을 남긴다.
+Query 답변은 Source ID를 추적하되, Wiki에 저장하는 본문은 Source 앵커 형식을 사용한다. Wiki만으로 답할 수 없으면 추측하지 않고 `open-questions.md`와 GitHub `question:open` Issue에 조사 공백을 남긴다.
 
 ## 5. Wiki Audit
 

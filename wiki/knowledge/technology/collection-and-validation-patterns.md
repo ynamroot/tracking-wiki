@@ -4,7 +4,7 @@ type: technology
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-autocapture-tag-managers
   - SRC-20260721-tag-audit-qa-tools
@@ -20,12 +20,12 @@ sources:
 
 ## Evidence
 
-- 오토캡처는 DOM 상호작용 커버리지와 소급성을 제공하지만 비즈니스 의미와 커스텀 속성이 약하다. [SRC-20260721-autocapture-tag-managers]
-- 명시 계측과 dataLayer는 의미와 속성을 통제하지만 구현·배포·QA에 사람이 개입한다. [SRC-20260721-autocapture-tag-managers]
-- 크롤링은 URL 범위를 넓게 탐색하지만 실제 사용자 상태와 복잡한 상호작용을 놓칠 수 있다. [SRC-20260721-tag-audit-qa-tools]
-- 시나리오 재생은 요소와 이벤트를 인과적으로 검증하지만 경로와 selector 유지가 병목이다. [SRC-20260721-tag-audit-qa-tools]
-- 실트래픽 청취는 운영 이탈을 상시 감지하지만 미발생 경로와 미계측 요소를 발견하지 못한다. [SRC-20260721-tag-audit-qa-tools]
-- schema-first pipeline은 도착한 payload를 강하게 검증하지만 이벤트 자체가 발생하지 않은 이유는 알 수 없다. [SRC-20260721-tracking-governance-remaining-tools] [SRC-20260721-schema-data-contracts]
+- 오토캡처는 DOM 상호작용 커버리지와 소급성을 제공하지만 비즈니스 의미와 커스텀 속성이 약하다. <sup>[🔗](#source-1)</sup>
+- 명시 계측과 dataLayer는 의미와 속성을 통제하지만 구현·배포·QA에 사람이 개입한다. <sup>[🔗](#source-1)</sup>
+- 크롤링은 URL 범위를 넓게 탐색하지만 실제 사용자 상태와 복잡한 상호작용을 놓칠 수 있다. <sup>[🔗](#source-2)</sup>
+- 시나리오 재생은 요소와 이벤트를 인과적으로 검증하지만 경로와 selector 유지가 병목이다. <sup>[🔗](#source-2)</sup>
+- 실트래픽 청취는 운영 이탈을 상시 감지하지만 미발생 경로와 미계측 요소를 발견하지 못한다. <sup>[🔗](#source-2)</sup>
+- schema-first pipeline은 도착한 payload를 강하게 검증하지만 이벤트 자체가 발생하지 않은 이유는 알 수 없다. <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
 
 ## Contradictions
 
@@ -47,3 +47,10 @@ sources:
 - [[source-autocapture-tag-managers|오토캡처와 태그매니저 Source 요약]] - 수집 방식 비교
 - [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 검증 방식 비교
 - [[schema-and-data-contracts|스키마 및 데이터 계약]] - schema-first 검증 계층
+
+## 출처
+
+- <a id="source-1"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
+- <a id="source-2"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
+- <a id="source-3"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-4"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`

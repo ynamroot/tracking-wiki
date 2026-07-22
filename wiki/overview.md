@@ -4,7 +4,7 @@ type: overview
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-practitioner-pain-points
   - SRC-20260721-amplitude-data-ampli
@@ -20,14 +20,14 @@ sources:
 
 ## Current Synthesis
 
-행동데이터 운영의 반복 문제는 늦은 파손 발견, tracking plan과 실제 구현의 drift, 수동 QA, 불명확한 ownership, 데이터 신뢰 상실이다. 기존 시장은 plan·codegen, ingestion schema 검증, tag audit, autocapture, warehouse observability로 분절돼 있다. 조사 범위에서 가장 일관된 공백은 UI 요소와 실제 이벤트 발생의 인과 증빙, 자동 coverage 확장, 개편 후 이력 계승, 승인 기반 수리 loop다.
+행동데이터 운영의 반복 문제는 늦은 파손 발견, tracking plan과 실제 구현의 drift, 수동 QA, 불명확한 ownership, 데이터 신뢰 상실이다. 기존 시장은 plan·codegen, ingestion schema 검증, tag audit, autocapture<sup>[🔗](#source-8)</sup>, warehouse observability로 분절돼 있다. 조사 범위에서 가장 일관된 공백은 UI 요소와 실제 이벤트 발생의 인과 증빙, 자동 coverage 확장, 개편 후 이력 계승, 승인 기반 수리 loop다.
 
 ## Evidence
 
-- 역할별 페인포인트와 반복 빈도는 내부 조사 보고서가 여러 공개 자료를 종합했다. [SRC-20260721-practitioner-pain-points]
-- Avo·Amplitude와 주요 CDP는 codegen과 schema 검증을 제공하지만 수동 호출 구현을 전제로 한다. [SRC-20260721-avo] [SRC-20260721-amplitude-data-ampli] [SRC-20260721-tracking-governance-four-tools]
-- tag audit 도구는 crawl, scenario, 실트래픽 관측을 사용하지만 coverage·self-healing·수정 실행을 모두 자동화하지 않는다. [SRC-20260721-tag-audit-qa-tools]
-- schema와 observability 계층은 UI 계층의 미계측 요소를 직접 볼 수 없다. [SRC-20260721-tracking-governance-remaining-tools] [SRC-20260721-schema-data-contracts]
+- 역할별 페인포인트와 반복 빈도는 내부 조사 보고서가 여러 공개 자료를 종합했다. <sup>[🔗](#source-1)</sup>
+- Avo·Amplitude와 주요 CDP는 codegen과 schema 검증을 제공하지만 수동 호출 구현을 전제로 한다. <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup> <sup>[🔗](#source-4)</sup>
+- tag audit 도구는 crawl, scenario, 실트래픽 관측을 사용하지만 coverage·self-healing·수정 실행을 모두 자동화하지 않는다. <sup>[🔗](#source-5)</sup>
+- schema와 observability 계층은 UI 계층의 미계측 요소를 직접 볼 수 없다. <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup>
 
 ## Contradictions
 
@@ -47,3 +47,14 @@ sources:
 - [[open-questions|미결 질문]] - 조사와 의사결정에 필요한 질문 목록
 - [[automation-opportunity|행동데이터 자동화 기회]] - 근거에서 도출한 제품 가설과 위험
 - [[behavioral-data-quality-landscape|행동데이터 품질 시장 지형]] - 경쟁 계층과 공백
+
+## 출처
+
+- <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
+- <a id="source-2"></a>[[source-avo|Source Summary: Avo]] - `SRC-20260721-avo`
+- <a id="source-3"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
+- <a id="source-4"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-5"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
+- <a id="source-6"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-7"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`
+- <a id="source-8"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`

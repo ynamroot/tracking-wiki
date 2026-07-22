@@ -11,13 +11,26 @@ sources:
 
 # 페이지 제목
 
+## Context
+
+이 페이지가 다루는 범위, 독자가 알아야 할 배경, 제외하는 주제를 짧게 작성한다.
+
 ## Current Synthesis
 
-현재까지의 종합을 작성한다.
+현재까지의 종합을 작성한다. 사실, 여러 Source를 종합한 해석, 제품 제안을 섞지 않는다.
 
 ## Evidence
 
-- 확인된 사실과 근거 Source를 작성한다. [SRC-YYYYMMDD-slug]
+- 확인된 사실과 근거 Source 앵커를 작성한다. <sup>[🔗](#source-1)</sup>
+- 가격, 수치, 기능 지원 여부, 고객 사례, benchmark 구성, 날짜가 붙은 주장은 claim-level로 출처를 붙인다.
+
+## Mechanics
+
+작동 방식, workflow, 관련 행위자, 검증 위치, 실패 처리, 통합 경계 등 전문가 독자가 판단에 필요한 세부 구조를 작성한다.
+
+## Evaluation Criteria
+
+비교 또는 검증에 사용할 기준을 작성한다. 해당하지 않으면 현재 accepted Source로 확인되지 않았다고 명시한다.
 
 ## Contradictions
 
@@ -34,3 +47,7 @@ Source 간 충돌과 현재 처리 상태를 작성한다.
 ## See Also
 
 - [[related-page|관련 페이지]] - 관계를 한 줄로 설명한다.
+
+## 출처
+
+- <a id="source-1"></a>[[source-example|Source summary 제목]] - `SRC-YYYYMMDD-slug`

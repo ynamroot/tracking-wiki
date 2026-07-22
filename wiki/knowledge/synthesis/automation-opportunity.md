@@ -4,7 +4,7 @@ type: synthesis
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-practitioner-pain-points
   - SRC-20260721-amplitude-data-ampli
@@ -24,11 +24,11 @@ sources:
 
 ## Evidence
 
-- 고객 문제 자료에서 반복되는 상위 고통은 늦은 파손 발견, 명명·문서 drift, 계측 리드타임, 수동 QA, 데이터 신뢰 하락이다. [SRC-20260721-practitioner-pain-points]
-- Avo와 Ampli는 함수와 schema를 생성하지만 어디서 언제 호출할지는 개발자가 결정한다. [SRC-20260721-avo] [SRC-20260721-amplitude-data-ampli]
-- 태그 QA 도구는 발화 검증이 가능하지만 coverage와 selector 유지가 사람에게 종속되거나, 실트래픽 방식에서는 미계측 요소를 볼 수 없다. [SRC-20260721-tag-audit-qa-tools]
-- autocapture는 coverage를 늘리지만 의미 부여, privacy, selector 수리와 핵심 속성 계측을 없애지 않는다. [SRC-20260721-autocapture-tag-managers]
-- schema와 observability 계층은 도착한 payload의 품질을 다루며 계측 호출이 없는 UI 요소를 알 수 없다. [SRC-20260721-tracking-governance-four-tools] [SRC-20260721-tracking-governance-remaining-tools] [SRC-20260721-schema-data-contracts]
+- 고객 문제 자료에서 반복되는 상위 고통은 늦은 파손 발견, 명명·문서 drift, 계측 리드타임, 수동 QA, 데이터 신뢰 하락이다. <sup>[🔗](#source-1)</sup>
+- Avo와 Ampli는 함수와 schema를 생성하지만 어디서 언제 호출할지는 개발자가 결정한다. <sup>[🔗](#source-2)</sup> <sup>[🔗](#source-3)</sup>
+- 태그 QA 도구는 발화 검증이 가능하지만 coverage와 selector 유지가 사람에게 종속되거나, 실트래픽 방식에서는 미계측 요소를 볼 수 없다. <sup>[🔗](#source-4)</sup>
+- autocapture는 coverage를 늘리지만 의미 부여, privacy, selector 수리와 핵심 속성 계측을 없애지 않는다. <sup>[🔗](#source-5)</sup>
+- schema와 observability 계층은 도착한 payload의 품질을 다루며 계측 호출이 없는 UI 요소를 알 수 없다. <sup>[🔗](#source-6)</sup> <sup>[🔗](#source-7)</sup> <sup>[🔗](#source-8)</sup>
 
 ## Contradictions
 
@@ -62,3 +62,14 @@ sources:
 - [[behavioral-data-quality-landscape|행동데이터 품질 시장 지형]] - 경쟁 계층
 - [[collection-and-validation-patterns|행동데이터 수집 및 검증 패턴]] - 기술 선택지
 - [[schema-and-data-contracts|스키마 및 데이터 계약]] - downstream 계약
+
+## 출처
+
+- <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
+- <a id="source-2"></a>[[source-avo|Source Summary: Avo]] - `SRC-20260721-avo`
+- <a id="source-3"></a>[[source-amplitude-data-ampli|Source Summary: Amplitude Data 및 Ampli SDK]] - `SRC-20260721-amplitude-data-ampli`
+- <a id="source-4"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
+- <a id="source-5"></a>[[source-autocapture-tag-managers|Source Summary: 오토캡처와 태그매니저]] - `SRC-20260721-autocapture-tag-managers`
+- <a id="source-6"></a>[[source-tracking-governance-four-tools|Source Summary: 트래킹 거버넌스 도구 4종]] - `SRC-20260721-tracking-governance-four-tools`
+- <a id="source-7"></a>[[source-tracking-governance-remaining-tools|Source Summary: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-8"></a>[[source-schema-data-contracts|Source Summary: 스키마 및 데이터 계약 계층]] - `SRC-20260721-schema-data-contracts`

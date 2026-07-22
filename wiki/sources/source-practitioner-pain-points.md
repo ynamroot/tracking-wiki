@@ -4,7 +4,7 @@ type: source-summary
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-practitioner-pain-points
 ---
@@ -17,11 +17,11 @@ sources:
 
 ## Evidence
 
-- 가장 반복적으로 보고된 문제는 이벤트 중단·중복·이름 변경을 대시보드 이상 이후에 발견하는 것이다. [SRC-20260721-practitioner-pain-points]
-- 명명 규칙과 변경 이력이 일관되지 않아 이벤트 의미 확인이 사람에게 의존한다. [SRC-20260721-practitioner-pain-points]
-- 조직과 스쿼드 수가 늘수록 배포별 수동 QA와 문서 유지 비용이 증가한다. [SRC-20260721-practitioner-pain-points]
-- PM은 출시 후 데이터 부재를 발견하고, 개발자는 계측을 비즈니스 로직과 분리된 반복 업무로 경험한다. [SRC-20260721-practitioner-pain-points]
-- 자료는 데이터 품질 문제로 분석 시간과 도구 신뢰가 손실된다고 종합한다. [SRC-20260721-practitioner-pain-points]
+- 가장 반복적으로 보고된 문제는 이벤트 중단·중복·이름 변경을 대시보드 이상 이후에 발견하는 것이다. <sup>[🔗](#source-1)</sup>
+- 명명 규칙과 변경 이력이 일관되지 않아 이벤트 의미 확인이 사람에게 의존한다. <sup>[🔗](#source-1)</sup>
+- 조직과 스쿼드 수가 늘수록 배포별 수동 QA와 문서 유지 비용이 증가한다. <sup>[🔗](#source-1)</sup>
+- PM은 출시 후 데이터 부재를 발견하고, 개발자는 계측을 비즈니스 로직과 분리된 반복 업무로 경험한다. <sup>[🔗](#source-1)</sup>
+- 자료는 데이터 품질 문제로 분석 시간과 도구 신뢰가 손실된다고 종합한다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -41,3 +41,7 @@ sources:
 
 - [[behavioral-data-practitioners|행동데이터 운영 실무자]] - 역할별 문제와 기대 결과
 - [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 현재 시장의 파손 탐지 방식
+
+## 출처
+
+- <a id="source-1"></a>[[source-practitioner-pain-points|Source Summary: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`

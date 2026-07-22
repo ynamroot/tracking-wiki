@@ -4,7 +4,7 @@ type: source-summary
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-avo
 ---
@@ -17,11 +17,11 @@ Avo는 협업형 트래킹 플랜, 타입 안전 codegen, 브랜치 승인, Insp
 
 ## Evidence
 
-- Tracking Plan은 이벤트·속성·소스·목적지를 공통 명세로 관리한다. [SRC-20260721-avo]
-- Codegen은 분석 SDK를 감싼 타입 안전 함수를 생성해 컴파일 및 런타임 제약을 적용한다. [SRC-20260721-avo]
-- Inspector는 실제 값 대신 schema 형태를 수집해 플랜과 대조한다. [SRC-20260721-avo]
-- 브랜치와 승인 workflow가 플랜 변경을 격리하고 리뷰하도록 돕는다. [SRC-20260721-avo]
-- Journeys는 설계 화면과 이벤트를 연결하지만 런타임 UI 동작과 이벤트 발화의 자동 증빙은 아니다. [SRC-20260721-avo]
+- Tracking Plan은 이벤트·속성·소스·목적지를 공통 명세로 관리한다. <sup>[🔗](#source-1)</sup>
+- Codegen은 분석 SDK를 감싼 타입 안전 함수를 생성해 컴파일 및 런타임 제약을 적용한다. <sup>[🔗](#source-1)</sup>
+- Inspector는 실제 값 대신 schema 형태를 수집해 플랜과 대조한다. <sup>[🔗](#source-1)</sup>
+- 브랜치와 승인 workflow가 플랜 변경을 격리하고 리뷰하도록 돕는다. <sup>[🔗](#source-1)</sup>
+- Journeys는 설계 화면과 이벤트를 연결하지만 런타임 UI 동작과 이벤트 발화의 자동 증빙은 아니다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -41,3 +41,7 @@ Avo는 협업형 트래킹 플랜, 타입 안전 codegen, 브랜치 승인, Insp
 
 - [[avo|Avo]] - 제품 관점 경쟁 분석
 - [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]] - 주요 제품 비교
+
+## 출처
+
+- <a id="source-1"></a>[[source-avo|Source Summary: Avo]] - `SRC-20260721-avo`

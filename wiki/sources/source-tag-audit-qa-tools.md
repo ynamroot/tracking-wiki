@@ -4,7 +4,7 @@ type: source-summary
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-22
 sources:
   - SRC-20260721-tag-audit-qa-tools
 ---
@@ -17,11 +17,11 @@ sources:
 
 ## Evidence
 
-- 크롤·시나리오 방식은 UI 동작과 네트워크 요청을 연결할 수 있지만 커버리지가 사람이 만든 URL·규칙·여정에 묶인다. [SRC-20260721-tag-audit-qa-tools]
-- 실트래픽 청취는 규칙 작성 부담 없이 실제 이벤트와 기준선 이탈을 감지하지만 발생하지 않은 상호작용과 미계측 요소는 볼 수 없다. [SRC-20260721-tag-audit-qa-tools]
-- 조사된 네 도구 모두 개편 후 selector 또는 시나리오를 자동 이관하는 요소 지문 기반 self-healing을 핵심 기능으로 제공하지 않는다. [SRC-20260721-tag-audit-qa-tools]
-- 증빙은 네트워크 요청, payload, 로그, 일부 요소 하이라이트 중심이며 요소별 시각 증빙은 제한적이다. [SRC-20260721-tag-audit-qa-tools]
-- 기존 제품은 대체로 관측·경보·진단에서 멈추고 태그 수정이나 신규 계측 실행은 사람에게 남긴다. [SRC-20260721-tag-audit-qa-tools]
+- 크롤·시나리오 방식은 UI 동작과 네트워크 요청을 연결할 수 있지만 커버리지가 사람이 만든 URL·규칙·여정에 묶인다. <sup>[🔗](#source-1)</sup>
+- 실트래픽 청취는 규칙 작성 부담 없이 실제 이벤트와 기준선 이탈을 감지하지만 발생하지 않은 상호작용과 미계측 요소는 볼 수 없다. <sup>[🔗](#source-1)</sup>
+- 조사된 네 도구 모두 개편 후 selector 또는 시나리오를 자동 이관하는 요소 지문 기반 self-healing을 핵심 기능으로 제공하지 않는다. <sup>[🔗](#source-1)</sup>
+- 증빙은 네트워크 요청, payload, 로그, 일부 요소 하이라이트 중심이며 요소별 시각 증빙은 제한적이다. <sup>[🔗](#source-1)</sup>
+- 기존 제품은 대체로 관측·경보·진단에서 멈추고 태그 수정이나 신규 계측 실행은 사람에게 남긴다. <sup>[🔗](#source-1)</sup>
 
 ## Contradictions
 
@@ -42,3 +42,7 @@ sources:
 
 - [[tag-audit-and-qa-tools|태그 감사 및 QA 도구]] - 네 가지 경쟁 방식 비교
 - [[collection-and-validation-patterns|수집 및 검증 패턴]] - 수집부터 관측까지의 기술 축
+
+## 출처
+
+- <a id="source-1"></a>[[source-tag-audit-qa-tools|Source Summary: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
