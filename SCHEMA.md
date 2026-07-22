@@ -142,6 +142,8 @@ Index는 독자의 읽기 순서를 기준으로 정렬한다. 권장 순서는 
 
 `wiki/log.md`는 append-only이며 공개 Wiki의 변경 발견용 페이지다. 새 문서, 의미 있는 결론 변경, open question 상태 변경, 배포 구조 변경은 log에 남긴다.
 
+허용 action은 `ingest`, `query`, `audit`, `update`, `decision`, `freeze`, `review`다. `review`는 비공개 제품 초안 검토 회차와 그 결과로 등록한 open question, 조사 공백 Issue를 기록한다.
+
 ```markdown
 ## [YYYY-MM-DD] action | 설명
 

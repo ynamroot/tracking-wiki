@@ -55,6 +55,16 @@ Agent는 독립 서비스가 아니라 명시적인 작업 역할이다. 한 Cod
 
 **중단 조건:** 제품 판단이 필요한 모순은 임의 해결하지 않고 `decision:required`로 넘긴다.
 
+## 초안 검토 Agent
+
+**입력:** 저장소 밖 비공개 제품 초안과 기존 Wiki.
+
+**절차:** `OPERATIONS.md`의 "제품 초안 논증" 절을 그대로 수행한다. 판정 기준 Wiki commit을 고정하고, 상속·신규 가치·우월·부족과 위험 네 축으로 판정하며, 판정할 수 없는 항목을 open question·조사 공백 Issue·개정 요구로 나눈다.
+
+**완료 조건:** 판정 보고서가 비공개 쪽에 저장되고, 새 open question이 `open-questions.md`·관련 지식 페이지·`log.md`에 같은 변경으로 반영되며, 세 문항 공개 기록 점검을 통과한다.
+
+**중단 조건:** Wiki 근거가 얇아 판정할 수 없는 항목이 과반이면 판정을 미루고 조사 공백만 등록한다. 세 문항 점검을 통과하지 못하는 문장은 저장소에 기록하지 않는다.
+
 ## Product Agent
 
 **입력:** `research-baseline`, Wiki, Product Decision.

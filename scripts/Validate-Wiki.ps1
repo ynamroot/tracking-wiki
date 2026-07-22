@@ -316,7 +316,7 @@ if (Test-Path -LiteralPath (Join-Path $root "wiki/log.md")) {
     $logContent = Get-Content -LiteralPath (Join-Path $root "wiki/log.md") -Raw -Encoding UTF8
     $invalidLogHeadings = [regex]::Matches($logContent, '(?m)^## (.+)$') |
         ForEach-Object { $_.Groups[1].Value } |
-        Where-Object { $_ -notmatch '^\d{4}-\d{2}-\d{2}$' -and $_ -notmatch '^\[\d{4}-\d{2}-\d{2}\] (ingest|query|audit|update|decision|freeze) \| .+$' }
+        Where-Object { $_ -notmatch '^\d{4}-\d{2}-\d{2}$' -and $_ -notmatch '^\[\d{4}-\d{2}-\d{2}\] (ingest|query|audit|update|decision|freeze|review) \| .+$' }
 
     foreach ($heading in $invalidLogHeadings) {
         Add-ValidationError "Invalid wiki/log.md entry format: ## $heading"

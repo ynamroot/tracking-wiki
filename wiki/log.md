@@ -7,7 +7,7 @@ description: Tracking Wiki의 공개 변경 이력
 
 이 파일은 append-only다. 형식은 `## [YYYY-MM-DD] action | 설명`을 사용한다.
 
-허용 action: `ingest`, `query`, `audit`, `update`, `decision`, `freeze`.
+허용 action: `ingest`, `query`, `audit`, `update`, `decision`, `freeze`, `review`.
 
 독자는 이 페이지에서 새 문서, 의미 있는 내용 변경, Open Question 상태 변화, 배포 구조 변경을 확인한다. 최신 변경은 아래쪽에 추가된다.
 
@@ -78,3 +78,11 @@ Home 항목이 루트 링크가 아니라 `home` slug로 정렬되어 목록 최
 ## [2026-07-22] ingest | 용어집과 역할별 페인포인트 분석 통합
 
 `2607_tracking-plan`에서 AI와 함께 정리한 조사 산출물 2건을 intake·ingest했다. `SRC-20260722-tracking-glossary`(7개 축의 기술·벤더 용어집)와 `SRC-20260722-pain-point-analysis`(외부 1차 자료와 내부 실증으로 교차 검증한 역할별 페인포인트)를 secondary로 자동 채택하고 원문을 hash와 함께 `raw/assets`에 보존했다. 두 자료의 근거 원자료는 이미 accepted Source로 추적 가능하다. Source summary `source-tracking-glossary`, `source-pain-point-analysis`를 만들고, 새 지식 페이지 `tracking-terminology`(핵심 용어 해설의 기본 용어를 전제로 한 상세·벤더 용어 사전)를 추가했으며 `key-terms`와 상호 연결했다. `behavioral-data-practitioners`에는 파손의 침묵·수동 QA 부담·무인지 파손이 이름 있는 복수 외부 자료에서 독립 재확인된다는 점과 고통의 사슬(수작업 의존 → 커버리지·품질 제한 → 파손 방치 → 신뢰 상실)을 보강했다. 정량 수치(3% HBR, 40% Forrester)는 벤더 블로그의 secondary 재인용으로 표기했다. `OQ-004`는 문제 일반성이 보강됐으나 타깃 고객의 실제 비용은 미해결이라 열림 상태로 유지했다.
+
+## [2026-07-22] update | 제품 초안 논증 루프 도입
+
+비공개 제품 초안을 Wiki 근거로 반복 검증하는 "제품 초안 논증" 절차를 운영 문서에 정의했다. `OPERATIONS.md`에 6절 "제품 초안 논증"을 추가하고 이후 절을 재번호했으며, `AGENTS.md`에 초안 검토 Agent 역할과 비공개 초안 비밀 유지 규칙, `AGENT_PLAYBOOKS.md`에 해당 플레이북, `PROJECT_CONTEXT.md`에 비공개 제품 초안 소절, `SCHEMA.md`와 이 log에 `review` action을 추가했다. 판정 보고서 템플릿 `templates/draft-review.md`를 만들었다. 초안 원문과 판정 보고서는 이 공개 저장소 밖 비공개 작업 공간에 두고, 저장소에는 일반화된 조사 질문과 검토 기록만 남긴다.
+
+## [2026-07-22] review | 비공개 제품 초안 2회차 검토
+
+비공개 제품 초안 한 건을 현재 Wiki(commit 57fd430)를 근거로 재검토했다. Wiki로 판정할 수 없는 항목을 조사 질문으로 등록했다 — `OQ-009`(운영 환경 자동 순회의 합성 이벤트 식별·격리 관행), `OQ-010`(화면 증거의 개인정보 마스킹·보존 관행), `OQ-011`(자동 발견·초안 생성의 승인 병목 규모)을 신규로 열고, `OQ-005`(오병합 허용 상한)와 `OQ-008`(계층별 발견율 기준)의 범위를 넓혔다. 새 질문은 `autonomous-traversal-evaluation`, `element-event-evidence`, `automation-opportunity`의 미결 질문 절에 미러링했다. 초안 내용은 저장소에 기록하지 않았다.

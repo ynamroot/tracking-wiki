@@ -21,10 +21,13 @@ description: 아직 해결되지 않은 조사 질문, Source 간 모순, 제품
 - [ ] `OQ-002` 첫 MVP outcome은 배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안 중 무엇인가?
 - [ ] `OQ-003` Value Proposition을 검증할 고객 인터뷰와 행동 증거의 최소 기준은 무엇인가?
 - [ ] `OQ-004` 현재 수동 QA·파손 대응·계측 구현에 쓰는 시간과 비용은 얼마인가? 2026-07-22 역할별 페인포인트 분석이 문제의 존재와 일반성을 이름 있는 외부 자료(Trackingplan, RudderStack, House of Martech, incident.io, 원티드랩)로 보강했으나, 타깃 고객의 실제 시간·비용 수치는 여전히 미해결이다.
-- [ ] `OQ-005` 요소 지문과 자율 순회가 실제 제품 개편에서 달성해야 할 정확도와 안전 기준은 무엇인가?
+- [ ] `OQ-005` 요소 지문과 자율 순회가 실제 제품 개편에서 달성해야 할 정확도와 안전 기준은 무엇인가? 특히 서로 다른 요소를 같다고 잘못 잇는 오병합의 허용 상한을 어떻게 정하는가?
 - [ ] `OQ-006` 기존 Avo, Amplitude, Segment, GTM과 공존할지 일부를 대체할지 결정해야 한다.
 - [~] `OQ-007` 제품 방향을 지지하는 핵심 주장과 가격 정보를 공식 primary Source record로 확장해야 한다. 2026-07-22 기준 Avo, Amplitude, Segment, mParticle, RudderStack, Snowplow/dbt, web-agent benchmark에 더해 ObservePoint, Trackingplan, Heap, PostHog, Amplitude Visual Labeling, Mixpanel Autocapture, Google Tag Manager의 공식 Source가 추가됐다. 다만 가격·tier 최신성, enterprise-only 기능, 공식 접근이 안정적이지 않았던 DataTrue/Tag Inspector 세부 claim, 고객 구매 증거는 남아 있다.
-- [ ] `OQ-008` 자율 순회와 요소 지문 가설을 검증할 대표 UI 변경 dataset과 평가 기준은 무엇인가?
+- [ ] `OQ-008` 자율 순회와 요소 지문 가설을 검증할 대표 UI 변경 dataset과 평가 기준은 무엇인가? 명시적 요소, 클릭 핸들러가 붙은 요소, 펼침(스크롤·탭·모달) 내부 요소의 계층별 발견율은 어떤 기준으로 측정하는가?
+- [ ] `OQ-009` 운영 환경에서 자동 순회가 만드는 합성(봇) 이벤트를 실사용 분석 데이터에서 식별·격리하는 업계 관행과 요구 기준은 무엇인가?
+- [ ] `OQ-010` 화면 증거(스크린샷) 기반 검증에서 개인정보 마스킹과 보존 기한의 업계 관행·규제 요구는 무엇인가?
+- [ ] `OQ-011` 자동 발견·초안 생성 도구에서 사람 승인 대기열이 새 병목이 되는 규모와 이를 다룬 사례는 무엇인가?
 
 ## Source Contradictions
 
