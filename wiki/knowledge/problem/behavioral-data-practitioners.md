@@ -4,12 +4,14 @@ type: customer
 status: current
 confidence: medium
 created: 2026-07-21
-updated: 2026-07-22
+updated: 2026-07-23
 sources:
   - SRC-20260721-practitioner-pain-points
   - SRC-20260721-avo-official-data-design
   - SRC-20260721-amplitude-official-data-governance
   - SRC-20260722-pain-point-analysis
+  - SRC-20260723-prospect-interview-marketing-stack-review
+  - SRC-20260722-prospect-interview-behavior-data-fusion
 ---
 
 # 행동데이터 운영 실무자
@@ -26,6 +28,8 @@ sources:
 - 파손의 침묵(이벤트가 멈춰도 전체 트래픽은 멀쩡해 보여 데이터를 쓰는 시점에야 발견), 수동 품질 검증 부담(담당 팀이 늘수록 검증 시간 증가), 무인지 파손(코드 정리로 참조하던 버튼이 사라져도 만든 개발자 본인이 모름)이 Trackingplan, RudderStack 창업자, House of Martech, incident.io, 원티드랩 기술블로그 등에서 각각 독립적으로 보고된다. 원티드랩은 이 병목에 품질 검증 자동화로 투자한 국내 선례다. <sup>[🔗](#source-4)</sup>
 - 역할별 1순위 고통이 다르다: 기획자는 준비 시간(리드타임)("필요한 시점에 데이터가 없다"), 개발자는 무인지 파손의 자동 감지, 데이터 담당자는 감시 주체의 존재를 가장 먼저 원한다. <sup>[🔗](#source-4)</sup>
 - 신뢰 상실의 정량 수치("품질 좋은 데이터 3%", "나쁜 데이터 이해에 분석가 시간 40% 이상")는 Mixpanel 블로그가 HBR·Forrester를 재인용한 2차 근거(secondary)로, 문제의 방향은 뒷받침하나 목표 고객 비용의 확정 근거는 아니다. <sup>[🔗](#source-4)</sup>
+- 익명화한 잠재 고객 인터뷰 2건에서도 같은 사슬이 재확인된다: 이벤트 설계(택소노미)는 기획자 개인 역량에 좌우되고 수집 후 보정이 어려우며, 서비스 변경 속도를 계측 설계가 따라가지 못한다. 다만 한 조직은 숙련도가 오르며 이 부담 자체는 줄었다고 밝혀, 페인포인트 강도가 조직 성숙도에 따라 달라질 수 있음을 보여준다. <sup>[🔗](#source-5)</sup> <sup>[🔗](#source-6)</sup>
+- 잠재 고객 인터뷰에서는 AI를 이용한 분석 시도가 있었지만, 결과 신뢰성(할루시네이션 우려) 때문에 사람이 직접 교차 검증하는 절차를 병행한다고 답했다 — 자동화가 검증 부담을 늘릴 수도 있다는 반례다. <sup>[🔗](#source-6)</sup>
 
 ## 작동 방식
 
@@ -40,13 +44,14 @@ sources:
 
 ## 모순
 
-벤더 문서는 협업 대상을 제품·엔지니어링·분석으로 넓게 표현하지만, 실제 예산을 쥔 구매자와 챔피언은 고객별로 다를 수 있다. 공식 고객 사례 목록(index)만으로 구매 역할을 확정할 수 없다.
+벤더 문서는 협업 대상을 제품·엔지니어링·분석으로 넓게 표현하지만, 실제 예산을 쥔 구매자와 챔피언은 고객별로 다를 수 있다. 공식 고객 사례 목록(index)만으로 구매 역할을 확정할 수 없다. 잠재 고객 인터뷰 2건은 AI 자동 회의록이고 참가자 동의 범위가 별도 문서화되지 않아 `secondary`로만 취급한다 — 실제 고객의 목소리이지만 원문 검증(verbatim transcript)은 아직 없다.
 
 ## 미결 질문
 
 - `OQ-001`: 예산을 쥔 구매자와 초기 챔피언은 누구인가?
 - `OQ-003`: 가치 제안(Value Proposition) 검증에 필요한 고객 인터뷰와 행동 증거 기준은 무엇인가?
 - `OQ-004`: 수동 품질 검증·파손 대응·계측 구현 비용은 얼마인가?
+- `OQ-015`: AI 기반 분석 결과의 신뢰성 우려에 실무자가 쓰는 자동 교차 검증 방법은 무엇인가?
 
 ## 제품 시사점
 
@@ -56,6 +61,7 @@ sources:
 
 - [[buyer-and-champion|구매자와 챔피언 가설]] - 역할별 구매 가능성
 - [[tracking-qa-workflow|트래킹 QA 운영 흐름]] - 문제 발생 흐름
+- [[automation-opportunity|행동데이터 자동화 기회]] - 결합 분석·AI 신뢰성 요구의 제품 시사점
 - [[source-pain-point-analysis|자료 요약: 역할별 페인포인트 분석]] - 외부 자료로 보강한 역할별 고통과 사슬 구조
 - [[key-terms|핵심 용어 해설]] - 반복되는 용어 풀이.
 
@@ -65,3 +71,5 @@ sources:
 - <a id="source-2"></a>[[source-avo-official-data-design|자료 요약: Avo 공식 문서와 가격]] - `SRC-20260721-avo-official-data-design`
 - <a id="source-3"></a>[[source-amplitude-official-data-governance|자료 요약: Amplitude 공식 Data Governance]] - `SRC-20260721-amplitude-official-data-governance`
 - <a id="source-4"></a>[[source-pain-point-analysis|자료 요약: 역할별 페인포인트 분석]] - `SRC-20260722-pain-point-analysis`
+- <a id="source-5"></a>[[source-prospect-interview-behavior-data-fusion|자료 요약: 잠재 고객 인터뷰 — 행동데이터와 내부 서비스 데이터 결합 요구]] - `SRC-20260722-prospect-interview-behavior-data-fusion`
+- <a id="source-6"></a>[[source-prospect-interview-marketing-stack-review|자료 요약: 잠재 고객 인터뷰 — 마케팅·분석 SaaS 스택 현황]] - `SRC-20260723-prospect-interview-marketing-stack-review`

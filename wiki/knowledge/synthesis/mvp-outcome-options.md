@@ -4,12 +4,13 @@ type: synthesis
 status: current
 confidence: low
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-07-23
 sources:
   - SRC-20260721-practitioner-pain-points
   - SRC-20260721-tag-audit-qa-tools
   - SRC-20260721-web-agent-eval-benchmarks
   - SRC-20260721-tracking-governance-remaining-tools
+  - SRC-20260722-prospect-interview-behavior-data-fusion
 ---
 
 # MVP outcome 선택지
@@ -41,6 +42,8 @@ sources:
 
 고객에 따라 운영 경보가 더 급할 수 있다. 자료만으로 MVP를 확정하면 안 되고, 인터뷰로 배포 관련 어려움(release pain)과 운영 사고 관련 어려움(incident pain)을 비교해야 한다.
 
+익명화한 잠재 고객 인터뷰 1건은 자체 구축 전환 조건으로 "현재 도구를 조작해 가며 확인하는 탐색을 별도 조작 없이 바로 볼 수 있는 형태"를 언급했다. <sup>[🔗](#source-5)</sup> 이는 위 세 후보(배포 전 회귀 검증, 운영 파손 경보, 자동 계측 제안) 중 어느 것과도 정확히 일치하지 않는 네 번째 축("즉시 탐색")일 수 있다. 다만 이 인터뷰는 AI 요약본 1건뿐이라 새 MVP 후보로 확정하기보다 후속 확인이 필요한 신호로만 남긴다.
+
 ## 미결 질문
 
 - `OQ-002`: 첫 MVP 성과는 무엇인가?
@@ -62,3 +65,4 @@ sources:
 - <a id="source-2"></a>[[source-tag-audit-qa-tools|자료 요약: 태그 감사 및 자동 순회 QA 도구]] - `SRC-20260721-tag-audit-qa-tools`
 - <a id="source-3"></a>[[source-web-agent-eval-benchmarks|자료 요약: Web Agent Evaluation Benchmarks]] - `SRC-20260721-web-agent-eval-benchmarks`
 - <a id="source-4"></a>[[source-tracking-governance-remaining-tools|자료 요약: 트래킹 거버넌스 및 인접 도구]] - `SRC-20260721-tracking-governance-remaining-tools`
+- <a id="source-5"></a>[[source-prospect-interview-behavior-data-fusion|자료 요약: 잠재 고객 인터뷰 — 행동데이터와 내부 서비스 데이터 결합 요구]] - `SRC-20260722-prospect-interview-behavior-data-fusion`

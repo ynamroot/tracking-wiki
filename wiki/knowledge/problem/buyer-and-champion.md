@@ -4,11 +4,13 @@ type: customer
 status: current
 confidence: low
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-07-23
 sources:
   - SRC-20260721-practitioner-pain-points
   - SRC-20260721-avo-official-data-design
   - SRC-20260721-amplitude-official-data-governance
+  - SRC-20260723-prospect-interview-marketing-stack-review
+  - SRC-20260722-prospect-interview-behavior-data-fusion
 ---
 
 # 구매자와 챔피언 가설
@@ -22,6 +24,7 @@ sources:
 - 내부 고통 자료는 기획자, 개발자, 데이터 담당자 사이의 넘겨주기(handoff)와 반복되는 품질 검증 비용을 핵심 문제로 다룬다. <sup>[🔗](#source-1)</sup>
 - Avo 공식 고객 목록은 Delivery Hero, Wolt, OneFootball, Fender 등 고객 후보를 나열하지만 구매자 역할은 확정하지 않는다. <sup>[🔗](#source-2)</sup>
 - Amplitude 공식 문서는 분석가, 기획자, 개발자 협업 흐름을 제시하지만 구매 승인자 정보는 제공하지 않는다. <sup>[🔗](#source-3)</sup>
+- 익명화한 잠재 고객 인터뷰 2건 모두 인터뷰이가 기획·마케팅 담당자였다 — 이들이 현재 도구의 불편을 직접 겪는 챔피언 후보라는 정황과 부합한다. 다만 두 인터뷰 모두 예산 승인 절차나 구매 결정권자는 언급하지 않아 구매자 확정 증거는 여전히 없다. <sup>[🔗](#source-4)</sup> <sup>[🔗](#source-5)</sup>
 
 ## 작동 방식
 
@@ -37,6 +40,10 @@ sources:
 ## 모순
 
 공급사의 고객 로고는 도입(adoption) 증거지만 구매자 역할 증거가 아니다. 내부 보고서의 페르소나(persona)는 합리적이지만 직접 인터뷰(primary interview)가 필요하다.
+
+역할 간 정보 격차가 실제 실패로 이어진 사례는 [[industry-event-governance-practices|실운영 조직의 이벤트 계측 거버넌스 사례]]의 Naver Series 기록에서 확인된다 — 마케터와 엔지니어가 "전환"을 서로 다르게 이해해 택소노미를 전면 재설계해야 했다.
+
+잠재 고객 인터뷰 2건은 AI 자동 회의록이고 참가자 동의 범위가 문서화되지 않아 `secondary`로 취급한다. 챔피언 후보에 대한 첫 정황은 주지만, 이 두 건만으로 구매자 가설의 신뢰도를 올리지는 않는다.
 
 ## 미결 질문
 
@@ -58,3 +65,5 @@ sources:
 - <a id="source-1"></a>[[source-practitioner-pain-points|자료 요약: 행동데이터 운영 실무자 페인포인트]] - `SRC-20260721-practitioner-pain-points`
 - <a id="source-2"></a>[[source-avo-official-data-design|자료 요약: Avo 공식 문서와 가격]] - `SRC-20260721-avo-official-data-design`
 - <a id="source-3"></a>[[source-amplitude-official-data-governance|자료 요약: Amplitude 공식 Data Governance]] - `SRC-20260721-amplitude-official-data-governance`
+- <a id="source-4"></a>[[source-prospect-interview-marketing-stack-review|자료 요약: 잠재 고객 인터뷰 — 마케팅·분석 SaaS 스택 현황]] - `SRC-20260723-prospect-interview-marketing-stack-review`
+- <a id="source-5"></a>[[source-prospect-interview-behavior-data-fusion|자료 요약: 잠재 고객 인터뷰 — 행동데이터와 내부 서비스 데이터 결합 요구]] - `SRC-20260722-prospect-interview-behavior-data-fusion`

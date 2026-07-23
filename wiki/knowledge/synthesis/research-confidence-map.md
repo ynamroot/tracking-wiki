@@ -4,7 +4,7 @@ type: synthesis
 status: current
 confidence: medium
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-07-23
 sources:
   - SRC-20260721-practitioner-pain-points
   - SRC-20260721-avo-official-data-design
@@ -17,6 +17,8 @@ sources:
   - SRC-20260722-commercial-tools-survey
   - SRC-20260722-commercial-tools-official-docs
   - SRC-20260722-pain-point-analysis
+  - SRC-20260723-prospect-interview-marketing-stack-review
+  - SRC-20260722-prospect-interview-behavior-data-fusion
 ---
 
 # 연구 신뢰도 지도
@@ -31,6 +33,7 @@ sources:
 - 웹 에이전트 벤치마크(web-agent benchmark)는 평가 재료를 제공하지만, 트래킹 전용 정답 라벨(tracking-specific labels)은 없다. <sup>[🔗](#source-8)</sup>
 - 고객의 어려움(pain)을 다룬 자료는 내부에서 정리한 2차 보고서(secondary internal report)이며 고객 인터뷰 원문은 아니다. 다만 역할별 페인포인트 분석이 파손 방치·수동 품질 검사(QA) 부담·무인지 파손을 이름 있는 여러 외부 자료로 독립 재확인해, "문제가 실재하고 일반적"이라는 부분의 신뢰도는 올랐다. 반면 지불 의사와 목표 고객의 실제 운영 비용은 여전히 신뢰도가 낮다. <sup>[🔗](#source-1)</sup> <sup>[🔗](#source-11)</sup>
 - 상용 도구 조사는 2차 자료를 종합한 것이지만, ObservePoint, Trackingplan, Heap, PostHog, Amplitude, Mixpanel, GTM의 공식 문서로 주요 분류가 보강됐다. <sup>[🔗](#source-9)</sup> <sup>[🔗](#source-10)</sup>
+- 2026-07-22~23 잠재 고객 인터뷰 2건이 처음 ingest됐다. 실제 시장 목소리라는 점에서 의미가 있지만, AI 자동 회의록이고 참가자 동의 범위가 문서화되지 않아 `secondary`로만 분류한다. 구매자·지불 의사의 신뢰도를 `low`에서 올리지는 않는다 — 검증된 원문(녹취·동의 기록)을 갖춘 인터뷰가 더 필요하다. <sup>[🔗](#source-12)</sup> <sup>[🔗](#source-13)</sup>
 
 ## 작동 방식
 
@@ -41,7 +44,7 @@ sources:
 | Claim | 현재 신뢰도 | 다음 증거 |
 |---|---|---|
 | 경쟁사 기능/가격 | medium-high | 최신 공식 문서 재확인, 공식 접근 실패 제품 보강 |
-| 구매자/champion | low | 고객 인터뷰, 구매 사례 |
+| 구매자/champion | low | 동의 범위가 기록된 검증 가능한 고객 인터뷰, 구매 사례 (2026-07-23 기준 AI 요약 인터뷰 2건 도착, 미검증) |
 | 수동 QA 비용 | low | 업무 시간, incident 기록 |
 | 요소 지문 정확도 | low | prototype dataset |
 | 배포 전 검증 value | low-medium | UAT와 pilot |
@@ -79,3 +82,5 @@ sources:
 - <a id="source-9"></a>[[source-commercial-tools-survey|자료 요약: 상용 도구 조사]] - `SRC-20260722-commercial-tools-survey`
 - <a id="source-10"></a>[[source-commercial-tools-official-docs|자료 요약: 상용 도구 공식 문서 보강]] - `SRC-20260722-commercial-tools-official-docs`
 - <a id="source-11"></a>[[source-pain-point-analysis|자료 요약: 역할별 페인포인트 분석]] - `SRC-20260722-pain-point-analysis`
+- <a id="source-12"></a>[[source-prospect-interview-behavior-data-fusion|자료 요약: 잠재 고객 인터뷰 — 행동데이터와 내부 서비스 데이터 결합 요구]] - `SRC-20260722-prospect-interview-behavior-data-fusion`
+- <a id="source-13"></a>[[source-prospect-interview-marketing-stack-review|자료 요약: 잠재 고객 인터뷰 — 마케팅·분석 SaaS 스택 현황]] - `SRC-20260723-prospect-interview-marketing-stack-review`

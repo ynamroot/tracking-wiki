@@ -61,3 +61,4 @@ supersedes: []
 ## Revision Notes
 
 - 2026-07-21: Research Agent가 customer interview primary-source 수집 전제와 최소 intake 기준을 기록.
+- 2026-07-23: 잠재 고객 인터뷰 2건(`SRC-20260723-prospect-interview-marketing-stack-review`, `SRC-20260722-prospect-interview-behavior-data-fusion`)이 이 계획에서 예고한 대로 처음 도착했다. 다만 이번 인터뷰는 이 문서가 요구한 동의 범위 문서화 없이 PO 판단으로 ingest됐고, 원문이 AI 자동 회의록이라 `reliability: secondary`로만 승격했다. 이 계획이 전제한 "동의 범위, 익명화 기준"은 여전히 정비되지 않은 채로 남아 있다(`wiki/open-questions.md`의 "다음 Research Loop" 참고).

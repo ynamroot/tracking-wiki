@@ -39,6 +39,12 @@ accepted Source 8건과 knowledge page 18건을 검사했다. 구조·index·wik
 
 공개 Wiki 본문에 반복 노출되던 Source ID를 `🔗` 앵커로 바꾸고, 전체 Source ID와 Source summary 링크를 각 문서 최하단 `출처` 절로 이동했다. Schema, ingest 절차, Wiki Compiler 규칙과 validator도 같은 표기 방식을 따르도록 갱신했다.
 
+## [2026-07-23] ingest | "4.3 참고 링크" 카탈로그 신규 URL 24건 반영
+
+`SRC-20260722-tracking-reference-links`(참고 링크 카탈로그)의 신규 URL 25건 중 24건을 4개 Source로 확보해 ingest했다: `SRC-20260723-amplitude-avo-taxonomy-publishing`(Amplitude taxonomy·거버넌스 문서, Avo Publishing 하류 발행 8종), `SRC-20260723-data-contract-ecosystem`(Bitol 프로젝트 범위, 데이터 컨트랙트 버저닝 관행, Snowplow Iglu 운영), `SRC-20260723-commercial-tools-commentary`(Mixpanel Lexicon, mParticle 연동, RudderStack×Avo, PostHog 경쟁군 비교), `SRC-20260723-industry-event-governance-practices`(GitLab·Wikimedia·Naver Series의 실제 이벤트 정의 강제·실패 사례). Toss(`toss.tech`)는 관련 사례를 찾지 못해 이번 ingest에 포함하지 않았다 — 후속 조사가 필요하다.
+
+신규 페이지 [[industry-event-governance-practices|실운영 조직의 이벤트 계측 거버넌스 사례]]를 만들었고, [[avo|Avo]](Publishing 메커니즘), [[amplitude-data|Amplitude Data]](AI 계측 에이전트, 명명 규칙 모순), [[schema-and-data-contracts|스키마 및 데이터 계약]](데이터 컨트랙트 생태계), [[tracking-governance-platforms|트래킹 거버넌스 플랫폼]](RudderStack×Avo, Mixpanel-mParticle), [[automation-opportunity|행동데이터 자동화 기회]](경쟁 신호, 실제 조직 증거), [[buyer-and-champion|구매자와 챔피언 가설]](Naver Series 실패 사례 연결)를 갱신했다. `OQ-012`, `OQ-013`을 새로 등록했다.
+
 ## [2026-07-22] update | GitHub Issue 참여 경로 추가
 
 Wiki 첫 화면과 사이트 footer에 자료 제보 및 조사 질문 Issue 버튼을 추가했다. Issue Form은 저장소 소유자에게 자동 할당되며, GitHub 라벨은 현재 상태 표시용이고 LLM ingest 실행은 아직 별도 runner가 필요하다는 운영 경계를 기록했다.
@@ -94,3 +100,7 @@ Home 항목이 루트 링크가 아니라 `home` slug로 정렬되어 목록 최
 ## [2026-07-22] update | 전체 페이지 본문 한영 혼용 제거
 
 공개 Wiki 39개 지식 페이지와 자료 요약의 본문 문장을 비전문가가 읽을 수 있게 다듬었다. 한 문장 안의 한국어·영어 혼용을 없애고, 외래어와 약어를 첫 등장 시 쉬운 한국어로 풀었으며(예: `고객데이터플랫폼(CDP)`, `수집 도구(SDK)`, `품질 검증(QA)`), 문서마다 한 용어를 한 표현으로 통일했다. 제품·기능·벤치마크 이름, 가격, 수치, 표 데이터, 모든 `🔗` 출처 앵커와 위키링크 대상, `OQ`/`SRC` ID는 그대로 두어 주장과 근거의 연결은 바꾸지 않았다. 영어가 남은 세 페이지 제목(`champion`, `workflow`, `Codegen`)을 `챔피언`, `흐름`, `코드 생성`으로 바꾸고 index 표기도 맞췄다. 남은 영어 비율·약어 경고는 대부분 제품 고유명과 첫 등장 원어 병기에서 오는 것으로, 오류가 아니라 검토용 신호다.
+
+## [2026-07-23] ingest | 잠재 고객 인터뷰 2건 최초 반영
+
+`SRC-20260723-prospect-interview-marketing-stack-review`와 `SRC-20260722-prospect-interview-behavior-data-fusion`을 ingest했다. 두 인터뷰 모두 회사명과 식별 가능한 구체 수치(비용, 이용자 규모 등)를 익명화했고, 제출자가 신빙성을 의심한 회의록의 "결정" 단정 문장은 제외했다. `reliability: secondary`로 분류했다 — AI 자동 회의록이고 참가자 동의 범위가 별도 문서화되지 않았기 때문이다. [[behavioral-data-practitioners|행동데이터 운영 실무자]], [[buyer-and-champion|구매자와 챔피언 가설]], [[automation-opportunity|행동데이터 자동화 기회]], [[mvp-outcome-options|MVP outcome 선택지]], [[research-confidence-map|연구 신뢰도 지도]]를 갱신했다. 행동데이터와 내부 서비스 데이터의 결합 분석 요구(`OQ-014` 신규)와 AI 분석 결과 신뢰성 우려(`OQ-015` 신규)를 새 조사 질문으로 열었다. `OQ-001`, `OQ-003`, `OQ-004`는 첫 정황을 얻었지만 표본이 적고 검증되지 않아 열림 상태를 유지했다.
