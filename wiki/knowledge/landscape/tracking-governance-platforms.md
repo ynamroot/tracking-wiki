@@ -4,13 +4,14 @@ type: comparison
 status: current
 confidence: high
 created: 2026-07-21
-updated: 2026-07-22
+updated: 2026-07-23
 sources:
   - SRC-20260721-tracking-governance-four-tools
   - SRC-20260721-tracking-governance-remaining-tools
   - SRC-20260721-segment-protocols-official
   - SRC-20260721-mparticle-data-planning-official
   - SRC-20260721-rudderstack-tracking-plans-official
+  - SRC-20260723-commercial-tools-commentary
 ---
 
 # 트래킹 거버넌스 플랫폼
@@ -26,6 +27,8 @@ sources:
 - mParticle 데이터 플랜은 최대 1,000 data points를 지원하며, 400개를 넘으면 API나 Builder 사용을 권장한다. <sup>[🔗](#source-4)</sup>
 - mParticle이 막을 수 있는 데이터는 계획에 없던 위반(unplanned violations)으로 제한된다. <sup>[🔗](#source-4)</sup>
 - RudderStack Tracking Plans는 들어오는 이벤트가 규칙을 어기는지 감시하고 대응하며, Free는 1 plan/5 events, Growth는 unlimited plans/75 events, Enterprise는 unlimited/unlimited의 한도를 둔다. <sup>[🔗](#source-5)</sup>
+- RudderStack × Avo 연동은 Avo의 Tracking Plan API로 명세(이벤트·속성 정의)만 RudderStack에 push하고, RudderStack이 들어오는 실제 이벤트를 이 명세와 실시간 대조해 위반 이벤트를 서버 단에서 드롭하거나 보정한다. <sup>[🔗](#source-6)</sup>
+- Mixpanel-mParticle 공식 연동은 mParticle→Mixpanel 단방향이며, mParticle의 "External Identity Type" 설정이 Mixpanel `$distinct_id`를 결정한다. Mixpanel 공식 문서 스스로 "mParticle SDK 메서드 전부가 지원되지는 않는다"고 밝힌다. <sup>[🔗](#source-6)</sup>
 
 ## 작동 방식
 
@@ -51,7 +54,7 @@ Segment는 고객데이터플랫폼(CDP)의 경계 지점에서 위반 표시와
 
 ## 제품 시사점
 
-제품 연동의 우선순위는 Segment·RudderStack·mParticle의 계획을 가져오고 기대 이벤트 목록을 만드는 일이다. 초기 가치는 페이로드 검증이 아니라, 페이로드가 아예 없는 빠진 동작을 증명하는 데 있다.
+제품 연동의 우선순위는 Segment·RudderStack·mParticle의 계획을 가져오고 기대 이벤트 목록을 만드는 일이다. 초기 가치는 페이로드 검증이 아니라, 페이로드가 아예 없는 빠진 동작을 증명하는 데 있다. RudderStack이 이미 "명세 대비 실시간 위반 드롭·보정"을 제공한다는 사실은 이 결론을 다시 뒷받침한다 — 페이로드가 도착한 뒤의 검증은 이미 시장에 있고, 신규 제품은 페이로드가 아예 발생하지 않은 지점에 집중해야 한다.
 
 ## 관련 문서
 
@@ -67,3 +70,4 @@ Segment는 고객데이터플랫폼(CDP)의 경계 지점에서 위반 표시와
 - <a id="source-3"></a>[[source-segment-protocols-official|자료 요약: Twilio Segment Protocols 공식 문서]] - `SRC-20260721-segment-protocols-official`
 - <a id="source-4"></a>[[source-mparticle-data-planning-official|자료 요약: mParticle Data Planning 공식 문서]] - `SRC-20260721-mparticle-data-planning-official`
 - <a id="source-5"></a>[[source-rudderstack-tracking-plans-official|자료 요약: RudderStack Tracking Plans 공식 문서]] - `SRC-20260721-rudderstack-tracking-plans-official`
+- <a id="source-6"></a>[[source-commercial-tools-commentary|자료 요약: 상용 도구 3자 코멘터리와 연동 문서]] - `SRC-20260723-commercial-tools-commentary`
